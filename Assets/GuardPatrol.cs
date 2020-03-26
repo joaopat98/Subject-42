@@ -10,6 +10,7 @@ public class GuardPatrol : GuardAction
     {
         Debug.Log("Patrolling");
         agent.speed = guard.PatrolSpeed;
+        agent.stoppingDistance = guard.PatrolReachDistance;
         path = guard.DefaultPath.GetAllNodes();
         agent.SetDestination(path[0]);
     }

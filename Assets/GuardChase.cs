@@ -5,6 +5,7 @@ public class GuardChase : GuardAction
     public GuardChase(Guard guard) : base(guard)
     {
         Debug.Log("Chasing");
+        agent.stoppingDistance = guard.ChaseReachDistance;
         agent.speed = guard.ChaseSpeed;
     }
 
