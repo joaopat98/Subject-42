@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Rigidbody rb;
-    public float Speed;
+    public float MoveSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -16,15 +16,27 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Move();
+    }
+
+    private Vector2 GetJoystickDir()
+    {
         var dirRaw = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         float angle = Mathf.Atan2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
         float absAngle = Mathf.Atan2(Mathf.Abs(Input.GetAxis("Vertical")), Mathf.Abs(Input.GetAxis("Horizontal")));
-        Debug.Log(Mathf.Rad2Deg * absAngle);
         absAngle = absAngle > Mathf.PI / 4 ? Mathf.PI / 2 - absAngle : absAngle;
         float ratio = absAngle == 0 || absAngle == 90 ? 1 : Mathf.Sin(absAngle) / Mathf.Tan(absAngle);
-        var dir = ratio * dirRaw;
-        Debug.Log(dir);
-        rb.MoveRotation(Quaternion.AngleAxis(angle * Mathf.Rad2Deg, Vector3.up));
-        rb.velocity = new Vector3(dir.x, 0, dir.y) * Speed;
+        return ratio * dirRaw;
+    }
+
+    private void Move()
+    {
+        var dir = GetJoystickDir();
+
+        if (dir != Vector2.zero)
+            rb.MoveRotation(Quaternion.LookRotation(dir.ToHorizontalDir(), Vector3.up));
+        else
+            rb.angularVelocity = Vector3.zero;
+        rb.velocity = new Vector3(MoveSpeed * dir.x, rb.velocity.y, MoveSpeed * dir.y);
     }
 }
