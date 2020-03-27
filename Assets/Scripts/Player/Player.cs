@@ -36,13 +36,16 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        var dir = GetJoystickDir();
+        var camTransform = Camera.main.transform;
+        var camAngle = Mathf.Rad2Deg * Mathf.Atan2(camTransform.forward.x, camTransform.forward.z);
 
-        if (dir != Vector2.zero)
-            rb.MoveRotation(Quaternion.LookRotation(dir.ToHorizontalDir(), Vector3.up));
+        var dir = Quaternion.Euler(0, camAngle, 0) * GetJoystickDir().ToHorizontalDir();
+
+        if (dir != Vector3.zero)
+            rb.MoveRotation(Quaternion.LookRotation(dir, Vector3.up));
         else
             rb.angularVelocity = Vector3.zero;
-        rb.velocity = new Vector3(MoveSpeed * dir.x, rb.velocity.y, MoveSpeed * dir.y);
+        rb.velocity = new Vector3(MoveSpeed * dir.x, rb.velocity.y, MoveSpeed * dir.z);
     }
 
     public void Kill()
