@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6191233054363198107}
   m_Layer: 0
   m_Name: Guard
-  m_TagString: Untagged
+  m_TagString: Guard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135,7 +135,12 @@ MonoBehaviour:
   PatrolSpeed: 1
   ViewAngle: 45
   ViewRange: 5
-  PatrolReachDistance: 0.5
+  PatrolReachDistance: 0.1
   ChaseSpeed: 3
   ChaseRange: 5
   ChaseReachDistance: 3
+  type: 1
+  AttacksPerSec: 2
+  AttackRange: 5
+  BulletPrefab: {fileID: 4969766445735903920, guid: 842393470ca81994ea733416f7b32ae2,
+    type: 3}

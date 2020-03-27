@@ -434,7 +434,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 723fa6804f7b08344ad8ab35c35a2b02, type: 2}
+  - {fileID: 2100000, guid: e9cf6db65c751c142af10706c8eda0cd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -582,7 +582,7 @@ PrefabInstance:
     - target: {fileID: 6271768411742782727, guid: c0bf1dcc7624a284782b609bf2a3819e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6271768411742782727, guid: c0bf1dcc7624a284782b609bf2a3819e,
         type: 3}
@@ -703,7 +703,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 723fa6804f7b08344ad8ab35c35a2b02, type: 2}
+  - {fileID: 2100000, guid: e9cf6db65c751c142af10706c8eda0cd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -755,7 +755,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2020889444}
-  - component: {fileID: 2020889443}
   - component: {fileID: 2020889442}
   m_Layer: 0
   m_Name: Path
@@ -776,18 +775,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c8e7f470a96254393c20b4a14355f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2020889443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2020889441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b23cf58d3609b2e49b9060090e10a186, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2020889444
 Transform:
   m_ObjectHideFlags: 0
@@ -804,7 +791,7 @@ Transform:
   - {fileID: 1852884607}
   - {fileID: 1622272566}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2076055317
 GameObject:

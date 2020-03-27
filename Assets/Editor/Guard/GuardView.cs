@@ -14,7 +14,7 @@ public class GuardView : Editor
         return point;
     }
 
-    [DrawGizmo(GizmoType.Selected | GizmoType.NonSelected)]
+    [DrawGizmo(GizmoType.Selected)]
     static void DrawGizmos(Guard guard, GizmoType gizmoType)
     {
         Vector3 origin = guard.transform.position;

@@ -3,7 +3,6 @@ using UnityEngine.AI;
 
 public class Guard : MonoBehaviour
 {
-
     public Path DefaultPath;
     [HideInInspector] public NavMeshAgent agent;
     [HideInInspector] public Player player;
@@ -19,6 +18,13 @@ public class Guard : MonoBehaviour
     public float ChaseSpeed = 3;
     public float ChaseRange = 5;
     public float ChaseReachDistance = 1;
+
+    [Header("Attack")]
+    public GuardType type;
+    public float AttacksPerSec;
+    public float AttackRange;
+    public GameObject BulletPrefab;
+
     public bool HasReachedGoal()
     {
         return agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance < agent.stoppingDistance;

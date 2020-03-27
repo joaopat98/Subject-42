@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c716505db17e060ca813b6ed105ce74c, type: 2}
+  - {fileID: 2100000, guid: 723fa6804f7b08344ad8ab35c35a2b02, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,6 +111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 5
+  DeadMaterial: {fileID: 2100000, guid: c716505db17e060ca813b6ed105ce74c, type: 2}
+  isAlive: 1
 --- !u!136 &6271768411742782722
 CapsuleCollider:
   m_ObjectHideFlags: 0
