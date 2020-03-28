@@ -11,11 +11,13 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
+        // Kill player if bullet hits
         if (col.CompareTag("Player"))
         {
             col.GetComponent<Player>().Kill();
             Destroy(gameObject);
         }
+        // Ignore collision if it was with guard, otherwise destroy the bullet
         else if (!col.CompareTag("Guard"))
         {
             Destroy(gameObject);
@@ -32,6 +34,7 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Check if the bullet has travelled for long enough
         travelled += Vector3.Distance(transform.position, prevPos);
         prevPos = transform.position;
         if (travelled > Range)

@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Chase the player state
+/// </summary>
 public class GuardChase : GuardAction
 {
     private float t;
@@ -29,11 +32,14 @@ public class GuardChase : GuardAction
     public override void Do()
     {
         t += Time.deltaTime;
+        // Update the agent's goal to the player's position
         agent.SetDestination(player.transform.position);
+        // Change to patrol mode if player is too far away
         if (Vector3.Distance(guard.transform.position, player.transform.position) > guard.ChaseRange)
         {
             guard.action = new GuardPatrol(guard);
         }
+        // Perform attack if next attack cycle is reached
         if (t > 1 / guard.AttacksPerSec)
         {
             switch (guard.type)
