@@ -9,25 +9,85 @@ public class Player : MonoBehaviour
     /// Rigidbody attached to this GameObject
     /// </summary>
     Rigidbody rb;
+    public Material DeadMaterial;
     /// <summary>
     /// Speed at which the player shall move
     /// </summary>
-    public float MoveSpeed;
-    public Material DeadMaterial;
+    [Header("Movement")] public float MoveSpeed;
 
-    public bool isAlive = true;
+    [Header("State")] public bool isAlive = true;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Abilities the player will start with
+    /// </summary>
+    public List<AbilityType> StartingAbilities;
+    /// <summary>
+    /// List of abilities the player currently has
+    /// </summary>
+    /// <returns></returns>
+    [HideInInspector] public List<Ability> Abilities;
+    /// <summary>
+    /// Index of the players current ability in <see cref="Abilities"/>
+    /// </summary>
+    /// <returns></returns>
+    [HideInInspector] public int CurrentAbility = 0;
+
+    /// <summary>
+    /// Initialize the <see cref="Abilities"/> array according to the ability types
+    /// set in <see cref="StartingAbilities"/>. If <see cref="StartingAbilities"/> is empty,
+    /// the array will be initialized with an instance of <see cref="EmptyAbility"/>,
+    /// indicating that the player has no abilities
+    /// </summary>
+    void InitAbilities()
+    {
+        Abilities = new List<Ability>();
+        if (StartingAbilities.Count == 0)
+            Abilities.Add(new EmptyAbility(this));
+        else
+        {
+            foreach (var abilityType in StartingAbilities)
+            {
+                switch (abilityType)
+                {
+                    case AbilityType.Test1:
+                        Abilities.Add(new Test1Ability(this));
+                        break;
+                    case AbilityType.Test2:
+                        Abilities.Add(new Test2Ability(this));
+                        break;
+                    case AbilityType.Test3:
+                        Abilities.Add(new Test3Ability(this));
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        InitAbilities();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        // Movement
         if (isAlive)
             Move();
+
+        // Update the current ability's state
+        Abilities[CurrentAbility].Update();
+
+        // Switch abilities depending on user input
+        if (Input.GetButtonDown("Switch Left") ^ Input.GetButtonDown("Switch Right"))
+        {
+            Abilities[CurrentAbility].SwitchAbility(
+                (Input.GetButtonDown("Switch Left") ? -1 : 0) +
+                (Input.GetButtonDown("Switch Right") ? 1 : 0)
+                );
+        }
     }
 
     /// <summary>

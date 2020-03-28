@@ -180,7 +180,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
@@ -568,6 +568,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6271768411742782748, guid: c0bf1dcc7624a284782b609bf2a3819e,
+        type: 3}
+      propertyPath: StartingAbilities.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6271768411742782748, guid: c0bf1dcc7624a284782b609bf2a3819e,
+        type: 3}
+      propertyPath: StartingAbilities.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6271768411742782748, guid: c0bf1dcc7624a284782b609bf2a3819e,
+        type: 3}
+      propertyPath: StartingAbilities.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6271768411742782748, guid: c0bf1dcc7624a284782b609bf2a3819e,
+        type: 3}
+      propertyPath: StartingAbilities.Array.data[2]
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6271768411742782749, guid: c0bf1dcc7624a284782b609bf2a3819e,
         type: 3}
