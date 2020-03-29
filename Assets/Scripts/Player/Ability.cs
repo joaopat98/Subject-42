@@ -3,7 +3,7 @@
 /// </summary>
 public abstract class Ability
 {
-    Player player;
+    protected Player player;
 
     /// <summary>
     /// Should only be instatiated by the player instance for the starting abilities or when a new ability is obtained
