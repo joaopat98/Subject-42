@@ -58,6 +58,9 @@ public class Player : MonoBehaviour
                     case AbilityType.Test3:
                         Abilities.Add(new Test3Ability(this));
                         break;
+                    case AbilityType.Clairvoyance:
+                        Abilities.Add(new Clairvoyance(this));
+                        break;
                     case AbilityType.ElectricityAbility:
                         Abilities.Add(new ElectricityAbility(this));
                         break;
