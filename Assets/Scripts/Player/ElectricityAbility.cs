@@ -5,15 +5,7 @@ using System.Linq;
 
 public class ElectricityAbility : Ability
 {
-    /// <summary>
-    /// Field of view where the player can use the power
-    /// </summary>
-    [Range(0, 180)] public float ViewAngle = 45;
 
-    /// <summary>
-    /// Distance in front of the player. It limits how far can he use the power.
-    /// </summary>
-    public float ViewRange = 7f;
 
     public ElectricityAbility(Player player) : base(player)
     {
@@ -29,8 +21,8 @@ public class ElectricityAbility : Ability
         {
 
             if (Vector3.Angle(player.transform.forward, electricObj.GetSelectionPosition() - player.transform.position) < currentLowestAngle
-                && Vector3.Distance(player.transform.position, electricObj.GetSelectionPosition()) <= ViewRange
-                && Vector3.Angle(player.transform.forward, electricObj.GetSelectionPosition() - player.transform.position) < ViewAngle)
+                && Vector3.Distance(player.transform.position, electricObj.GetSelectionPosition()) <= player.ViewRange
+                && Vector3.Angle(player.transform.forward, electricObj.GetSelectionPosition() - player.transform.position) < player.ViewAngle)
             {
                 currentClosestObject = electricObj;
                 currentLowestAngle = (Vector3.Angle(player.transform.forward, electricObj.GetSelectionPosition() - player.transform.position));

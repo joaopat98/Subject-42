@@ -33,6 +33,16 @@ public class Player : MonoBehaviour
     [HideInInspector] public int CurrentAbility = 0;
 
     /// <summary>
+    /// Field of view where the player can use the power
+    /// </summary>
+    [Range(0, 180)] public float ViewAngle = 20.0f;
+
+    /// <summary>
+    /// Distance in front of the player. It limits how far can he use the power.
+    /// </summary>
+    public float ViewRange = 7f;
+
+    /// <summary>
     /// Initialize the <see cref="Abilities"/> array according to the ability types
     /// set in <see cref="StartingAbilities"/>. If <see cref="StartingAbilities"/> is empty,
     /// the array will be initialized with an instance of <see cref="EmptyAbility"/>,
