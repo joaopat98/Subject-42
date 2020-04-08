@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -97,25 +98,41 @@ public class Player : MonoBehaviour
         Abilities[CurrentAbility].Update();
 
         // Switch abilities depending on user input
-        if (Input.GetButtonDown("Switch Left") ^ Input.GetButtonDown("Switch Right"))
+        if (Input.GetButton("Switch Right"))
         {
-            Abilities[CurrentAbility].SwitchAbility(
-                (Input.GetButtonDown("Switch Left") ? -1 : 0) +
-                (Input.GetButtonDown("Switch Right") ? 1 : 0)
-                );
+            PowerSwitch();
+        }
+        else
+        {
+            PowerUICleanUp();
         }
     }
 
     /// <summary>
-    /// Get direction associated with the Left Joystick (converts from square coordinates to circle)
+    /// Get direction associated with the Left and Right Joystick (converts from square coordinates to circle)
     /// </summary>
-    private Vector2 GetJoystickDir()
+    private Vector2 GetJoystickDir(string joystick)
     {
-        var dirRaw = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        float angle = Mathf.Atan2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
-        float absAngle = Mathf.Atan2(Mathf.Abs(Input.GetAxis("Vertical")), Mathf.Abs(Input.GetAxis("Horizontal")));
+        var dirRaw = new Vector2();
+        float angle = 0.0f;
+        float absAngle = 0.0f;
+        float ratio = 0.0f;
+
+        if (joystick.Equals("Left"))
+        {
+            dirRaw = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            angle = Mathf.Atan2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
+            absAngle = Mathf.Atan2(Mathf.Abs(Input.GetAxis("Vertical")), Mathf.Abs(Input.GetAxis("Horizontal")));
+        }
+        else if(joystick.Equals("Right"))
+        {
+            dirRaw = new Vector2(Input.GetAxis("HorizontalRight"), Input.GetAxis("VerticalRight"));
+            angle = Mathf.Atan2(Input.GetAxis("VerticalRight"), Input.GetAxis("HorizontalRight"));
+            absAngle = Mathf.Atan2(Mathf.Abs(Input.GetAxis("VerticalRight")), Mathf.Abs(Input.GetAxis("HorizontalRight")));
+        }
+
         absAngle = absAngle > Mathf.PI / 4 ? Mathf.PI / 2 - absAngle : absAngle;
-        float ratio = absAngle == 0 || absAngle == 90 ? 1 : Mathf.Sin(absAngle) / Mathf.Tan(absAngle);
+        ratio = absAngle == 0 || absAngle == 90 ? 1 : Mathf.Sin(absAngle) / Mathf.Tan(absAngle);
         return ratio * dirRaw;
     }
 
@@ -129,7 +146,7 @@ public class Player : MonoBehaviour
         var camAngle = Mathf.Rad2Deg * Mathf.Atan2(camTransform.forward.x, camTransform.forward.z);
 
         // Apply camera angle to the movement direction, making movement relative to the camera
-        var dir = Quaternion.Euler(0, camAngle, 0) * GetJoystickDir().ToHorizontalDir();
+        var dir = Quaternion.Euler(0, camAngle, 0) * GetJoystickDir("Left").ToHorizontalDir();
 
         // Rotate player towards the direction it is moving in
         if (dir != Vector3.zero)
@@ -153,5 +170,64 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    /// <summary>
+    /// Receives Input from the right joystick and switches power
+    /// depending on the direction the joystick is pushed
+    /// </summary>
+    private void PowerSwitch()
+    {
+        //Activate Power Wheel
+        GameObject.Find("PowerWheel").GetComponent<RawImage>().enabled = true;
+        //Get Direction of Right Joystick
+        Vector2 JoystickDirection = GetJoystickDir("Right");
+ 
+        //Upper right power
+        if (JoystickDirection.x > 0 && JoystickDirection.y > 0)
+        {
+            CurrentAbility = 0;
+            GameObject.Find("PowerWheelTime").GetComponent<RawImage>().enabled = true;
+        }
+        //Upper left power
+        else if (JoystickDirection.x < 0 && JoystickDirection.y > 0)
+        {
+            CurrentAbility = 1;
+            GameObject.Find("PowerWheelElectric").GetComponent<RawImage>().enabled = true;
+        }
+        //Lower left power
+        else if (JoystickDirection.x < 0 && JoystickDirection.y < 0)
+        {
+            CurrentAbility = 2;
+            GameObject.Find("PowerWheelTelekinesis").GetComponent<RawImage>().enabled = true;
+        }
+        //Lower right power
+        else if (JoystickDirection.x > 0 && JoystickDirection.y < 0)
+        {
+            CurrentAbility = 3;
+            GameObject.Find("PowerWheelClaivoryance").GetComponent<RawImage>().enabled = true;
+        }
+        //This happens when the joystick is not moved.
+        else
+        {
+            GameObject.Find("PowerWheel").GetComponent<RawImage>().enabled = true;
+            GameObject.Find("PowerWheelTime").GetComponent<RawImage>().enabled = false;
+            GameObject.Find("PowerWheelElectric").GetComponent<RawImage>().enabled = false;
+            GameObject.Find("PowerWheelClaivoryance").GetComponent<RawImage>().enabled = false;
+            GameObject.Find("PowerWheelTelekinesis").GetComponent<RawImage>().enabled = false;
+        }
+    }
+
+    /// <summary>
+    /// When R2 is no longer pressed, the power 
+    /// wheel dissapears
+    /// </summary>
+    private void PowerUICleanUp()
+    {
+        GameObject.Find("PowerWheel").GetComponent<RawImage>().enabled = false;
+        GameObject.Find("PowerWheelTime").GetComponent<RawImage>().enabled = false;
+        GameObject.Find("PowerWheelElectric").GetComponent<RawImage>().enabled = false;
+        GameObject.Find("PowerWheelClaivoryance").GetComponent<RawImage>().enabled = false;
+        GameObject.Find("PowerWheelTelekinesis").GetComponent<RawImage>().enabled = false;
     }
 }
