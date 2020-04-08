@@ -44,6 +44,11 @@ public class Player : MonoBehaviour
     public float ViewRange = 7f;
 
     /// <summary>
+    /// UI for switching powers
+    /// </summary>
+    PowerWheel PowerWheel;
+
+    /// <summary>
     /// Initialize the <see cref="Abilities"/> array according to the ability types
     /// set in <see cref="StartingAbilities"/>. If <see cref="StartingAbilities"/> is empty,
     /// the array will be initialized with an instance of <see cref="EmptyAbility"/>,
@@ -86,6 +91,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         InitAbilities();
+        PowerWheel = GameObject.FindGameObjectWithTag("PowerWheel").GetComponent<PowerWheel>();
     }
 
     void Update()
@@ -98,20 +104,25 @@ public class Player : MonoBehaviour
         Abilities[CurrentAbility].Update();
 
         // Switch abilities depending on user input
-        if (Input.GetButton("Switch Right"))
+        if (Input.GetButton("Switch Left"))
         {
-            PowerSwitch();
+            int Current = PowerWheel.PowerSwitch();
+            if(Current != CurrentAbility)
+            {
+                CurrentAbility = Current;
+                Abilities[CurrentAbility].SwitchAbility(CurrentAbility);
+            }
         }
         else
         {
-            PowerUICleanUp();
+            PowerWheel.CleanUp();
         }
     }
 
     /// <summary>
     /// Get direction associated with the Left and Right Joystick (converts from square coordinates to circle)
     /// </summary>
-    private Vector2 GetJoystickDir(string joystick)
+    public Vector2 GetJoystickDir(string joystick)
     {
         var dirRaw = new Vector2();
         float angle = 0.0f;
@@ -172,62 +183,4 @@ public class Player : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    /// <summary>
-    /// Receives Input from the right joystick and switches power
-    /// depending on the direction the joystick is pushed
-    /// </summary>
-    private void PowerSwitch()
-    {
-        //Activate Power Wheel
-        GameObject.Find("PowerWheel").GetComponent<RawImage>().enabled = true;
-        //Get Direction of Right Joystick
-        Vector2 JoystickDirection = GetJoystickDir("Right");
- 
-        //Upper right power
-        if (JoystickDirection.x > 0 && JoystickDirection.y > 0)
-        {
-            CurrentAbility = 0;
-            GameObject.Find("PowerWheelTime").GetComponent<RawImage>().enabled = true;
-        }
-        //Upper left power
-        else if (JoystickDirection.x < 0 && JoystickDirection.y > 0)
-        {
-            CurrentAbility = 1;
-            GameObject.Find("PowerWheelElectric").GetComponent<RawImage>().enabled = true;
-        }
-        //Lower left power
-        else if (JoystickDirection.x < 0 && JoystickDirection.y < 0)
-        {
-            CurrentAbility = 2;
-            GameObject.Find("PowerWheelTelekinesis").GetComponent<RawImage>().enabled = true;
-        }
-        //Lower right power
-        else if (JoystickDirection.x > 0 && JoystickDirection.y < 0)
-        {
-            CurrentAbility = 3;
-            GameObject.Find("PowerWheelClaivoryance").GetComponent<RawImage>().enabled = true;
-        }
-        //This happens when the joystick is not moved.
-        else
-        {
-            GameObject.Find("PowerWheel").GetComponent<RawImage>().enabled = true;
-            GameObject.Find("PowerWheelTime").GetComponent<RawImage>().enabled = false;
-            GameObject.Find("PowerWheelElectric").GetComponent<RawImage>().enabled = false;
-            GameObject.Find("PowerWheelClaivoryance").GetComponent<RawImage>().enabled = false;
-            GameObject.Find("PowerWheelTelekinesis").GetComponent<RawImage>().enabled = false;
-        }
-    }
-
-    /// <summary>
-    /// When R2 is no longer pressed, the power 
-    /// wheel dissapears
-    /// </summary>
-    private void PowerUICleanUp()
-    {
-        GameObject.Find("PowerWheel").GetComponent<RawImage>().enabled = false;
-        GameObject.Find("PowerWheelTime").GetComponent<RawImage>().enabled = false;
-        GameObject.Find("PowerWheelElectric").GetComponent<RawImage>().enabled = false;
-        GameObject.Find("PowerWheelClaivoryance").GetComponent<RawImage>().enabled = false;
-        GameObject.Find("PowerWheelTelekinesis").GetComponent<RawImage>().enabled = false;
-    }
 }

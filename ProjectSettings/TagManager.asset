@@ -7,7 +7,7 @@ TagManager:
   - Guard
   - Clairvoyance
   - Door
-  - Wheel
+  - PowerWheel
   layers:
   - Default
   - TransparentFX
