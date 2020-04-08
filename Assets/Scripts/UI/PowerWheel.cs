@@ -17,13 +17,13 @@ public class PowerWheel : MonoBehaviour
     /// Receives Input from the right joystick and switches power
     /// depending on the direction the joystick is pushed
     /// </summary>
-    public int PowerSwitch()
+    public int PowerSwitch(int Ability)
     {
         //Activate Power Wheel
         GameObject.Find("PowerWheel").GetComponent<RawImage>().enabled = true;
         //Get Direction of Right Joystick
         Vector2 JoystickDirection = player.GetJoystickDir("Right");
-        int CurrentAbility = 0;
+        int CurrentAbility = Ability;
 
         //Upper right power
         if (JoystickDirection.x > 0 && JoystickDirection.y > 0)

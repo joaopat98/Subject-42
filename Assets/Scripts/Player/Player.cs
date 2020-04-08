@@ -106,12 +106,15 @@ public class Player : MonoBehaviour
         // Switch abilities depending on user input
         if (Input.GetButton("Switch Left"))
         {
-            int Current = PowerWheel.PowerSwitch();
-            if(Current != CurrentAbility)
-            {
+            int Current = PowerWheel.PowerSwitch(CurrentAbility);
+            
+            if (Current != CurrentAbility)
+            { 
+                Abilities[CurrentAbility].SwitchAbility(Current);
                 CurrentAbility = Current;
-                Abilities[CurrentAbility].SwitchAbility(CurrentAbility);
             }
+            
+
         }
         else
         {
