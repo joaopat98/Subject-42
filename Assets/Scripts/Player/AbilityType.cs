@@ -8,5 +8,6 @@ public enum AbilityType
     Test2,
     Test3,
     Clairvoyance,
-    ElectricityAbility
+    ElectricityAbility,
+    Telekinesis,
 }

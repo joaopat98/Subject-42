@@ -1,28 +1,27 @@
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class GuardPatrol : GuardAction
+/// <summary>
+/// Check an area/object
+/// </summary>
+public class GuardCheck : GuardAction
 {
-    int curDest = 0;
-    List<Vector3> path;
-    public GuardPatrol(Guard guard) : base(guard)
+    private float t;
+    private GameObject obj;
+    public GuardCheck(Guard guard, GameObject obj) : base(guard)
     {
-        Debug.Log("Patrolling");
-        agent.speed = guard.PatrolSpeed;
-        agent.stoppingDistance = guard.PatrolReachDistance;
-        path = guard.DefaultPath.GetAllNodes();
-        agent.SetDestination(path[0]);
+        Debug.Log("Check sound");
+        agent.stoppingDistance = guard.CheckReachDistance;
+        agent.speed = guard.CheckSpeed;
+        this.obj = obj;
     }
 
     public override void Do()
     {
-        // Go to next path node if the current one has been reached
-        if (guard.HasReachedGoal())
-        {
-            curDest = (curDest + 1) % path.Count;
-            agent.SetDestination(path[curDest]);
-        }
+        
+        // Update the agent's goal to the player's position
+        agent.SetDestination(obj.transform.position);
+
         // Check if the player is within the field of view of the guard or 
         // if its speed and distance is less than a threshold
         if (
@@ -47,6 +46,15 @@ public class GuardPatrol : GuardAction
             if (hit.collider.CompareTag("Player"))
                 guard.action = new GuardChase(guard);
         }
-    }
 
+
+        // Change to patrol mode if player is too far away
+        if (Vector3.Distance(guard.transform.position, obj.transform.position) <= agent.stoppingDistance)
+        {
+            guard.action = new GuardPatrol(guard);
+
+        }
+
+
+    }
 }
