@@ -29,7 +29,14 @@ public class Guard : MonoBehaviour
     /// Distance to each Path node the guard will get to before moving to next node
     /// </summary>
     public float PatrolReachDistance = 0.5f;
-
+    /// <summary>
+    /// Speed of the guard when checking
+    /// </summary>
+    [Header("Check")] public float CheckSpeed = 1;
+    /// <summary>
+    /// Distance from the player at which the guard will stop moving
+    /// </summary>
+    public float CheckReachDistance = 1;
     /// <summary>
     /// Speed at which the guard will chase the player
     /// </summary>
@@ -42,10 +49,18 @@ public class Guard : MonoBehaviour
     /// Distance from the player at which the guard will stop moving
     /// </summary>
     public float ChaseReachDistance = 1;
+    /// <summary>
+    /// Maximum speed that the player can not be detected
+    /// </summary>
+    public float playerSpeedthreshold;
+    /// <summary>
+    /// Maximum distance that the player can not be detected
+    /// </summary>
+    public float playerDistancethreshold;
 
-/// <summary>
-/// Type of the guard (Melee or Ranged)
-/// </summary>
+    /// <summary>
+    /// Type of the guard (Melee or Ranged)
+    /// </summary>
     [Header("Attack")] public GuardType type;
     /// <summary>
     /// Number of attacks the guard will perform per second, bullets if the guard is ranged, melee attacks otherwise

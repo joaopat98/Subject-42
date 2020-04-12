@@ -8,9 +8,11 @@ public class Clairvoyance : Ability
     private PostProcessVolume detectiveFilter;
     private GameObject[] objects;
 
+    private bool isActive = false;
+
     public Clairvoyance(Player player) : base(player)
     {
-        this.detectiveFilter =  player.GetComponent<PostProcessVolume>();
+        this.detectiveFilter =  Camera.main.GetComponentInChildren<PostProcessVolume>();
         this.detectiveFilter.enabled = false;
         this.objects = GameObject.FindGameObjectsWithTag("Clairvoyance");
         activeObjects(false);
@@ -20,19 +22,34 @@ public class Clairvoyance : Ability
     {
         for (int i = 0; i < objects.Length; i++)
         {
-            objects[i].SetActive(val);
+            //objects[i].SetActive(val);
+            objects[i].GetComponent<Renderer>().enabled = val;
+            objects[i].GetComponent<PostProcessVolume>().enabled = val;
         }
     }
 
     // Update is called once per frame
     public override void Update()
     {
-        if (Input.GetButtonDown("Fire3"))
+        if(player.GetComponent<Rigidbody>().velocity.magnitude >= 5.0f)
         {
+            isActive = false;
+            activeObjects(false);
+            this.detectiveFilter.enabled = false;
+        }
+        else if (Input.GetButtonDown("Fire3") && !isActive)
+        {
+            isActive = true;
             Debug.Log("Clairvoyance");
             activeObjects(true);
             this.detectiveFilter.enabled = true;
 
+        }
+        else if(Input.GetButtonDown("Fire3") && isActive)
+        {
+            isActive = false;
+            activeObjects(false);
+            this.detectiveFilter.enabled = false;
         }
     }
 
