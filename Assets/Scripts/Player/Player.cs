@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using JoystickUtils;
 
 public class Player : MonoBehaviour
 {
@@ -36,17 +37,24 @@ public class Player : MonoBehaviour
     /// <summary>
     /// Field of view where the player can use the power
     /// </summary>
-    [Range(0, 180)] public float ViewAngle = 20.0f;
+    [Header("Object Interaction")] [Range(0, 180)] public float ViewAngle = 20.0f;
 
     /// <summary>
     /// Distance in front of the player. It limits how far can he use the power.
     /// </summary>
     public float ViewRange = 7f;
+    public float TelekinesisRange = 7f;
+    public float TelekinesisMoveLimit = 0.5f;
+    public float TelekinesisMoveClose = 1;
+    public float TelekinesisMoveSpeed = 7f;
+    public float TelekinesisRotateSpeed = 180f;
 
     /// <summary>
     /// UI for switching powers
     /// </summary>
     PowerWheel PowerWheel;
+    bool powerWheelOpen;
+    int selectedAbility;
 
     /// <summary>
     /// Initialize the <see cref="Abilities"/> array according to the ability types
@@ -80,6 +88,9 @@ public class Player : MonoBehaviour
                     case AbilityType.ElectricityAbility:
                         Abilities.Add(new ElectricityAbility(this));
                         break;
+                    case AbilityType.Telekinesis:
+                        Abilities.Add(new TelekinesisAbility(this));
+                        break;
                     default:
                         break;
                 }
@@ -103,51 +114,32 @@ public class Player : MonoBehaviour
         // Update the current ability's state
         Abilities[CurrentAbility].Update();
 
-        // Switch abilities depending on user input
-        if (Input.GetButton("Switch Left"))
+        if (Input.GetButtonDown("Power Wheel"))
         {
-            int Current = PowerWheel.PowerSwitch(CurrentAbility);
-            
-            if (Current != CurrentAbility)
-            { 
-                Abilities[CurrentAbility].SwitchAbility(Current);
-                CurrentAbility = Current;
+            powerWheelOpen = true;
+        }
+        if (powerWheelOpen)
+        {
+            selectedAbility = PowerWheel.PowerSwitch(CurrentAbility);
+        }
+        if (Input.GetButtonUp("Power Wheel"))
+        {
+            if (selectedAbility != CurrentAbility)
+            {
+                Abilities[CurrentAbility].SwitchAbility(selectedAbility - CurrentAbility);
             }
-            
-
-        }
-        else
-        {
             PowerWheel.CleanUp();
+            powerWheelOpen = false;
         }
-    }
 
-    /// <summary>
-    /// Get direction associated with the Left and Right Joystick (converts from square coordinates to circle)
-    /// </summary>
-    public Vector2 GetJoystickDir(string joystick)
-    {
-        var dirRaw = new Vector2();
-        float angle = 0.0f;
-        float absAngle = 0.0f;
-        float ratio = 0.0f;
-
-        if (joystick.Equals("Left"))
+        // Switch abilities depending on user input
+        if (!powerWheelOpen && Input.GetButtonDown("Switch Left") ^ Input.GetButtonDown("Switch Right"))
         {
-            dirRaw = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            angle = Mathf.Atan2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
-            absAngle = Mathf.Atan2(Mathf.Abs(Input.GetAxis("Vertical")), Mathf.Abs(Input.GetAxis("Horizontal")));
+            Abilities[CurrentAbility].SwitchAbility(
+                (Input.GetButtonDown("Switch Left") ? -1 : 0) +
+                (Input.GetButtonDown("Switch Right") ? 1 : 0)
+                );
         }
-        else if(joystick.Equals("Right"))
-        {
-            dirRaw = new Vector2(Input.GetAxis("HorizontalRight"), Input.GetAxis("VerticalRight"));
-            angle = Mathf.Atan2(Input.GetAxis("VerticalRight"), Input.GetAxis("HorizontalRight"));
-            absAngle = Mathf.Atan2(Mathf.Abs(Input.GetAxis("VerticalRight")), Mathf.Abs(Input.GetAxis("HorizontalRight")));
-        }
-
-        absAngle = absAngle > Mathf.PI / 4 ? Mathf.PI / 2 - absAngle : absAngle;
-        ratio = absAngle == 0 || absAngle == 90 ? 1 : Mathf.Sin(absAngle) / Mathf.Tan(absAngle);
-        return ratio * dirRaw;
     }
 
     /// <summary>
@@ -160,7 +152,7 @@ public class Player : MonoBehaviour
         var camAngle = Mathf.Rad2Deg * Mathf.Atan2(camTransform.forward.x, camTransform.forward.z);
 
         // Apply camera angle to the movement direction, making movement relative to the camera
-        var dir = Quaternion.Euler(0, camAngle, 0) * GetJoystickDir("Left").ToHorizontalDir();
+        var dir = Joystick.GetJoystick1Dir().ToHorizontalDir().CameraCorrect();
 
         // Rotate player towards the direction it is moving in
         if (dir != Vector3.zero)
