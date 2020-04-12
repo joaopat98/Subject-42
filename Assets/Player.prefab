@@ -110,9 +110,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c967de08b0237afa98cee7a276c8ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 5
   DeadMaterial: {fileID: 2100000, guid: c716505db17e060ca813b6ed105ce74c, type: 2}
+  MoveSpeed: 5
   isAlive: 1
+  StartingAbilities: 
+  CurrentAbility: 0
+  ViewAngle: 20
+  ViewRange: 7
 --- !u!136 &6271768411742782722
 CapsuleCollider:
   m_ObjectHideFlags: 0
