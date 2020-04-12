@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -41,6 +42,11 @@ public class Player : MonoBehaviour
     /// Distance in front of the player. It limits how far can he use the power.
     /// </summary>
     public float ViewRange = 7f;
+
+    /// <summary>
+    /// UI for switching powers
+    /// </summary>
+    PowerWheel PowerWheel;
 
     /// <summary>
     /// Initialize the <see cref="Abilities"/> array according to the ability types
@@ -85,6 +91,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         InitAbilities();
+        PowerWheel = GameObject.FindGameObjectWithTag("PowerWheel").GetComponent<PowerWheel>();
     }
 
     void Update()
@@ -97,25 +104,49 @@ public class Player : MonoBehaviour
         Abilities[CurrentAbility].Update();
 
         // Switch abilities depending on user input
-        if (Input.GetButtonDown("Switch Left") ^ Input.GetButtonDown("Switch Right"))
+        if (Input.GetButton("Switch Left"))
         {
-            Abilities[CurrentAbility].SwitchAbility(
-                (Input.GetButtonDown("Switch Left") ? -1 : 0) +
-                (Input.GetButtonDown("Switch Right") ? 1 : 0)
-                );
+            int Current = PowerWheel.PowerSwitch(CurrentAbility);
+            
+            if (Current != CurrentAbility)
+            { 
+                Abilities[CurrentAbility].SwitchAbility(Current);
+                CurrentAbility = Current;
+            }
+            
+
+        }
+        else
+        {
+            PowerWheel.CleanUp();
         }
     }
 
     /// <summary>
-    /// Get direction associated with the Left Joystick (converts from square coordinates to circle)
+    /// Get direction associated with the Left and Right Joystick (converts from square coordinates to circle)
     /// </summary>
-    private Vector2 GetJoystickDir()
+    public Vector2 GetJoystickDir(string joystick)
     {
-        var dirRaw = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        float angle = Mathf.Atan2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
-        float absAngle = Mathf.Atan2(Mathf.Abs(Input.GetAxis("Vertical")), Mathf.Abs(Input.GetAxis("Horizontal")));
+        var dirRaw = new Vector2();
+        float angle = 0.0f;
+        float absAngle = 0.0f;
+        float ratio = 0.0f;
+
+        if (joystick.Equals("Left"))
+        {
+            dirRaw = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            angle = Mathf.Atan2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
+            absAngle = Mathf.Atan2(Mathf.Abs(Input.GetAxis("Vertical")), Mathf.Abs(Input.GetAxis("Horizontal")));
+        }
+        else if(joystick.Equals("Right"))
+        {
+            dirRaw = new Vector2(Input.GetAxis("HorizontalRight"), Input.GetAxis("VerticalRight"));
+            angle = Mathf.Atan2(Input.GetAxis("VerticalRight"), Input.GetAxis("HorizontalRight"));
+            absAngle = Mathf.Atan2(Mathf.Abs(Input.GetAxis("VerticalRight")), Mathf.Abs(Input.GetAxis("HorizontalRight")));
+        }
+
         absAngle = absAngle > Mathf.PI / 4 ? Mathf.PI / 2 - absAngle : absAngle;
-        float ratio = absAngle == 0 || absAngle == 90 ? 1 : Mathf.Sin(absAngle) / Mathf.Tan(absAngle);
+        ratio = absAngle == 0 || absAngle == 90 ? 1 : Mathf.Sin(absAngle) / Mathf.Tan(absAngle);
         return ratio * dirRaw;
     }
 
@@ -129,7 +160,7 @@ public class Player : MonoBehaviour
         var camAngle = Mathf.Rad2Deg * Mathf.Atan2(camTransform.forward.x, camTransform.forward.z);
 
         // Apply camera angle to the movement direction, making movement relative to the camera
-        var dir = Quaternion.Euler(0, camAngle, 0) * GetJoystickDir().ToHorizontalDir();
+        var dir = Quaternion.Euler(0, camAngle, 0) * GetJoystickDir("Left").ToHorizontalDir();
 
         // Rotate player towards the direction it is moving in
         if (dir != Vector3.zero)
@@ -154,4 +185,5 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
 }
