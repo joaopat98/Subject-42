@@ -9,11 +9,12 @@ public class PickupCollectible : MonoBehaviour
     public Text Name;
     public Text Description;
     public string NameContent;
+    [TextArea(3, 10)]
     public string DescriptionContent;
 
     void OnTriggerStay(Collider collider)
-    {   
-        if(collider.tag == "Player" && Input.GetKeyDown(KeyCode.Z))
+    {
+        if (collider.tag == "Player" && Input.GetKeyDown(KeyCode.Z))
         {
             Name.text = NameContent;
             Description.text = DescriptionContent;
