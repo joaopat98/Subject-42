@@ -10,12 +10,12 @@ public class Clairvoyance : Ability
 
     public Clairvoyance(Player player) : base(player)
     {
-        this.detectiveFilter =  player.GetComponent<PostProcessVolume>();
+        this.detectiveFilter = player.GetComponent<PostProcessVolume>();
         this.detectiveFilter.enabled = false;
         this.objects = GameObject.FindGameObjectsWithTag("Clairvoyance");
         activeObjects(false);
     }
-   
+
     public void activeObjects(bool val)
     {
         for (int i = 0; i < objects.Length; i++)
@@ -27,7 +27,7 @@ public class Clairvoyance : Ability
     // Update is called once per frame
     public override void Update()
     {
-        if (Input.GetButtonDown("Fire3"))
+        if (Input.GetButtonDown("Fire1"))
         {
             Debug.Log("Clairvoyance");
             activeObjects(true);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using JoystickUtils;
 
 public class Player : MonoBehaviour
 {
@@ -35,12 +36,17 @@ public class Player : MonoBehaviour
     /// <summary>
     /// Field of view where the player can use the power
     /// </summary>
-    [Range(0, 180)] public float ViewAngle = 20.0f;
+    [Header("Object Interaction")] [Range(0, 180)] public float ViewAngle = 20.0f;
 
     /// <summary>
     /// Distance in front of the player. It limits how far can he use the power.
     /// </summary>
     public float ViewRange = 7f;
+    public float TelekinesisRange = 7f;
+    public float TelekinesisMoveLimit = 0.5f;
+    public float TelekinesisMoveClose = 1;
+    public float TelekinesisMoveSpeed = 7f;
+    public float TelekinesisRotateSpeed = 180f;
 
     /// <summary>
     /// Initialize the <see cref="Abilities"/> array according to the ability types
@@ -73,6 +79,9 @@ public class Player : MonoBehaviour
                         break;
                     case AbilityType.ElectricityAbility:
                         Abilities.Add(new ElectricityAbility(this));
+                        break;
+                    case AbilityType.Telekinesis:
+                        Abilities.Add(new TelekinesisAbility(this));
                         break;
                     default:
                         break;
@@ -107,19 +116,6 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// Get direction associated with the Left Joystick (converts from square coordinates to circle)
-    /// </summary>
-    private Vector2 GetJoystickDir()
-    {
-        var dirRaw = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        float angle = Mathf.Atan2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
-        float absAngle = Mathf.Atan2(Mathf.Abs(Input.GetAxis("Vertical")), Mathf.Abs(Input.GetAxis("Horizontal")));
-        absAngle = absAngle > Mathf.PI / 4 ? Mathf.PI / 2 - absAngle : absAngle;
-        float ratio = absAngle == 0 || absAngle == 90 ? 1 : Mathf.Sin(absAngle) / Mathf.Tan(absAngle);
-        return ratio * dirRaw;
-    }
-
-    /// <summary>
     /// Routine to move the player;
     /// </summary>
     private void Move()
@@ -129,7 +125,7 @@ public class Player : MonoBehaviour
         var camAngle = Mathf.Rad2Deg * Mathf.Atan2(camTransform.forward.x, camTransform.forward.z);
 
         // Apply camera angle to the movement direction, making movement relative to the camera
-        var dir = Quaternion.Euler(0, camAngle, 0) * GetJoystickDir().ToHorizontalDir();
+        var dir = Joystick.GetJoystick1Dir().ToHorizontalDir().CameraCorrect();
 
         // Rotate player towards the direction it is moving in
         if (dir != Vector3.zero)
