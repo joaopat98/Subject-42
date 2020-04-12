@@ -25,11 +25,11 @@ public abstract class Ability
     /// <param name="delta">Negative to cycle left in the list, positive to cycle right</param>
     public virtual void SwitchAbility(int delta)
     {
-        //int next = player.CurrentAbility + delta;
-        //while (next < 0)
-        //{
-        //    next += player.Abilities.Count;
-        //}
-        //player.CurrentAbility = next % player.Abilities.Count;
+        int next = player.CurrentAbility + delta;
+        while (next < 0)
+        {
+            next += player.Abilities.Count;
+        }
+        player.CurrentAbility = next % player.Abilities.Count;
     }
 }

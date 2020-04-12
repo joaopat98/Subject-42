@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using JoystickUtils;
 
 public class PowerWheel : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class PowerWheel : MonoBehaviour
         //Activate Power Wheel
         GameObject.Find("PowerWheel").GetComponent<RawImage>().enabled = true;
         //Get Direction of Right Joystick
-        Vector2 JoystickDirection = player.GetJoystickDir("Right");
+        Vector2 JoystickDirection = Joystick.GetJoystick2Dir();
         int CurrentAbility = Ability;
 
         //Upper right power

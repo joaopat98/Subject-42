@@ -8,7 +8,7 @@ public class Test2Ability : Ability
     }
     public override void Update()
     {
-        if (Input.GetButtonDown("Fire3"))
+        if (Input.GetButtonDown("Power"))
         {
             Debug.Log("Test2");
         }

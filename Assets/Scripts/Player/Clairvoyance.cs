@@ -17,7 +17,7 @@ public class Clairvoyance : Ability
         this.objects = GameObject.FindGameObjectsWithTag("Clairvoyance");
         activeObjects(false);
     }
-   
+
     public void activeObjects(bool val)
     {
         for (int i = 0; i < objects.Length; i++)
