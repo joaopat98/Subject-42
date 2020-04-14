@@ -50,6 +50,11 @@ public class Player : MonoBehaviour
     public float TelekinesisRotateSpeed = 180f;
 
     /// <summary>
+    /// Max speed to cool down the player using the clairvoyance power
+    /// </summary>
+    [Header("ClairVoyance")] public float clairVoyanceMaxSpeed;
+
+    /// <summary>
     /// UI for switching powers
     /// </summary>
     PowerWheel PowerWheel;

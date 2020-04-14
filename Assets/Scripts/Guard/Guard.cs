@@ -38,6 +38,10 @@ public class Guard : MonoBehaviour
     /// </summary>
     public float CheckReachDistance = 1;
     /// <summary>
+    /// Time to wait when reach his target
+    /// </summary>
+    public float TimeToCheck = 2;
+    /// <summary>
     /// Speed at which the guard will chase the player
     /// </summary>
     [Header("Chase")] public float ChaseSpeed = 3;

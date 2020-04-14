@@ -51,10 +51,17 @@ public class GuardCheck : GuardAction
         // Change to patrol mode if player is too far away
         if (Vector3.Distance(guard.transform.position, obj.transform.position) <= agent.stoppingDistance)
         {
-            guard.action = new GuardPatrol(guard);
+            guard.StartCoroutine(CheckAndPatrol());
+            
 
         }
 
 
+    }
+
+    IEnumerator CheckAndPatrol()
+    {
+        yield return new WaitForSeconds(guard.TimeToCheck);
+        guard.action = new GuardPatrol(guard);
     }
 }

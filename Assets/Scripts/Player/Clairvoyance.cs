@@ -31,13 +31,11 @@ public class Clairvoyance : Ability
     // Update is called once per frame
     public override void Update()
     {
-        if(player.GetComponent<Rigidbody>().velocity.magnitude >= 5.0f)
+        if(player.GetComponent<Rigidbody>().velocity.magnitude >= player.clairVoyanceMaxSpeed && isActive)
         {
-            isActive = false;
-            activeObjects(false);
-            this.detectiveFilter.enabled = false;
+            player.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity.normalized * player.clairVoyanceMaxSpeed;
         }
-        else if (Input.GetButtonDown("Fire3") && !isActive)
+        else if (Input.GetButtonDown("Power") && !isActive)
         {
             isActive = true;
             Debug.Log("Clairvoyance");
@@ -45,7 +43,7 @@ public class Clairvoyance : Ability
             this.detectiveFilter.enabled = true;
 
         }
-        else if(Input.GetButtonDown("Fire3") && isActive)
+        else if(Input.GetButtonDown("Power") && isActive)
         {
             isActive = false;
             activeObjects(false);
