@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -7,12 +7,9 @@ public class ElectricityAbility : Ability
 {
 
 
-    public ElectricityAbility(Player player) : base(player)
-    {
-
-    }
     public override void Update()
     {
+
         var ElectricObjects = GameObject.FindObjectsOfType<MonoBehaviour>().OfType<IElectricObject>();
         IElectricObject currentClosestObject = null;
         float currentLowestAngle = Mathf.Infinity;
@@ -40,5 +37,14 @@ public class ElectricityAbility : Ability
             }
         }
 
+    }
+    public override void SwitchAbility(int delta)
+    {
+        var ElectricObjects = GameObject.FindObjectsOfType<MonoBehaviour>().OfType<IElectricObject>();
+        foreach (IElectricObject electricObj in ElectricObjects)
+        {
+            electricObj.Highlight(false);
+        }
+        base.SwitchAbility(delta);
     }
 }
