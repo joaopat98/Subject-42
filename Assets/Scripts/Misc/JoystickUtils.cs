@@ -6,8 +6,8 @@ namespace JoystickUtils
     {
         static Vector2 JoystickDir(string HorizontalAxis, string VerticalAxis)
         {
-            var x = Input.GetAxis(HorizontalAxis);
-            var y = Input.GetAxis(VerticalAxis);
+            var x = Input.GetAxisRaw(HorizontalAxis);
+            var y = Input.GetAxisRaw(VerticalAxis);
             var dirRaw = new Vector2(x, y);
             float angle = Mathf.Atan2(y, x);
             float absAngle = Mathf.Atan2(Mathf.Abs(y), Mathf.Abs(x));
