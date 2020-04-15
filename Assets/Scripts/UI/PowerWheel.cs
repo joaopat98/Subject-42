@@ -21,43 +21,54 @@ public class PowerWheel : MonoBehaviour
     public int PowerSwitch(int Ability)
     {
         //Activate Power Wheel
-        GameObject.Find("PowerWheel").GetComponent<RawImage>().enabled = true;
+        showInactivePowers();
         //Get Direction of Right Joystick
         Vector2 JoystickDirection = Joystick.GetJoystick2Dir();
         int CurrentAbility = Ability;
+        AbilityType Type = AbilityType.Empty;
+        GameObject PowerToActivate = new GameObject();
 
-        //Upper right power
-        if (JoystickDirection.x > 0 && JoystickDirection.y > 0)
+        //Up Power
+        if (JoystickDirection.y > 0 && (JoystickDirection.x > -0.5 && JoystickDirection.x < 0.5))
         {
             CurrentAbility = 0;
-            GameObject.Find("PowerWheelTime").GetComponent<RawImage>().enabled = true;
+            Type = AbilityType.Clairvoyance;
+            PowerToActivate = GameObject.Find("RevealActivated");
+          
         }
-        //Upper left power
-        else if (JoystickDirection.x < 0 && JoystickDirection.y > 0)
+        //Left Power
+        else if (JoystickDirection.x > 0 && (JoystickDirection.y > -0.5) && (JoystickDirection.y < 0.5))
         {
             CurrentAbility = 1;
-            GameObject.Find("PowerWheelElectric").GetComponent<RawImage>().enabled = true;
+            Type = AbilityType.Telekinesis;
+            PowerToActivate = GameObject.Find("TelekinesisActivated");
+            
         }
-        //Lower left power
-        else if (JoystickDirection.x < 0 && JoystickDirection.y < 0)
+        //Right Power
+        else if (JoystickDirection.x < 0 && (JoystickDirection.y > -0.5) && (JoystickDirection.y < 0.5))
         {
             CurrentAbility = 2;
-            GameObject.Find("PowerWheelTelekinesis").GetComponent<RawImage>().enabled = true;
+            Type = AbilityType.ElectricityAbility;
+            PowerToActivate = GameObject.Find("ElectricActivated");
         }
+
         //Lower right power
-        else if (JoystickDirection.x > 0 && JoystickDirection.y < 0)
+        else if (JoystickDirection.y < 0 && (JoystickDirection.x > -0.5 && JoystickDirection.x < 0.5))
         {
             CurrentAbility = 3;
-            GameObject.Find("PowerWheelClaivoryance").GetComponent<RawImage>().enabled = true;
+            PowerToActivate = GameObject.Find("TimeActivated");
         }
         //This happens when the joystick is not moved.
         else
         {
-            GameObject.Find("PowerWheel").GetComponent<RawImage>().enabled = true;
-            GameObject.Find("PowerWheelTime").GetComponent<RawImage>().enabled = false;
-            GameObject.Find("PowerWheelElectric").GetComponent<RawImage>().enabled = false;
-            GameObject.Find("PowerWheelClaivoryance").GetComponent<RawImage>().enabled = false;
-            GameObject.Find("PowerWheelTelekinesis").GetComponent<RawImage>().enabled = false;
+            GameObject.Find("PowerWheel").GetComponent<SpriteRenderer>().enabled = true;
+            GameObject.Find("ElectricActivated").GetComponent<SpriteRenderer>().enabled = false;
+            GameObject.Find("RevealActivated").GetComponent<SpriteRenderer>().enabled = false;
+            GameObject.Find("TelekinesisActivated").GetComponent<SpriteRenderer>().enabled = false;
+        }
+        if (!Type.Equals(AbilityType.Empty))
+        {
+            PowerToActivate.GetComponent<SpriteRenderer>().enabled = true;
         }
         return CurrentAbility;
     }
@@ -68,10 +79,22 @@ public class PowerWheel : MonoBehaviour
     /// </summary>
     public void CleanUp()
     {
-        GameObject.Find("PowerWheel").GetComponent<RawImage>().enabled = false;
-        GameObject.Find("PowerWheelTime").GetComponent<RawImage>().enabled = false;
-        GameObject.Find("PowerWheelElectric").GetComponent<RawImage>().enabled = false;
-        GameObject.Find("PowerWheelClaivoryance").GetComponent<RawImage>().enabled = false;
-        GameObject.Find("PowerWheelTelekinesis").GetComponent<RawImage>().enabled = false;
+        GameObject.Find("PowerWheel").GetComponent<SpriteRenderer>().enabled = false;
+        GameObject.Find("ElectricActivated").GetComponent<SpriteRenderer>().enabled = false;
+        GameObject.Find("RevealActivated").GetComponent<SpriteRenderer>().enabled = false;
+        GameObject.Find("TelekinesisActivated").GetComponent<SpriteRenderer>().enabled = false;
+        GameObject.Find("Time").GetComponent<SpriteRenderer>().enabled = false;
+        GameObject.Find("Electric").GetComponent<SpriteRenderer>().enabled = false;
+        GameObject.Find("Telekinesis").GetComponent<SpriteRenderer>().enabled = false;
+        GameObject.Find("Reveal").GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+    private void showInactivePowers()
+    {
+        GameObject.Find("PowerWheel").GetComponent<SpriteRenderer>().enabled = true;
+        GameObject.Find("Time").GetComponent<SpriteRenderer>().enabled = true;
+        GameObject.Find("Electric").GetComponent<SpriteRenderer>().enabled = true;
+        GameObject.Find("Telekinesis").GetComponent<SpriteRenderer>().enabled = true;
+        GameObject.Find("Reveal").GetComponent<SpriteRenderer>().enabled = true;
     }
 }
