@@ -27,33 +27,38 @@ public class PowerWheel : MonoBehaviour
         int CurrentAbility = Ability;
         AbilityType Type = AbilityType.Empty;
         GameObject PowerToActivate = new GameObject();
+        GameObject PowerToDesactivate = new GameObject();
 
         //Up Power
-        if (JoystickDirection.y > 0 && (JoystickDirection.x > -0.5 && JoystickDirection.x < 0.5))
+        if (JoystickDirection.y > 0.7 && (JoystickDirection.x > -0.7 && JoystickDirection.x < 0.7))
         {
             CurrentAbility = 0;
             Type = AbilityType.Clairvoyance;
             PowerToActivate = GameObject.Find("RevealActivated");
-          
+            PowerToDesactivate = GameObject.Find("Reveal");
+
+
         }
         //Left Power
-        else if (JoystickDirection.x > 0 && (JoystickDirection.y > -0.5) && (JoystickDirection.y < 0.5))
+        else if (JoystickDirection.x > 0.7 && (JoystickDirection.y >= -0.7) && (JoystickDirection.y <= 0.7))
         {
             CurrentAbility = 1;
             Type = AbilityType.Telekinesis;
             PowerToActivate = GameObject.Find("TelekinesisActivated");
-            
+            PowerToDesactivate = GameObject.Find("Telekinesis");
+
         }
         //Right Power
-        else if (JoystickDirection.x < 0 && (JoystickDirection.y > -0.5) && (JoystickDirection.y < 0.5))
+        else if (JoystickDirection.x < -0.7 && (JoystickDirection.y >= -0.7) && (JoystickDirection.y <= 0.7))
         {
             CurrentAbility = 2;
             Type = AbilityType.ElectricityAbility;
             PowerToActivate = GameObject.Find("ElectricActivated");
+            PowerToDesactivate = GameObject.Find("Electric");
         }
 
         //Lower right power
-        else if (JoystickDirection.y < 0 && (JoystickDirection.x > -0.5 && JoystickDirection.x < 0.5))
+        else if (JoystickDirection.y < -0.7 && (JoystickDirection.x > -0.7 && JoystickDirection.x < 0.7))
         {
             CurrentAbility = 3;
             PowerToActivate = GameObject.Find("TimeActivated");
@@ -69,6 +74,7 @@ public class PowerWheel : MonoBehaviour
         if (!Type.Equals(AbilityType.Empty))
         {
             PowerToActivate.GetComponent<SpriteRenderer>().enabled = true;
+            PowerToDesactivate.GetComponent<SpriteRenderer>().enabled = false;
         }
         return CurrentAbility;
     }
