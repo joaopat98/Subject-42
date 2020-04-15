@@ -118,6 +118,7 @@ public class Player : MonoBehaviour
 
         // Update the current ability's state
         Abilities[CurrentAbility].Update();
+        
 
         if (Input.GetButtonDown("Power Wheel"))
         {
