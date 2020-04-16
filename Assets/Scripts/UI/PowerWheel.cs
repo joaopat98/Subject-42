@@ -9,9 +9,13 @@ public class PowerWheel : MonoBehaviour
 {
 
     Player player;
+    GameObject PowerToActivate;
+    GameObject PowerToDesactivate;
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>(); 
+        PowerToActivate = new GameObject();
+        PowerToDesactivate = new GameObject();
     }
 
     /// <summary>
@@ -26,8 +30,7 @@ public class PowerWheel : MonoBehaviour
         Vector2 JoystickDirection = Joystick.GetJoystick2Dir();
         int CurrentAbility = Ability;
         AbilityType Type = AbilityType.Empty;
-        GameObject PowerToActivate = new GameObject();
-        GameObject PowerToDesactivate = new GameObject();
+
 
         //Up Power
         if (JoystickDirection.y > 0.7 && (JoystickDirection.x > -0.7 && JoystickDirection.x < 0.7))
