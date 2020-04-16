@@ -24,7 +24,7 @@ public class RevealAbility : Ability
         {
             player.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity.normalized * player.clairVoyanceMaxSpeed;
         }
-        else if (Input.GetButtonDown("Power") && !isActive)
+        if (Input.GetButtonDown("Power") && !isActive)
         {
             isActive = true;
             Debug.Log("Reveal");
