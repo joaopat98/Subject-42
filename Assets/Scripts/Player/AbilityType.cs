@@ -7,7 +7,7 @@ public enum AbilityType
     Test1,
     Test2,
     Test3,
-    Clairvoyance,
-    ElectricityAbility,
+    Reveal,
+    Electricity,
     Telekinesis,
 }

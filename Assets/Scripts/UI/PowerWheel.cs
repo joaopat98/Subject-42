@@ -33,7 +33,7 @@ public class PowerWheel : MonoBehaviour
         if (JoystickDirection.y > 0.7 && (JoystickDirection.x > -0.7 && JoystickDirection.x < 0.7))
         {
             CurrentAbility = 0;
-            Type = AbilityType.Clairvoyance;
+            Type = AbilityType.Reveal;
             PowerToActivate = GameObject.Find("RevealActivated");
             PowerToDesactivate = GameObject.Find("Reveal");
 
@@ -52,7 +52,7 @@ public class PowerWheel : MonoBehaviour
         else if (JoystickDirection.x < -0.7 && (JoystickDirection.y >= -0.7) && (JoystickDirection.y <= 0.7))
         {
             CurrentAbility = 2;
-            Type = AbilityType.ElectricityAbility;
+            Type = AbilityType.Electricity;
             PowerToActivate = GameObject.Find("ElectricActivated");
             PowerToDesactivate = GameObject.Find("Electric");
         }

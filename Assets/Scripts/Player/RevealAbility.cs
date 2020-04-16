@@ -1,34 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
-public class Clairvoyance : Ability
+public class RevealAbility : Ability
 {
     private PostProcessVolume detectiveFilter;
-    private GameObject[] objects;
+    private List<IRevealObject> objects;
 
     private bool isActive = false;
 
-    public Clairvoyance(Player player) : base(player)
+    public RevealAbility(Player player) : base(player)
     {
         this.detectiveFilter =  Camera.main.GetComponentInChildren<PostProcessVolume>();
         this.detectiveFilter.enabled = false;
-        this.objects = GameObject.FindGameObjectsWithTag("Clairvoyance");
-        activeObjects(false);
+        objects = GameObject.FindObjectsOfType<MonoBehaviour>().OfType<IRevealObject>().ToList();
     }
 
-    public void activeObjects(bool val)
-    {
-        for (int i = 0; i < objects.Length; i++)
-        {
-            //objects[i].SetActive(val);
-            objects[i].GetComponent<Renderer>().enabled = val;
-            objects[i].GetComponent<PostProcessVolume>().enabled = val;
-        }
-    }
-
-    // Update is called once per frame
     public override void Update()
     {
         if(player.GetComponent<Rigidbody>().velocity.magnitude >= player.clairVoyanceMaxSpeed && isActive)
@@ -38,22 +27,31 @@ public class Clairvoyance : Ability
         else if (Input.GetButtonDown("Power") && !isActive)
         {
             isActive = true;
-            Debug.Log("Clairvoyance");
-            activeObjects(true);
+            Debug.Log("Reveal");
+            foreach(IRevealObject obj in objects)
+            {
+                obj.RevealObject();
+            }
             this.detectiveFilter.enabled = true;
 
         }
         else if(Input.GetButtonDown("Power") && isActive)
         {
             isActive = false;
-            activeObjects(false);
+            foreach (IRevealObject obj in objects)
+            {
+                obj.UnRevealObject();
+            }
             this.detectiveFilter.enabled = false;
         }
     }
 
     public override void SwitchAbility(int delta)
     {
-        activeObjects(false);
+        foreach (IRevealObject obj in objects)
+        {
+            obj.UnRevealObject();
+        }
         this.detectiveFilter.enabled = false;
         base.SwitchAbility(delta);
     }

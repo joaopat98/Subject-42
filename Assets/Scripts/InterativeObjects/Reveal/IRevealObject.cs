@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-interface ClairvoyanceObject 
+interface IRevealObject 
 {
-    void HideObject();
-    void ShowObject();
+    void RevealObject();
+    void UnRevealObject();
 }
