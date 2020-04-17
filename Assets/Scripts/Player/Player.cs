@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
     /// </summary>
     Rigidbody rb;
     public Material DeadMaterial;
+
+
+
     /// <summary>
     /// Speed at which the player shall move
     /// </summary>
@@ -52,7 +55,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// Max speed to cool down the player using the clairvoyance power
     /// </summary>
-    [Header("ClairVoyance")] public float clairVoyanceMaxSpeed;
+    [Header("Reveal")] public float clairVoyanceMaxSpeed;
 
     /// <summary>
     /// UI for switching powers
@@ -108,6 +111,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         InitAbilities();
         PowerWheel = GameObject.FindGameObjectWithTag("PowerWheel").GetComponent<PowerWheel>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -166,6 +170,7 @@ public class Player : MonoBehaviour
         else
             rb.angularVelocity = Vector3.zero;
         rb.velocity = new Vector3(MoveSpeed * dir.x, rb.velocity.y, MoveSpeed * dir.z);
+
     }
 
     /// <summary>
