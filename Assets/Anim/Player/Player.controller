@@ -67,9 +67,9 @@ BlendTree:
     m_Threshold: 1
     m_Position: {x: -1, y: 0}
     m_TimeScale: 1
-    m_CycleOffset: 0
+    m_CycleOffset: 0.5
     m_DirectBlendParameter: Blend
-    m_Mirror: 0
+    m_Mirror: 1
   m_BlendParameter: VelX
   m_BlendParameterY: VelZ
   m_MinThreshold: 0

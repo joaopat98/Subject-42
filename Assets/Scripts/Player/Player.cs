@@ -13,7 +13,10 @@ public class Player : MonoBehaviour
     Rigidbody rb;
     public Material DeadMaterial;
 
-
+    /// <summary>
+    /// Player's animator controller
+    /// </summary>
+    Animator anim;
 
     /// <summary>
     /// Speed at which the player shall move
@@ -170,7 +173,23 @@ public class Player : MonoBehaviour
         else
             rb.angularVelocity = Vector3.zero;
         rb.velocity = new Vector3(MoveSpeed * dir.x, rb.velocity.y, MoveSpeed * dir.z);
+        updateAnim();
 
+    }
+
+    /// <summary>
+    /// Update the animation state
+    /// </summary>
+    private void updateAnim()
+    {
+        if (rb.velocity.magnitude > 0)
+        {
+            anim.SetBool("Run", true);
+        }
+        else
+        {
+            anim.SetBool("Run", false);
+        }
     }
 
     /// <summary>

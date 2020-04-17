@@ -97,7 +97,7 @@ public class ObstacleObject : MonoBehaviour, ITelekinesisObject
 
     public void SetPosition(Vector3 position)
     {
-        rb.MovePosition(position);
+        rb.MovePosition(new Vector3(rb.position.x, position.y, position.z));
     }
 
     public void Rotate(Vector3 direction, float degrees)
