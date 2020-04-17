@@ -17,6 +17,7 @@ public class ObstacleObject : MonoBehaviour, ITelekinesisObject
     public float MaxDistPlayer = 6.5f;
     public float RepelForce = 0.1f;
     bool moved = false;
+
     bool isHeld;
 
     // Start is called before the first frame update
@@ -97,13 +98,12 @@ public class ObstacleObject : MonoBehaviour, ITelekinesisObject
 
     public void SetPosition(Vector3 position)
     {
-        rb.MovePosition(new Vector3(rb.position.x, position.y, position.z));
+        rb.MovePosition(position);
     }
 
     public void Rotate(Vector3 direction, float degrees)
     {
-        
-        var rotAxis = Quaternion.Euler(90, 0, 0) * new Vector3(0,0,direction.z);
+        var rotAxis = Quaternion.Euler(0, 90, 0) * direction;
         rb.MoveRotation(Quaternion.AngleAxis(degrees, rotAxis) * rb.rotation);
     }
 
