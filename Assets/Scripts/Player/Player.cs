@@ -111,7 +111,6 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         InitAbilities();
         PowerWheel = GameObject.FindGameObjectWithTag("PowerWheel").GetComponent<PowerWheel>();
-        anim = GetComponent<Animator>();
     }
 
     void Update()
