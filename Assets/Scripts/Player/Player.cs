@@ -23,11 +23,12 @@ public class Player : MonoBehaviour
     /// Abilities the player will start with
     /// </summary>
     public List<AbilityType> StartingAbilities;
+
     /// <summary>
     /// List of abilities the player currently has
     /// </summary>
     /// <returns></returns>
-    [HideInInspector] public List<Ability> Abilities;
+    public List<Ability> Abilities;
     /// <summary>
     /// Index of the players current ability in <see cref="Abilities"/>
     /// </summary>
@@ -112,13 +113,14 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(Abilities[CurrentAbility]);
         // Movement
         if (isAlive)
             Move();
 
         // Update the current ability's state
         Abilities[CurrentAbility].Update();
-        
+
 
         if (Input.GetButtonDown("Power Wheel"))
         {

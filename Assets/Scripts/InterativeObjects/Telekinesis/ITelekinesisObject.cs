@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface ITelekinesisObject
 {
-    void Grab();
+    void Grab(TelekinesisAbility ability);
     void Release();
     void Move(Vector3 offset);
     void SetPosition(Vector3 position);
@@ -10,4 +10,5 @@ public interface ITelekinesisObject
     Vector3 GetSelectionPosition();
     Vector3 GetPosition();
     void Highlight(bool IsActive);
+    bool IsActive();
 }

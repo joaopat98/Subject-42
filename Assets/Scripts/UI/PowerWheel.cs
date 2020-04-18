@@ -13,7 +13,7 @@ public class PowerWheel : MonoBehaviour
     GameObject PowerToDesactivate;
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>(); 
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         PowerToActivate = new GameObject();
         PowerToDesactivate = new GameObject();
     }
@@ -35,29 +35,38 @@ public class PowerWheel : MonoBehaviour
         //Up Power
         if (JoystickDirection.y > 0.7 && (JoystickDirection.x > -0.7 && JoystickDirection.x < 0.7))
         {
-            CurrentAbility = 0;
-            Type = AbilityType.Reveal;
-            PowerToActivate = GameObject.Find("RevealActivated");
-            PowerToDesactivate = GameObject.Find("Reveal");
-
-
+            int found = player.Abilities.FindIndex(a => a.GetType() == typeof(RevealAbility));
+            if (found != -1)
+            {
+                CurrentAbility = found;
+                Type = AbilityType.Reveal;
+                PowerToActivate = GameObject.Find("RevealActivated");
+                PowerToDesactivate = GameObject.Find("Reveal");
+            }
         }
         //Left Power
         else if (JoystickDirection.x > 0.7 && (JoystickDirection.y >= -0.7) && (JoystickDirection.y <= 0.7))
         {
-            CurrentAbility = 1;
-            Type = AbilityType.Telekinesis;
-            PowerToActivate = GameObject.Find("TelekinesisActivated");
-            PowerToDesactivate = GameObject.Find("Telekinesis");
-
+            int found = player.Abilities.FindIndex(a => a.GetType() == typeof(TelekinesisAbility));
+            if (found != -1)
+            {
+                CurrentAbility = found;
+                Type = AbilityType.Telekinesis;
+                PowerToActivate = GameObject.Find("TelekinesisActivated");
+                PowerToDesactivate = GameObject.Find("Telekinesis");
+            }
         }
         //Right Power
         else if (JoystickDirection.x < -0.7 && (JoystickDirection.y >= -0.7) && (JoystickDirection.y <= 0.7))
         {
-            CurrentAbility = 2;
-            Type = AbilityType.Electricity;
-            PowerToActivate = GameObject.Find("ElectricActivated");
-            PowerToDesactivate = GameObject.Find("Electric");
+            int found = player.Abilities.FindIndex(a => a.GetType() == typeof(ElectricityAbility));
+            if (found != -1)
+            {
+                CurrentAbility = found;
+                Type = AbilityType.Electricity;
+                PowerToActivate = GameObject.Find("ElectricActivated");
+                PowerToDesactivate = GameObject.Find("Electric");
+            }
         }
 
         //Lower right power

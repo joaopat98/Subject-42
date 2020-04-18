@@ -1,8 +1,44 @@
+using System.Collections.Generic;
+using UnityEngine;
 /// <summary>
 /// Base class to manage the player's ability state
 /// </summary>
+
 public abstract class Ability
 {
+
+    public static Dictionary<System.Type, AbilityType> Types = new Dictionary<System.Type, AbilityType>()
+    {
+        {typeof(ElectricityAbility),AbilityType.Electricity},
+        {typeof(RevealAbility),AbilityType.Reveal},
+        {typeof(TelekinesisAbility),AbilityType.Telekinesis},
+        {typeof(EmptyAbility),AbilityType.Empty},
+        {typeof(Test1Ability),AbilityType.Test1},
+        {typeof(Test2Ability),AbilityType.Test2},
+        {typeof(Test3Ability),AbilityType.Test3},
+    };
+    public static Ability FromType(AbilityType type, Player player)
+    {
+        switch (type)
+        {
+            case AbilityType.Electricity:
+                return new ElectricityAbility(player);
+            case AbilityType.Reveal:
+                return new RevealAbility(player);
+            case AbilityType.Telekinesis:
+                return new TelekinesisAbility(player);
+            case AbilityType.Test1:
+                return new Test1Ability(player);
+            case AbilityType.Test2:
+                return new Test2Ability(player);
+            case AbilityType.Test3:
+                return new Test3Ability(player);
+            default:
+                return new EmptyAbility(player);
+        }
+    }
+
+    public AbilityType type { get { return Types[GetType()]; } }
     protected Player player;
 
     /// <summary>
