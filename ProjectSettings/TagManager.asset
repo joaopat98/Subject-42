@@ -8,6 +8,7 @@ TagManager:
   - Clairvoyance
   - Door
   - PowerWheel
+  - TelekinesisObject
   layers:
   - Default
   - TransparentFX

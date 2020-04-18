@@ -8,7 +8,6 @@ public class GuardPatrol : GuardAction
     List<Vector3> path;
     public GuardPatrol(Guard guard) : base(guard)
     {
-        Debug.Log("Patrolling");
         agent.speed = guard.PatrolSpeed;
         agent.stoppingDistance = guard.PatrolReachDistance;
         path = guard.DefaultPath.GetAllNodes();
