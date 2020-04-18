@@ -17,7 +17,7 @@ public class Inventory : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V)){show = !show;}
+        if (Input.GetButtonDown("Start Button")){show = !show;}
         
                 if(show && Names.Count > 0)
         {
