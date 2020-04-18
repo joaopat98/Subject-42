@@ -10,5 +10,4 @@ public interface ITelekinesisObject
     Vector3 GetSelectionPosition();
     Vector3 GetPosition();
     void Highlight(bool IsActive);
-    bool IsActive();
 }
