@@ -18,7 +18,7 @@ public class PickupCollectible : MonoBehaviour
 
     void OnTriggerStay(Collider collider)
     {
-        if (collider.tag == "Player" && Input.GetKeyDown(KeyCode.Z))
+        if (collider.tag == "Player" && Input.GetButtonDown("Fire1"))
         {
             inventory.Names.Add(NameContent);
             inventory.Descriptions.Add(DescriptionContent);

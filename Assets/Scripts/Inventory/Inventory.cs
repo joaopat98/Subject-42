@@ -15,22 +15,31 @@ public class Inventory : MonoBehaviour
     public List<string> Names = new List<string>();
     public List<string> Descriptions = new List<string>();
 
+    private bool AxisInUse = false;
+
     void Update()
-    {
-        if (Input.GetButtonDown("Start Button")){show = !show;}
+    {   
+        //XBox: 'Back' PS3: 'Select'
+        if (Input.GetButtonDown("Switch Left")){show = !show;}
         
                 if(show && Names.Count > 0)
         {
-            if (Input.GetKeyDown(KeyCode.K)){
+            if (Input.GetAxisRaw("DPAD-h") == -1 && !AxisInUse){
                 if(current > 0){
                     current--;
+                    AxisInUse = true;
                 }
             }
 
-            else if (Input.GetKeyDown(KeyCode.L)){
+            else if (Input.GetAxisRaw("DPAD-h") == 1 && !AxisInUse){
                 if(current <  Names.Count-1){
                     current++;
+                    AxisInUse = true;
                 }
+            }
+
+            else if (Input.GetAxisRaw("DPAD-h") == 0){
+                AxisInUse = false;
             }
 
             Name.text = Names[current];
