@@ -32,7 +32,7 @@ public class ElectricityAbility : Ability
         {
             electricObj.Highlight(electricObj == currentClosestObject);
         }
-        if (Input.GetButtonDown("Power"))
+        if (Input.GetButtonDown("Power") || Input.GetMouseButtonDown(0))
         {
             if (currentClosestObject != null)
             {

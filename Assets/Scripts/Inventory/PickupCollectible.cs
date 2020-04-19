@@ -18,10 +18,13 @@ public class PickupCollectible : MonoBehaviour
 
     void OnTriggerStay(Collider collider)
     {
-        if (collider.tag == "Player" && Input.GetButton("Interact"))
+        if (collider.tag == "Player")
         {
-            inventory.AddCollectible(this);
-            Destroy(gameObject);
+            if (Input.GetButtonDown("Interact") || Input.GetKeyDown(KeyCode.Z))
+            {
+                inventory.AddCollectible(this);
+                Destroy(gameObject);
+            }
         }
     }
 

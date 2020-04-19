@@ -49,7 +49,7 @@ public class TelekinesisAbility : Ability
             {
                 obj.Highlight(obj == currentClosestObject);
             }
-            if (Input.GetButtonDown("Power") && currentClosestObject != null)
+            if ((Input.GetButtonDown("Power") || Input.GetMouseButtonDown(0)) && currentClosestObject != null)
             {
                 currentObj = currentClosestObject;
                 currentObj.Grab(this);
@@ -60,21 +60,53 @@ public class TelekinesisAbility : Ability
         }
         else
         {
-            if (Input.GetAxisRaw("DPad Y") < 0)
+            if (Input.GetAxisRaw("DPad Y") < 0 || Input.GetKey(KeyCode.Space))
             {
-                currentObj.Rotate(
-                    Joystick.GetJoystick2Dir().ToHorizontalDir().CameraCorrect(),
-                    player.TelekinesisRotateSpeed * Time.deltaTime
-                    );
+                var dir = Joystick.GetJoystick2Dir().ToHorizontalDir().CameraCorrect();
+
+                if (dir == Vector3.zero)
+                {
+                    if(Input.GetKey(KeyCode.LeftArrow))
+                        dir.z += 1;
+
+                    if(Input.GetKey(KeyCode.RightArrow))
+                        dir.z += -1;
+
+                    if(Input.GetKey(KeyCode.UpArrow))
+                        dir.x += 1;
+
+                    if(Input.GetKey(KeyCode.DownArrow))
+                        dir.x += -1;
+                }
+
+                currentObj.Rotate(dir, player.TelekinesisRotateSpeed * Time.deltaTime);
             }
             else
             {
-                var offset = Joystick.GetJoystick2Dir().ToHorizontalDir().CameraCorrect() * player.TelekinesisMoveSpeed * Time.deltaTime;
+                var offset = Joystick.GetJoystick2Dir().ToHorizontalDir().CameraCorrect();
+
+                if (offset == Vector3.zero)
+                {
+                    if(Input.GetKey(KeyCode.LeftArrow))
+                        offset.z += 1;
+
+                    if(Input.GetKey(KeyCode.RightArrow))
+                        offset.z += -1;
+
+                    if(Input.GetKey(KeyCode.UpArrow))
+                        offset.x += 1;
+
+                    if(Input.GetKey(KeyCode.DownArrow))
+                        offset.x += -1;
+                }
+
+                offset = offset * player.TelekinesisMoveSpeed * Time.deltaTime;
+
                 currentObj.Move(offset);
             }
             line.SetPosition(0, player.transform.position);
             line.SetPosition(1, currentObj.GetPosition());
-            if (Input.GetButtonDown("Power")
+            if ((Input.GetButtonDown("Power") || Input.GetMouseButtonDown(0))
                 || Vector3.Distance(player.transform.position, currentObj.GetSelectionPosition()) > player.TelekinesisRange)
             {
                 Release();

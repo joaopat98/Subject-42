@@ -8,7 +8,7 @@ public class Test2Ability : Ability
     }
     public override void Update()
     {
-        if (Input.GetButtonDown("Power"))
+        if (Input.GetButtonDown("Power") || Input.GetMouseButtonDown(0))
         {
             Debug.Log("Test2");
         }

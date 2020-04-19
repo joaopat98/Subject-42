@@ -24,14 +24,14 @@ public class Inventory : MonoBehaviour
     void Update()
     {
         //XBox: 'Back' PS3: 'Select'
-        if (Input.GetButtonDown("Inventory"))
+        if (Input.GetButtonDown("Inventory") || Input.GetKeyDown(KeyCode.Return))
         {
             show = !show;
         }
 
         if (show && Names.Count > 0)
         {
-            if (Input.GetAxisRaw("DPad X") == -1 && !AxisInUse)
+            if ((Input.GetAxisRaw("DPad X") == -1 || Input.GetKeyDown(KeyCode.LeftArrow)) && !AxisInUse)
             {
                 if (current > 0)
                 {
@@ -40,7 +40,7 @@ public class Inventory : MonoBehaviour
                 }
             }
 
-            else if (Input.GetAxisRaw("DPad X") == 1 && !AxisInUse)
+            else if ((Input.GetAxisRaw("DPad X") == 1 || Input.GetKeyDown(KeyCode.RightArrow)) && !AxisInUse)
             {
                 if (current < Names.Count - 1)
                 {
