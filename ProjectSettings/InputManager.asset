@@ -22,6 +22,22 @@ InputManager:
     axis: 3
     joyNum: 1
   - serializedVersion: 3
+    m_Name: HorizontalRight
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: left
+    positiveButton: right
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 3
+    joyNum: 1
+  - serializedVersion: 3
     m_Name: VerticalRight
     descriptiveName: 
     descriptiveNegativeName: 
@@ -35,6 +51,22 @@ InputManager:
     snap: 0
     invert: 1
     type: 2
+    axis: 4
+    joyNum: 1
+  - serializedVersion: 3
+    m_Name: VerticalRight
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: up
+    positiveButton: down
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 0
     axis: 4
     joyNum: 1
   - serializedVersion: 3
@@ -58,7 +90,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: 
+    positiveButton: z
     altNegativeButton: 
     altPositiveButton: joystick button 0
     gravity: 1000
@@ -76,7 +108,7 @@ InputManager:
     negativeButton: 
     positiveButton: joystick button 6
     altNegativeButton: 
-    altPositiveButton: 
+    altPositiveButton: caps lock
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
@@ -198,6 +230,22 @@ InputManager:
     axis: 0
     joyNum: 1
   - serializedVersion: 3
+    m_Name: Horizontal
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: a
+    positiveButton: d
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 1
+  - serializedVersion: 3
     m_Name: DPad X
     descriptiveName: 
     descriptiveNegativeName: 
@@ -211,6 +259,22 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
+    axis: 5
+    joyNum: 1
+  - serializedVersion: 3
+    m_Name: DPad X
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: left
+    positiveButton: right
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 0
     axis: 5
     joyNum: 1
   - serializedVersion: 3
@@ -230,6 +294,22 @@ InputManager:
     axis: 1
     joyNum: 1
   - serializedVersion: 3
+    m_Name: Vertical
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: w
+    positiveButton: s
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 0
+    axis: 1
+    joyNum: 1
+  - serializedVersion: 3
     m_Name: DPad Y
     descriptiveName: 
     descriptiveNegativeName: 
@@ -243,6 +323,22 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
+    axis: 6
+    joyNum: 1
+  - serializedVersion: 3
+    m_Name: DPad Y
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: left shift
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 0
     axis: 6
     joyNum: 1
   - serializedVersion: 3
@@ -361,8 +457,8 @@ InputManager:
     m_Name: Switch
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: q
-    positiveButton: e
+    negativeButton: 
+    positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -374,11 +470,27 @@ InputManager:
     axis: 2
     joyNum: 1
   - serializedVersion: 3
+    m_Name: Switch
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: q
+    positiveButton: e
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 2
+    joyNum: 1
+  - serializedVersion: 3
     m_Name: Power Wheel
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: e
+    positiveButton: right shift
     altNegativeButton: 
     altPositiveButton: joystick button 4
     gravity: 1000

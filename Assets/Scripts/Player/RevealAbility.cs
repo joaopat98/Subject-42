@@ -24,7 +24,7 @@ public class RevealAbility : Ability
         {
             player.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity.normalized * player.clairVoyanceMaxSpeed;
         }
-        if ((Input.GetButtonDown("Power") || Input.GetMouseButtonDown(0)) && !isActive)
+        if (Input.GetButtonDown("Power")&& !isActive)
         {
             isActive = true;
             Debug.Log("Reveal");
@@ -35,7 +35,7 @@ public class RevealAbility : Ability
             this.detectiveFilter.enabled = true;
 
         }
-        else if((Input.GetButtonDown("Power") || Input.GetMouseButtonDown(0)) && isActive)
+        else if(Input.GetButtonDown("Power") && isActive)
         {
             isActive = false;
             foreach (IRevealObject obj in objects)

@@ -70,8 +70,6 @@ public class Player : MonoBehaviour
 
     float triggerPrevious = 0;
 
-    float Previous = 0;
-
     /// <summary>
     /// Initialize the <see cref="Abilities"/> array according to the ability types
     /// set in <see cref="StartingAbilities"/>. If <see cref="StartingAbilities"/> is empty,
@@ -124,7 +122,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-       
+        Debug.Log(Abilities[CurrentAbility]);
         // Movement
         if (isAlive)
             Move();
@@ -133,7 +131,7 @@ public class Player : MonoBehaviour
         Abilities[CurrentAbility].Update();
 
 
-        if (Input.GetButtonDown("Power Wheel") || Input.GetMouseButtonDown(1))
+        if (Input.GetButtonDown("Power Wheel"))
         {
             powerWheelOpen = true;
         }
@@ -141,7 +139,7 @@ public class Player : MonoBehaviour
         {
             selectedAbility = PowerWheel.PowerSwitch(CurrentAbility);
         }
-        if (Input.GetButtonUp("Power Wheel") || Input.GetMouseButtonUp(1))
+        if (Input.GetButtonUp("Power Wheel"))
         {
             if (selectedAbility != CurrentAbility)
             {
@@ -151,6 +149,7 @@ public class Player : MonoBehaviour
             powerWheelOpen = false;
         }
 
+        Debug.Log(Input.GetAxisRaw("Switch"));
         // Switch abilities depending on user input
         if (Input.GetAxisRaw("Switch") >= 0.9 && triggerPrevious < 0.9)
         {
@@ -161,7 +160,6 @@ public class Player : MonoBehaviour
             Abilities[CurrentAbility].SwitchAbility(-1);
         }
         triggerPrevious = Input.GetAxisRaw("Switch");
-
 
     }
 
@@ -181,27 +179,10 @@ public class Player : MonoBehaviour
         if (dir != Vector3.zero)
             rb.MoveRotation(Quaternion.LookRotation(dir, Vector3.up));
         else
-            
-            if(Input.GetKey(KeyCode.A))
-                dir.z += 1;
-
-            if(Input.GetKey(KeyCode.D))
-                dir.z += -1;
-
-            if(Input.GetKey(KeyCode.W))
-                dir.x += 1;
-
-            if(Input.GetKey(KeyCode.S))
-                dir.x += -1;
-            
-            if(dir == Vector3.zero)
-                rb.angularVelocity = Vector3.zero;
-
-            else
-                rb.MoveRotation(Quaternion.LookRotation(dir, Vector3.up));
-            
+            rb.angularVelocity = Vector3.zero;
         rb.velocity = new Vector3(MoveSpeed * dir.x, rb.velocity.y, MoveSpeed * dir.z);
         updateAnim();
+
     }
 
     /// <summary>
