@@ -124,7 +124,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(Abilities[CurrentAbility]);
+       
         // Movement
         if (isAlive)
             Move();
@@ -151,7 +151,6 @@ public class Player : MonoBehaviour
             powerWheelOpen = false;
         }
 
-        Debug.Log(Input.GetAxisRaw("Switch"));
         // Switch abilities depending on user input
         if (Input.GetAxisRaw("Switch") >= 0.9 && triggerPrevious < 0.9)
         {
