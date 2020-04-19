@@ -68,6 +68,8 @@ public class Player : MonoBehaviour
     bool powerWheelOpen;
     int selectedAbility;
 
+    float triggerPrevious = 0;
+
     /// <summary>
     /// Initialize the <see cref="Abilities"/> array according to the ability types
     /// set in <see cref="StartingAbilities"/>. If <see cref="StartingAbilities"/> is empty,
@@ -147,14 +149,17 @@ public class Player : MonoBehaviour
             powerWheelOpen = false;
         }
 
+        Debug.Log(Input.GetAxisRaw("Switch"));
         // Switch abilities depending on user input
-        if (!powerWheelOpen && Input.GetButtonDown("Switch Left") ^ Input.GetButtonDown("Switch Right"))
+        if (Input.GetAxisRaw("Switch") >= 0.9 && triggerPrevious < 0.9)
         {
-            Abilities[CurrentAbility].SwitchAbility(
-                (Input.GetButtonDown("Switch Left") ? -1 : 0) +
-                (Input.GetButtonDown("Switch Right") ? 1 : 0)
-                );
+            Abilities[CurrentAbility].SwitchAbility(1);
         }
+        if (Input.GetAxisRaw("Switch") <= -0.9 && triggerPrevious > -0.9)
+        {
+            Abilities[CurrentAbility].SwitchAbility(-1);
+        }
+        triggerPrevious = Input.GetAxisRaw("Switch");
     }
 
     /// <summary>
