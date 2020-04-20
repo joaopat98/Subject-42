@@ -2922,7 +2922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a565d2ef83bfb53478e415c0020c719e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityType: 6
+  abilityType: 7
   Range: 1
 --- !u!65 &572660736
 BoxCollider:
