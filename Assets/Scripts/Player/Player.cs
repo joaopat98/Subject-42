@@ -66,7 +66,7 @@ public class Player : MonoBehaviour
     /// </summary>
     PowerWheel PowerWheel;
     bool powerWheelOpen;
-    int selectedAbility;
+    AbilityType selectedAbility;
 
     float triggerPrevious = 0;
 
@@ -130,26 +130,26 @@ public class Player : MonoBehaviour
         // Update the current ability's state
         Abilities[CurrentAbility].Update();
 
-
         if (Input.GetButtonDown("Power Wheel"))
         {
             powerWheelOpen = true;
+            selectedAbility = Abilities[CurrentAbility].type;
         }
         if (powerWheelOpen)
         {
-            selectedAbility = PowerWheel.PowerSwitch(CurrentAbility);
+            selectedAbility = PowerWheel.PowerSwitch(selectedAbility);
         }
         if (Input.GetButtonUp("Power Wheel"))
         {
-            if (selectedAbility != CurrentAbility)
+            if (selectedAbility != Abilities[CurrentAbility].type && selectedAbility != AbilityType.Empty)
             {
-                Abilities[CurrentAbility].SwitchAbility(selectedAbility - CurrentAbility);
+                Abilities[CurrentAbility].SwitchAbility(Abilities.FindIndex(a => a.type == selectedAbility) - CurrentAbility);
             }
             PowerWheel.CleanUp();
+
             powerWheelOpen = false;
         }
 
-        Debug.Log(Input.GetAxisRaw("Switch"));
         // Switch abilities depending on user input
         if (Input.GetAxisRaw("Switch") >= 0.9 && triggerPrevious < 0.9)
         {
@@ -214,6 +214,18 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void AddAbility(AbilityType type)
+    {
+        if (Abilities[0].type == AbilityType.Empty)
+        {
+            Abilities[0] = Ability.FromType(type, this);
+        }
+        else
+        {
+            Abilities.Add(Ability.FromType(type, this));
+        }
     }
 
 }

@@ -18,9 +18,9 @@ public class GetAbility : MonoBehaviour
     {
         if (Input.GetButtonDown("Interact") || Input.GetKeyDown(KeyCode.Z))
         {
-            if(Vector3.Distance(transform.position, player.transform.position) < Range)
+            if (Vector3.Distance(transform.position, player.transform.position) < Range)
             {
-                player.Abilities.Add(Ability.FromType(abilityType, player));
+                player.AddAbility(abilityType);
                 Destroy(gameObject);
             }
         }

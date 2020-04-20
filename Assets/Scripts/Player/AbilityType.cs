@@ -3,6 +3,7 @@
 /// </summary>
 public enum AbilityType
 {
+    None,
     Empty,
     Test1,
     Test2,
