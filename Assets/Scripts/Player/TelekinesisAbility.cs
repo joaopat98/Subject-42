@@ -7,13 +7,15 @@ using System.Linq;
 public class TelekinesisAbility : Ability
 {
     ITelekinesisObject currentObj = null;
-    List<ITelekinesisObject> objects;
     LineRenderer line;
 
+    List<ITelekinesisObject> GetTelekinesisObjects()
+    {
+        return GameObject.FindObjectsOfType<MonoBehaviour>().Where(obj => obj.enabled).OfType<ITelekinesisObject>().ToList();
+    }
     // Start is called before the first frame update
     public TelekinesisAbility(Player player) : base(player)
     {
-        objects = GameObject.FindObjectsOfType<MonoBehaviour>().OfType<ITelekinesisObject>().ToList();
         line = player.GetComponent<LineRenderer>();
     }
 
@@ -23,7 +25,7 @@ public class TelekinesisAbility : Ability
         ITelekinesisObject currentClosestObject = null;
         float currentLowestAngle = Mathf.Infinity;
 
-        foreach (ITelekinesisObject obj in objects)
+        foreach (ITelekinesisObject obj in GetTelekinesisObjects())
         {
 
             if (Vector3.Angle(player.transform.forward, obj.GetSelectionPosition() - player.transform.position) < currentLowestAngle
@@ -43,14 +45,14 @@ public class TelekinesisAbility : Ability
         if (currentObj == null)
         {
             var currentClosestObject = GetClosestObject();
-            foreach (ITelekinesisObject obj in objects)
+            foreach (ITelekinesisObject obj in GetTelekinesisObjects())
             {
                 obj.Highlight(obj == currentClosestObject);
             }
             if (Input.GetButtonDown("Power") && currentClosestObject != null)
             {
                 currentObj = currentClosestObject;
-                currentObj.Grab();
+                currentObj.Grab(this);
                 line.enabled = true;
                 line.SetPosition(0, player.transform.position);
                 line.SetPosition(1, currentObj.GetPosition());
@@ -60,14 +62,15 @@ public class TelekinesisAbility : Ability
         {
             if (Input.GetAxisRaw("DPad Y") < 0)
             {
-                currentObj.Rotate(
-                    Joystick.GetJoystick2Dir().ToHorizontalDir().CameraCorrect(),
-                    player.TelekinesisRotateSpeed * Time.deltaTime
-                    );
+                var dir = Joystick.GetJoystick2Dir().ToHorizontalDir().CameraCorrect();
+                currentObj.Rotate(dir, player.TelekinesisRotateSpeed * Time.deltaTime);
             }
             else
             {
-                var offset = Joystick.GetJoystick2Dir().ToHorizontalDir().CameraCorrect() * player.TelekinesisMoveSpeed * Time.deltaTime;
+                var offset = Joystick.GetJoystick2Dir().ToHorizontalDir().CameraCorrect();
+
+                offset = offset * player.TelekinesisMoveSpeed * Time.deltaTime;
+
                 currentObj.Move(offset);
             }
             line.SetPosition(0, player.transform.position);
@@ -75,16 +78,14 @@ public class TelekinesisAbility : Ability
             if (Input.GetButtonDown("Power")
                 || Vector3.Distance(player.transform.position, currentObj.GetSelectionPosition()) > player.TelekinesisRange)
             {
-                line.enabled = false;
-                currentObj.Release();
-                currentObj = null;
+                Release();
             }
         }
     }
 
     public override void SwitchAbility(int delta)
     {
-        foreach (ITelekinesisObject obj in objects)
+        foreach (ITelekinesisObject obj in GetTelekinesisObjects())
         {
             obj.Highlight(false);
         }
@@ -95,5 +96,15 @@ public class TelekinesisAbility : Ability
             currentObj = null;
         }
         base.SwitchAbility(delta);
+    }
+
+    public void Release()
+    {
+        line.enabled = false;
+        if (currentObj != null)
+        {
+            currentObj.Release();
+            currentObj = null;
+        }
     }
 }

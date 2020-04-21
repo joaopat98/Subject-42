@@ -46,7 +46,7 @@ public class TelekinesisCube : MonoBehaviour, ITelekinesisObject
         prevPlayerPos = playerPos;
     }
 
-    public void Grab()
+    public void Grab(TelekinesisAbility ability)
     {
         GetComponent<Renderer>().material = DefaultMaterial;
         StartCoroutine(MoveToStart());
@@ -142,5 +142,10 @@ public class TelekinesisCube : MonoBehaviour, ITelekinesisObject
             yield return 0;
         }
         moved = true;
+    }
+
+    public bool IsActive()
+    {
+        return enabled;
     }
 }

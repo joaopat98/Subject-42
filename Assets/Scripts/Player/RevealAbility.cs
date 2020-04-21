@@ -13,7 +13,7 @@ public class RevealAbility : Ability
 
     public RevealAbility(Player player) : base(player)
     {
-        this.detectiveFilter =  Camera.main.GetComponentInChildren<PostProcessVolume>();
+        this.detectiveFilter = Camera.main.GetComponentInChildren<PostProcessVolume>();
         this.detectiveFilter.enabled = false;
         objects = GameObject.FindObjectsOfType<MonoBehaviour>().OfType<IRevealObject>().ToList();
     }
@@ -24,7 +24,7 @@ public class RevealAbility : Ability
         {
             player.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity.normalized * player.clairVoyanceMaxSpeed;
         }
-        if (Input.GetButtonDown("Power") && !isActive)
+        if (Input.GetButtonDown("Power")&& !isActive)
         {
             isActive = true;
             Debug.Log("Reveal");

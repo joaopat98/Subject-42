@@ -7,79 +7,91 @@ using JoystickUtils;
 
 public class PowerWheel : MonoBehaviour
 {
+    public float ScrollSpeed = 1;
+    private static List<AbilityType> typeOrder = new List<AbilityType>() {
+        AbilityType.Reveal,
+        AbilityType.Telekinesis,
+        AbilityType.None,
+        AbilityType.Electricity
+        };
+    float scrollVal = 0;
 
     Player player;
-    GameObject PowerToActivate;
-    GameObject PowerToDesactivate;
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>(); 
-        PowerToActivate = new GameObject();
-        PowerToDesactivate = new GameObject();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     /// <summary>
     /// Receives Input from the right joystick and switches power
     /// depending on the direction the joystick is pushed
     /// </summary>
-    public int PowerSwitch(int Ability)
+    public AbilityType PowerSwitch(AbilityType abilityType)
     {
         //Activate Power Wheel
         showInactivePowers();
         //Get Direction of Right Joystick
         Vector2 JoystickDirection = Joystick.GetJoystick2Dir();
-        int CurrentAbility = Ability;
-        AbilityType Type = AbilityType.Empty;
-
-
+        int wheelNum = typeOrder.FindIndex(t => t == abilityType);
         //Up Power
         if (JoystickDirection.y > 0.7 && (JoystickDirection.x > -0.7 && JoystickDirection.x < 0.7))
         {
-            CurrentAbility = 0;
-            Type = AbilityType.Reveal;
-            PowerToActivate = GameObject.Find("RevealActivated");
-            PowerToDesactivate = GameObject.Find("Reveal");
-
-
-        }
-        //Left Power
-        else if (JoystickDirection.x > 0.7 && (JoystickDirection.y >= -0.7) && (JoystickDirection.y <= 0.7))
-        {
-            CurrentAbility = 1;
-            Type = AbilityType.Telekinesis;
-            PowerToActivate = GameObject.Find("TelekinesisActivated");
-            PowerToDesactivate = GameObject.Find("Telekinesis");
-
+            wheelNum = 0;
         }
         //Right Power
-        else if (JoystickDirection.x < -0.7 && (JoystickDirection.y >= -0.7) && (JoystickDirection.y <= 0.7))
+        else if (JoystickDirection.x > 0.7 && (JoystickDirection.y > -0.7) && (JoystickDirection.y < 0.7))
         {
-            CurrentAbility = 2;
-            Type = AbilityType.Electricity;
-            PowerToActivate = GameObject.Find("ElectricActivated");
-            PowerToDesactivate = GameObject.Find("Electric");
+            wheelNum = 1;
         }
-
-        //Lower right power
+        //Down power
         else if (JoystickDirection.y < -0.7 && (JoystickDirection.x > -0.7 && JoystickDirection.x < 0.7))
         {
-            CurrentAbility = 3;
-            PowerToActivate = GameObject.Find("TimeActivated");
+            wheelNum = 2;
         }
-        //This happens when the joystick is not moved.
+        //Left Power
+        else if (JoystickDirection.x < -0.7 && (JoystickDirection.y > -0.7) && (JoystickDirection.y < 0.7))
+        {
+            wheelNum = 3;
+        }
+
+        scrollVal = -Input.GetAxis("Mouse ScrollWheel") * ScrollSpeed;
+        Debug.Log(scrollVal);
+        if (wheelNum == -1)
+        {
+        }
         else
         {
-            GameObject.Find("PowerWheel").GetComponent<SpriteRenderer>().enabled = true;
-            GameObject.Find("ElectricActivated").GetComponent<SpriteRenderer>().enabled = false;
-            GameObject.Find("RevealActivated").GetComponent<SpriteRenderer>().enabled = false;
-            GameObject.Find("TelekinesisActivated").GetComponent<SpriteRenderer>().enabled = false;
+            if (player.Abilities[0].type != AbilityType.Empty)
+            {
+                while (scrollVal >= 1)
+                {
+                    scrollVal -= 1;
+                    do
+                    {
+                        wheelNum = (wheelNum + 1) % typeOrder.Count;
+                    } while (player.Abilities.FindIndex(a => a.type == typeOrder[wheelNum]) == -1);
+                }
+                while (scrollVal <= -1)
+                {
+                    scrollVal += 1;
+                    do
+                    {
+                        wheelNum = (wheelNum - 1 + typeOrder.Count) % typeOrder.Count;
+                    } while (player.Abilities.FindIndex(a => a.type == typeOrder[wheelNum]) == -1);
+                }
+                if (player.Abilities.FindIndex(a => a.type == typeOrder[wheelNum]) != -1)
+                    abilityType = typeOrder[wheelNum];
+            }
         }
-        if (!Type.Equals(AbilityType.Empty))
+        Debug.Log(abilityType);
+        if (abilityType != AbilityType.Empty)
         {
-            PowerToActivate.GetComponent<SpriteRenderer>().enabled = true;
-            PowerToDesactivate.GetComponent<SpriteRenderer>().enabled = false;
+            GameObject.Find("PowerWheel").GetComponent<SpriteRenderer>().enabled = true;
+            GameObject.Find("ElectricActivated").GetComponent<SpriteRenderer>().enabled = abilityType == AbilityType.Electricity;
+            GameObject.Find("RevealActivated").GetComponent<SpriteRenderer>().enabled = abilityType == AbilityType.Reveal;
+            GameObject.Find("TelekinesisActivated").GetComponent<SpriteRenderer>().enabled = abilityType == AbilityType.Telekinesis;
         }
-        return CurrentAbility;
+        return abilityType;
     }
 
     /// <summary>
@@ -96,6 +108,7 @@ public class PowerWheel : MonoBehaviour
         GameObject.Find("Electric").GetComponent<SpriteRenderer>().enabled = false;
         GameObject.Find("Telekinesis").GetComponent<SpriteRenderer>().enabled = false;
         GameObject.Find("Reveal").GetComponent<SpriteRenderer>().enabled = false;
+        scrollVal = 0;
     }
 
     private void showInactivePowers()

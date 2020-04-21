@@ -12,6 +12,12 @@ public class Player : MonoBehaviour
     /// </summary>
     Rigidbody rb;
     public Material DeadMaterial;
+
+    /// <summary>
+    /// Player's animator controller
+    /// </summary>
+    Animator anim;
+
     /// <summary>
     /// Speed at which the player shall move
     /// </summary>
@@ -23,11 +29,12 @@ public class Player : MonoBehaviour
     /// Abilities the player will start with
     /// </summary>
     public List<AbilityType> StartingAbilities;
+
     /// <summary>
     /// List of abilities the player currently has
     /// </summary>
     /// <returns></returns>
-    [HideInInspector] public List<Ability> Abilities;
+    public List<Ability> Abilities;
     /// <summary>
     /// Index of the players current ability in <see cref="Abilities"/>
     /// </summary>
@@ -52,14 +59,16 @@ public class Player : MonoBehaviour
     /// <summary>
     /// Max speed to cool down the player using the clairvoyance power
     /// </summary>
-    [Header("ClairVoyance")] public float clairVoyanceMaxSpeed;
+    [Header("Reveal")] public float clairVoyanceMaxSpeed;
 
     /// <summary>
     /// UI for switching powers
     /// </summary>
     PowerWheel PowerWheel;
     bool powerWheelOpen;
-    int selectedAbility;
+    AbilityType selectedAbility;
+
+    float triggerPrevious = 0;
 
     /// <summary>
     /// Initialize the <see cref="Abilities"/> array according to the ability types
@@ -108,44 +117,50 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         InitAbilities();
         PowerWheel = GameObject.FindGameObjectWithTag("PowerWheel").GetComponent<PowerWheel>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
+        Debug.Log(Abilities[CurrentAbility]);
         // Movement
         if (isAlive)
             Move();
 
         // Update the current ability's state
         Abilities[CurrentAbility].Update();
-        
 
         if (Input.GetButtonDown("Power Wheel"))
         {
             powerWheelOpen = true;
+            selectedAbility = Abilities[CurrentAbility].type;
         }
         if (powerWheelOpen)
         {
-            selectedAbility = PowerWheel.PowerSwitch(CurrentAbility);
+            selectedAbility = PowerWheel.PowerSwitch(selectedAbility);
         }
         if (Input.GetButtonUp("Power Wheel"))
         {
-            if (selectedAbility != CurrentAbility)
+            if (selectedAbility != Abilities[CurrentAbility].type && selectedAbility != AbilityType.Empty)
             {
-                Abilities[CurrentAbility].SwitchAbility(selectedAbility - CurrentAbility);
+                Abilities[CurrentAbility].SwitchAbility(Abilities.FindIndex(a => a.type == selectedAbility) - CurrentAbility);
             }
             PowerWheel.CleanUp();
+
             powerWheelOpen = false;
         }
 
         // Switch abilities depending on user input
-        if (!powerWheelOpen && Input.GetButtonDown("Switch Left") ^ Input.GetButtonDown("Switch Right"))
+        if (Input.GetAxisRaw("Switch") >= 0.9 && triggerPrevious < 0.9)
         {
-            Abilities[CurrentAbility].SwitchAbility(
-                (Input.GetButtonDown("Switch Left") ? -1 : 0) +
-                (Input.GetButtonDown("Switch Right") ? 1 : 0)
-                );
+            Abilities[CurrentAbility].SwitchAbility(1);
         }
+        if (Input.GetAxisRaw("Switch") <= -0.9 && triggerPrevious > -0.9)
+        {
+            Abilities[CurrentAbility].SwitchAbility(-1);
+        }
+        triggerPrevious = Input.GetAxisRaw("Switch");
+
     }
 
     /// <summary>
@@ -166,6 +181,23 @@ public class Player : MonoBehaviour
         else
             rb.angularVelocity = Vector3.zero;
         rb.velocity = new Vector3(MoveSpeed * dir.x, rb.velocity.y, MoveSpeed * dir.z);
+        updateAnim();
+
+    }
+
+    /// <summary>
+    /// Update the animation state
+    /// </summary>
+    private void updateAnim()
+    {
+        if (rb.velocity.magnitude > 0)
+        {
+            anim.SetBool("Run", true);
+        }
+        else
+        {
+            anim.SetBool("Run", false);
+        }
     }
 
     /// <summary>
@@ -182,6 +214,18 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void AddAbility(AbilityType type)
+    {
+        if (Abilities[0].type == AbilityType.Empty)
+        {
+            Abilities[0] = Ability.FromType(type, this);
+        }
+        else
+        {
+            Abilities.Add(Ability.FromType(type, this));
+        }
     }
 
 }
