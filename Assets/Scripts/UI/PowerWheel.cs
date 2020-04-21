@@ -17,9 +17,27 @@ public class PowerWheel : MonoBehaviour
     float scrollVal = 0;
 
     Player player;
+
+    Dictionary<AbilityType, Image> ActivatedIcons = new Dictionary<AbilityType, Image>();
+    Dictionary<AbilityType, Image> DefaultIcons = new Dictionary<AbilityType, Image>();
+
+    Canvas canvas;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        canvas = GetComponent<Canvas>();
+        canvas.enabled = false;
+        Image WheelImage = transform.Find("PowerWheel").GetComponent<Image>();
+        foreach (var type in typeOrder)
+        {
+            if (type != AbilityType.None)
+            {
+                var wheelPart = WheelImage.transform.Find("PowerWheel" + type);
+                DefaultIcons[type] = wheelPart.Find(type.ToString()).GetComponent<Image>();
+                ActivatedIcons[type] = wheelPart.Find(type + "Activated").GetComponent<Image>();
+            }
+        }
     }
 
     /// <summary>
@@ -28,8 +46,7 @@ public class PowerWheel : MonoBehaviour
     /// </summary>
     public AbilityType PowerSwitch(AbilityType abilityType)
     {
-        //Activate Power Wheel
-        showInactivePowers();
+        canvas.enabled = true;
         //Get Direction of Right Joystick
         Vector2 JoystickDirection = Joystick.GetJoystick2Dir();
         int wheelNum = typeOrder.FindIndex(t => t == abilityType);
@@ -86,10 +103,10 @@ public class PowerWheel : MonoBehaviour
         Debug.Log(abilityType);
         if (abilityType != AbilityType.Empty)
         {
-            GameObject.Find("PowerWheel").GetComponent<SpriteRenderer>().enabled = true;
-            GameObject.Find("ElectricActivated").GetComponent<SpriteRenderer>().enabled = abilityType == AbilityType.Electricity;
-            GameObject.Find("RevealActivated").GetComponent<SpriteRenderer>().enabled = abilityType == AbilityType.Reveal;
-            GameObject.Find("TelekinesisActivated").GetComponent<SpriteRenderer>().enabled = abilityType == AbilityType.Telekinesis;
+            foreach (var icon in ActivatedIcons)
+            {
+                icon.Value.enabled = icon.Key == abilityType;
+            }
         }
         return abilityType;
     }
@@ -100,14 +117,7 @@ public class PowerWheel : MonoBehaviour
     /// </summary>
     public void CleanUp()
     {
-        GameObject.Find("PowerWheel").GetComponent<SpriteRenderer>().enabled = false;
-        GameObject.Find("ElectricActivated").GetComponent<SpriteRenderer>().enabled = false;
-        GameObject.Find("RevealActivated").GetComponent<SpriteRenderer>().enabled = false;
-        GameObject.Find("TelekinesisActivated").GetComponent<SpriteRenderer>().enabled = false;
-        GameObject.Find("Time").GetComponent<SpriteRenderer>().enabled = false;
-        GameObject.Find("Electric").GetComponent<SpriteRenderer>().enabled = false;
-        GameObject.Find("Telekinesis").GetComponent<SpriteRenderer>().enabled = false;
-        GameObject.Find("Reveal").GetComponent<SpriteRenderer>().enabled = false;
+        canvas.enabled = false;
         scrollVal = 0;
     }
 
