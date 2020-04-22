@@ -27,7 +27,6 @@ public class RevealAbility : Ability
         if (Input.GetButtonDown("Power")&& !isActive)
         {
             isActive = true;
-            Debug.Log("Reveal");
             foreach(IRevealObject obj in objects)
             {
                 obj.RevealObject();

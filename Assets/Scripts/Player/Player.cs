@@ -122,33 +122,12 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(Abilities[CurrentAbility]);
         // Movement
         if (isAlive)
             Move();
 
         // Update the current ability's state
         Abilities[CurrentAbility].Update();
-
-        if (Input.GetButtonDown("Power Wheel"))
-        {
-            powerWheelOpen = true;
-            selectedAbility = Abilities[CurrentAbility].type;
-        }
-        if (powerWheelOpen)
-        {
-            selectedAbility = PowerWheel.PowerSwitch(selectedAbility);
-        }
-        if (Input.GetButtonUp("Power Wheel"))
-        {
-            if (selectedAbility != Abilities[CurrentAbility].type && selectedAbility != AbilityType.Empty)
-            {
-                Abilities[CurrentAbility].SwitchAbility(Abilities.FindIndex(a => a.type == selectedAbility) - CurrentAbility);
-            }
-            PowerWheel.CleanUp();
-
-            powerWheelOpen = false;
-        }
 
         // Switch abilities depending on user input
         if (Input.GetAxisRaw("Switch") >= 0.9 && triggerPrevious < 0.9)
@@ -226,6 +205,18 @@ public class Player : MonoBehaviour
         {
             Abilities.Add(Ability.FromType(type, this));
         }
+    }
+
+    public void SwitchAbility(AbilityType ability)
+    {
+        int index = Abilities.FindIndex(a => a.type == ability);
+        if (index != -1 && index != CurrentAbility)
+            Abilities[CurrentAbility].SwitchAbility(index - CurrentAbility);
+    }
+
+    public void SwitchAbility(int delta)
+    {
+        Abilities[CurrentAbility].SwitchAbility(delta);
     }
 
 }
