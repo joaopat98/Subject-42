@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
     public GameObject Select;
     public Text Name;
     public Text Description;
-    public int current = 0;
+    [HideInInspector] public int current = 0;
     public List<string> Names = new List<string>();
     public List<string> Descriptions = new List<string>();
 

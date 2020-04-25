@@ -5006,7 +5006,7 @@ PrefabInstance:
     - target: {fileID: 3647380161122266620, guid: cba4564f2b7a30c45a02bc932d16f71f,
         type: 3}
       propertyPath: StartingAbilities.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3647380161122266620, guid: cba4564f2b7a30c45a02bc932d16f71f,
         type: 3}

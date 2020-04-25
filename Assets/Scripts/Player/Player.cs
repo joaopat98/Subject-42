@@ -69,6 +69,7 @@ public class Player : MonoBehaviour
     AbilityType selectedAbility;
 
     float triggerPrevious = 0;
+    public int SwitchStatus;
 
     /// <summary>
     /// Initialize the <see cref="Abilities"/> array according to the ability types
@@ -122,6 +123,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(Abilities[CurrentAbility].type);
+        Debug.Log(CurrentAbility);
         // Movement
         if (isAlive)
             Move();
@@ -132,11 +135,17 @@ public class Player : MonoBehaviour
         // Switch abilities depending on user input
         if (Input.GetAxisRaw("Switch") >= 0.9 && triggerPrevious < 0.9)
         {
+            SwitchStatus = 1;
             Abilities[CurrentAbility].SwitchAbility(1);
         }
-        if (Input.GetAxisRaw("Switch") <= -0.9 && triggerPrevious > -0.9)
+        else if (Input.GetAxisRaw("Switch") <= -0.9 && triggerPrevious > -0.9)
         {
+            SwitchStatus = -1;
             Abilities[CurrentAbility].SwitchAbility(-1);
+        }
+        else
+        {
+            SwitchStatus = 0;
         }
         triggerPrevious = Input.GetAxisRaw("Switch");
 

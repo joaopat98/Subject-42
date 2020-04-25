@@ -21,14 +21,13 @@ public class PowerWheel : MonoBehaviour
     Dictionary<AbilityType, Image> ActivatedIcons = new Dictionary<AbilityType, Image>();
     Dictionary<AbilityType, Image> DefaultIcons = new Dictionary<AbilityType, Image>();
 
-    Canvas canvas;
+    Image WheelImage;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        canvas = GetComponent<Canvas>();
-        canvas.enabled = false;
-        Image WheelImage = transform.Find("PowerWheel").GetComponent<Image>();
+        WheelImage = transform.Find("PowerWheel").GetComponent<Image>();
+        WheelImage.gameObject.SetActive(false);
         foreach (var type in typeOrder)
         {
             if (type != AbilityType.None)
@@ -48,7 +47,7 @@ public class PowerWheel : MonoBehaviour
     {
         if (Input.GetButtonDown("Power Wheel"))
         {
-            canvas.enabled = true;
+            WheelImage.gameObject.SetActive(true);
             abilityType = player.Abilities[player.CurrentAbility].type;
             foreach (var icon in ActivatedIcons)
             {
@@ -69,7 +68,7 @@ public class PowerWheel : MonoBehaviour
         }
         if (Input.GetButtonUp("Power Wheel"))
         {
-            canvas.enabled = false;
+            WheelImage.gameObject.SetActive(false);
             scrollVal = 0;
             player.SwitchAbility(abilityType);
         }
@@ -104,10 +103,7 @@ public class PowerWheel : MonoBehaviour
 
         scrollVal = -Input.GetAxis("Mouse ScrollWheel") * ScrollSpeed;
         Debug.Log(scrollVal);
-        if (wheelNum == -1)
-        {
-        }
-        else
+        if (wheelNum != -1)
         {
             if (player.Abilities[0].type != AbilityType.Empty)
             {
