@@ -11,7 +11,7 @@ public class DoorLever : MonoBehaviour, ITelekinesisObject
     private float pullAcum = 0;
     private Quaternion initRot;
     private Transform lever;
-    private Renderer renderer;
+    private Renderer rend;
     public GameObject Door;
 
     public Vector3 GetPosition()
@@ -33,11 +33,11 @@ public class DoorLever : MonoBehaviour, ITelekinesisObject
     {
         if (IsActive)
         {
-            renderer.GetComponent<Renderer>().material = SelectedMaterial;
+            rend.GetComponent<Renderer>().material = SelectedMaterial;
         }
         else
         {
-            renderer.GetComponent<Renderer>().material = DefaultMaterial;
+            rend.GetComponent<Renderer>().material = DefaultMaterial;
         }
     }
 
@@ -77,7 +77,7 @@ public class DoorLever : MonoBehaviour, ITelekinesisObject
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         lever = transform.GetChild(0);
         initRot = lever.transform.rotation;
-        renderer = lever.GetChild(0).GetComponent<Renderer>();
+        rend = lever.GetChild(0).GetComponent<Renderer>();
     }
 
     // Update is called once per frame
