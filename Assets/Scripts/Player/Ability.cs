@@ -40,6 +40,7 @@ public abstract class Ability
 
     public AbilityType type { get { return Types[GetType()]; } }
     protected Player player;
+    protected Transform transform;
 
     /// <summary>
     /// Should only be instatiated by the player instance for the starting abilities or when a new ability is obtained
@@ -48,6 +49,7 @@ public abstract class Ability
     public Ability(Player player)
     {
         this.player = player;
+        transform = player.transform;
     }
 
     /// <summary>

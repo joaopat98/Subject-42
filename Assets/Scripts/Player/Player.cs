@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
     public float TelekinesisMoveClose = 1;
     public float TelekinesisMoveSpeed = 7f;
     public float TelekinesisRotateSpeed = 180f;
+    public float TelekinesisSelectRadius = 0.5f;
 
     /// <summary>
     /// Max speed to cool down the player using the clairvoyance power
