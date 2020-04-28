@@ -1289,6 +1289,7 @@ GameObject:
   - component: {fileID: 3647380161122266621}
   - component: {fileID: 3647380161122266620}
   - component: {fileID: 9005351}
+  - component: {fileID: 1176915101106560323}
   m_Layer: 8
   m_Name: modelofaserig
   m_TagString: Player
@@ -1385,7 +1386,9 @@ MonoBehaviour:
   TelekinesisMoveClose: 1
   TelekinesisMoveSpeed: 7
   TelekinesisRotateSpeed: 180
+  TelekinesisSelectRadius: 0.5
   clairVoyanceMaxSpeed: 3
+  SwitchStatus: 0
 --- !u!120 &9005351
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1483,6 +1486,20 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &1176915101106560323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4737775780759374899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e80ea102f1eb0440b2c7ed3a73f8591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FadeTime: 0.25
+  AudioClips: []
 --- !u!1 &4820276672130133162
 GameObject:
   m_ObjectHideFlags: 0
