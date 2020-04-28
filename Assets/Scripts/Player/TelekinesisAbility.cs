@@ -27,13 +27,27 @@ public class TelekinesisAbility : Ability
 
         foreach (ITelekinesisObject obj in GetTelekinesisObjects())
         {
-
             if (Vector3.Angle(player.transform.forward, obj.GetSelectionPosition() - player.transform.position) < currentLowestAngle
                 && Vector3.Distance(player.transform.position, obj.GetSelectionPosition()) <= player.ViewRange
                 && Vector3.Angle(player.transform.forward, obj.GetSelectionPosition() - player.transform.position) < player.ViewAngle)
             {
                 currentClosestObject = obj;
                 currentLowestAngle = (Vector3.Angle(player.transform.forward, obj.GetSelectionPosition() - player.transform.position));
+            }
+        }
+        if (currentClosestObject == null)
+        {
+            RaycastHit hit;
+            if (Physics.SphereCast(
+                transform.position,
+                player.TelekinesisSelectRadius,
+                transform.forward,
+                out hit,
+                player.ViewRange,
+                LayerMask.GetMask("Telekinesis")
+                ))
+            {
+                currentClosestObject = hit.collider.GetComponent<TelekinesisCollider>().GetTelekinesisObject();
             }
         }
         return currentClosestObject;
