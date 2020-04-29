@@ -20,9 +20,9 @@ public class RevealAbility : Ability
 
     public override void Update()
     {
-        if(player.GetComponent<Rigidbody>().velocity.magnitude >= player.clairVoyanceMaxSpeed && isActive)
+        if(player.GetComponent<Rigidbody>().velocity.magnitude >= player.RevealMaxSpeed && isActive)
         {
-            player.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity.normalized * player.clairVoyanceMaxSpeed;
+            player.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity.normalized * player.RevealMaxSpeed;
         }
         if (Input.GetButtonDown("Power")&& !isActive)
         {
