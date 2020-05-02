@@ -27,9 +27,6 @@ public class GuardPatrol : GuardAction
         if (
             (Vector3.Distance(guard.transform.position, player.transform.position) < guard.ViewRange
             && Vector3.Angle(guard.transform.forward, player.transform.position - guard.transform.position) < guard.ViewAngle)
-            ||
-            (Vector3.Distance(guard.transform.position, player.transform.position) < guard.playerDistancethreshold
-            && player.GetComponent<Rigidbody>().velocity.magnitude > guard.playerSpeedthreshold)
             )
         {
             /*
@@ -45,6 +42,14 @@ public class GuardPatrol : GuardAction
                 );
             if (hit.collider.CompareTag("Player"))
                 guard.action = new GuardChase(guard);
+        }
+        // if the player approaches the guard enter in suspicious mode
+        else if (
+            (Vector3.Distance(guard.transform.position, player.transform.position) < guard.playerDistancethreshold
+            && player.GetComponent<Rigidbody>().velocity.magnitude > guard.playerSpeedthreshold)
+            )
+        {
+            guard.action = new GuardCheck(guard,player.transform.position);
         }
     }
 

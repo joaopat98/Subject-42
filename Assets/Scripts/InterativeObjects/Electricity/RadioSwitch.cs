@@ -58,7 +58,7 @@ public class RadioSwitch : MonoBehaviour, IElectricObject
         {
             Debug.Log("Detect sound");
             Guard guard = other.gameObject.GetComponent<Guard>();
-            guard.action = new GuardCheck(guard, this.gameObject);
+            guard.action = new GuardCheck(guard, this.gameObject.transform.position);
         }
     }
 
