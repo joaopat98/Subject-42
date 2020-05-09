@@ -182,15 +182,7 @@ public class Player : MonoBehaviour
     private void updateAnim()
     {
         Vector2 vel = new Vector2(rb.velocity.x, rb.velocity.z);
-        if (vel.magnitude > 0)
-        {
-            anim.SetBool("Run", true);
-            anim.SetFloat("Speed", vel.magnitude);
-        }
-        else
-        {
-            anim.SetBool("Run", false);
-        }
+        anim.SetFloat("Speed", vel.magnitude);
     }
 
     /// <summary>
