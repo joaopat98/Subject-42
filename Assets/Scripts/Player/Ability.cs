@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
@@ -41,6 +42,8 @@ public abstract class Ability
     public AbilityType type { get { return Types[GetType()]; } }
     protected Player player;
     protected Transform transform;
+    protected Material playerMaterial;
+    protected Coroutine currentFade;
 
     /// <summary>
     /// Should only be instatiated by the player instance for the starting abilities or when a new ability is obtained
@@ -50,6 +53,7 @@ public abstract class Ability
     {
         this.player = player;
         transform = player.transform;
+        playerMaterial = transform.Find("Null.1").GetComponent<Renderer>().material;
     }
 
     /// <summary>
@@ -70,4 +74,49 @@ public abstract class Ability
         }
         player.CurrentAbility = next % player.Abilities.Count;
     }
+
+    protected void FadeInColor(Color color)
+    {
+        playerMaterial.SetColor("GlowColor", color);
+        if (currentFade != null)
+            player.StopCoroutine(currentFade);
+        currentFade = player.StartCoroutine(FadeInColorRoutine());
+    }
+
+    protected IEnumerator FadeInColorRoutine()
+    {
+        float t = 0;
+        float prevIntensity = playerMaterial.GetFloat("GlowIntensity");
+        while (t < player.FadeInTime)
+        {
+            var i = EasingFunction.EaseInCubic(prevIntensity, 1, t / player.FadeInTime);
+            playerMaterial.SetFloat("GlowIntensity", i);
+            yield return 0;
+            t += Time.deltaTime;
+        }
+        playerMaterial.SetFloat("GlowIntensity", 1);
+        currentFade = null;
+    }
+
+    protected void FadeOutColor() {
+        if (currentFade != null)
+            player.StopCoroutine(currentFade);
+        currentFade = player.StartCoroutine(FadeOutColorRoutine());
+    }
+
+    protected IEnumerator FadeOutColorRoutine()
+    {
+        float t = 0;
+        float prevIntensity = playerMaterial.GetFloat("GlowIntensity");
+        while (t < player.FadeOutTime)
+        {
+            var i = EasingFunction.EaseInCubic(prevIntensity, 0, t / player.FadeOutTime);
+            playerMaterial.SetFloat("GlowIntensity", i);
+            yield return 0;
+            t += Time.deltaTime;
+        }
+        playerMaterial.SetFloat("GlowIntensity", 0);
+        currentFade = null;
+    }
+
 }

@@ -17,6 +17,7 @@ public class TelekinesisAbility : Ability
     public TelekinesisAbility(Player player) : base(player)
     {
         line = player.GetComponent<LineRenderer>();
+        line.startColor = line.endColor = player.TelekinesisColor;
     }
 
     ITelekinesisObject GetClosestObject()
@@ -37,6 +38,7 @@ public class TelekinesisAbility : Ability
         }
         if (currentClosestObject == null)
         {
+            /*
             RaycastHit hit;
             if (Physics.SphereCast(
                 transform.position,
@@ -49,6 +51,7 @@ public class TelekinesisAbility : Ability
             {
                 currentClosestObject = hit.collider.GetComponent<TelekinesisCollider>().GetTelekinesisObject();
             }
+            */
         }
         return currentClosestObject;
     }
@@ -70,6 +73,7 @@ public class TelekinesisAbility : Ability
                 line.enabled = true;
                 line.SetPosition(0, player.transform.position);
                 line.SetPosition(1, currentObj.GetPosition());
+                FadeInColor(player.TelekinesisColor);
             }
         }
         else
@@ -103,17 +107,13 @@ public class TelekinesisAbility : Ability
         {
             obj.Highlight(false);
         }
-        line.enabled = false;
-        if (currentObj != null)
-        {
-            currentObj.Release();
-            currentObj = null;
-        }
+        Release();
         base.SwitchAbility(delta);
     }
 
     public void Release()
     {
+        FadeOutColor();
         line.enabled = false;
         if (currentObj != null)
         {

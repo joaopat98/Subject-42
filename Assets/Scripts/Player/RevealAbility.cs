@@ -2,41 +2,44 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Rendering.PostProcessing;
 
 public class RevealAbility : Ability
 {
-    private PostProcessVolume detectiveFilter;
+    private Volume detectiveFilter;
     private List<IRevealObject> objects;
 
     private bool isActive = false;
 
     public RevealAbility(Player player) : base(player)
     {
-        this.detectiveFilter = Camera.main.GetComponentInChildren<PostProcessVolume>();
+        this.detectiveFilter = GameObject.Find("RevealVolume").GetComponent<Volume>();
         this.detectiveFilter.enabled = false;
         objects = GameObject.FindObjectsOfType<MonoBehaviour>().OfType<IRevealObject>().ToList();
     }
 
     public override void Update()
     {
-        if(player.GetComponent<Rigidbody>().velocity.magnitude >= player.clairVoyanceMaxSpeed && isActive)
+        if (player.GetComponent<Rigidbody>().velocity.magnitude >= player.clairVoyanceMaxSpeed && isActive)
         {
             player.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity.normalized * player.clairVoyanceMaxSpeed;
         }
-        if (Input.GetButtonDown("Power")&& !isActive)
+        if (Input.GetButtonDown("Power") && !isActive)
         {
+            FadeInColor(player.RevealColor);
             isActive = true;
-            foreach(IRevealObject obj in objects)
+            foreach (IRevealObject obj in objects)
             {
                 obj.RevealObject();
             }
             this.detectiveFilter.enabled = true;
 
         }
-        else if(Input.GetButtonDown("Power") && isActive)
+        else if (Input.GetButtonDown("Power") && isActive)
         {
             isActive = false;
+            FadeOutColor();
             foreach (IRevealObject obj in objects)
             {
                 obj.UnRevealObject();
@@ -47,6 +50,7 @@ public class RevealAbility : Ability
 
     public override void SwitchAbility(int delta)
     {
+        FadeOutColor();
         foreach (IRevealObject obj in objects)
         {
             obj.UnRevealObject();

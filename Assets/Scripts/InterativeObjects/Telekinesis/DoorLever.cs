@@ -6,7 +6,7 @@ public class DoorLever : MonoBehaviour, ITelekinesisObject
 {
     private Player player;
     private TelekinesisAbility ability;
-    public Material DefaultMaterial, SelectedMaterial;
+    Outline outline;
     public float PullSpeed = 1;
     private float pullAcum = 0;
     private Quaternion initRot;
@@ -31,14 +31,7 @@ public class DoorLever : MonoBehaviour, ITelekinesisObject
 
     public void Highlight(bool IsActive)
     {
-        if (IsActive)
-        {
-            rend.GetComponent<Renderer>().material = SelectedMaterial;
-        }
-        else
-        {
-            rend.GetComponent<Renderer>().material = DefaultMaterial;
-        }
+        outline.enabled = IsActive;
     }
 
     public void Move(Vector3 offset)
@@ -78,6 +71,10 @@ public class DoorLever : MonoBehaviour, ITelekinesisObject
         lever = transform.GetChild(0);
         initRot = lever.transform.rotation;
         rend = lever.GetChild(0).GetComponent<Renderer>();
+        outline = GetComponentInChildren<Outline>();
+        outline.OutlineMode = Outline.Mode.OutlineAndSilhouette;
+        outline.OutlineMode = Outline.Mode.OutlineAndSilhouette;
+        outline.OutlineColor = player.TelekinesisColor;
     }
 
     // Update is called once per frame
@@ -91,6 +88,8 @@ public class DoorLever : MonoBehaviour, ITelekinesisObject
         {
             lever.transform.rotation = Quaternion.AngleAxis(90, transform.right) * initRot;
             ability.Release();
+            outline.enabled = false;
+            enabled = false;
             Destroy(Door);
         }
     }

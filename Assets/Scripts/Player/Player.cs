@@ -57,6 +57,11 @@ public class Player : MonoBehaviour
     public float TelekinesisRotateSpeed = 180f;
     public float TelekinesisSelectRadius = 0.5f;
 
+    [Header("Ability Highlights")]
+    public float FadeInTime = 0.25f;
+    public float FadeOutTime = 1;
+    public Color TelekinesisColor, RevealColor, ElectricityColor;
+
     /// <summary>
     /// Max speed to cool down the player using the clairvoyance power
     /// </summary>
@@ -124,8 +129,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(Abilities[CurrentAbility].type);
-        Debug.Log(CurrentAbility);
         // Movement
         if (isAlive)
             Move();

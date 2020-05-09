@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8086079612081320315}
   - component: {fileID: 8086079612081320312}
+  - component: {fileID: 99963126767040394}
   m_Layer: 0
   m_Name: TelekinesisWall
   m_TagString: Untagged
@@ -24,14 +25,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8086079612081320314}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 38.63, y: 0, z: 0}
   m_LocalScale: {x: 5.151001, y: 7, z: 0.050000012}
   m_Children:
   - {fileID: 8086079612839351227}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: 0}
 --- !u!114 &8086079612081320312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48,8 +49,24 @@ MonoBehaviour:
   MaxVibration: 0.25
   FallRecover: 5
   FallTime: 1
-  DefaultMaterial: {fileID: 2100000, guid: 22689224f5365bf4daae7e2ae0bea2de, type: 2}
-  SelectedMaterial: {fileID: 2100000, guid: 5e1e1bb6f240dc640b1e5e386f7e9c70, type: 2}
+--- !u!114 &99963126767040394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8086079612081320314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &8086079612839351217
 GameObject:
   m_ObjectHideFlags: 0
@@ -63,6 +80,7 @@ GameObject:
   - component: {fileID: 8086079612839351221}
   - component: {fileID: 8086079612839351220}
   - component: {fileID: 8086079612839351222}
+  - component: {fileID: 1257827778}
   m_Layer: 0
   m_Name: TelekinesisWall
   m_TagString: Untagged
@@ -160,3 +178,16 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &1257827778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8086079612839351217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90ca6549d7286044a856ff9d1d0d7e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obj: {fileID: 8086079612081320314}

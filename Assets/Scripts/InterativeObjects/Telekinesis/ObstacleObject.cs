@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Outline))]
 public class ObstacleObject : MonoBehaviour, ITelekinesisObject
 {
     Vector3 prevPlayerPos;
     Vector3 velocity;
     Player player;
     Rigidbody rb;
-    public Material DefaultMaterial, SelectedMaterial;
+    Outline outline;
     public float MoveSpeed = 1;
     public float RotateSpeed = 180;
     public float VerticalOffset = 0.5f;
@@ -24,6 +25,9 @@ public class ObstacleObject : MonoBehaviour, ITelekinesisObject
     void Start()
     {
         player = GameObject.FindObjectOfType<Player>();
+        outline = GetComponentInChildren<Outline>();
+        outline.OutlineColor = player.TelekinesisColor;
+        outline.OutlineMode = Outline.Mode.OutlineAndSilhouette;
         rb = GetComponent<Rigidbody>();
     }
 
@@ -48,7 +52,6 @@ public class ObstacleObject : MonoBehaviour, ITelekinesisObject
 
     public void Grab(TelekinesisAbility ability)
     {
-        GetComponent<Renderer>().material = DefaultMaterial;
         StartCoroutine(MoveToStart());
         isHeld = true;
         rb.useGravity = false;
@@ -64,14 +67,7 @@ public class ObstacleObject : MonoBehaviour, ITelekinesisObject
 
     public void Highlight(bool isActive)
     {
-        if (isActive)
-        {
-            GetComponent<Renderer>().material = SelectedMaterial;
-        }
-        else
-        {
-            GetComponent<Renderer>().material = DefaultMaterial;
-        }
+        outline.enabled = isActive;
     }
 
     public void Move(Vector3 offset)
