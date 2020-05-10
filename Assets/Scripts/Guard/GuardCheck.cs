@@ -7,8 +7,8 @@ using UnityEngine;
 public class GuardCheck : GuardAction
 {
     private float t;
-    private GameObject obj;
-    public GuardCheck(Guard guard, GameObject obj) : base(guard)
+    private Vector3 obj;
+    public GuardCheck(Guard guard, Vector3 obj) : base(guard)
     {
         Debug.Log("Check sound");
         agent.stoppingDistance = guard.CheckReachDistance;
@@ -20,17 +20,13 @@ public class GuardCheck : GuardAction
     {
         
         // Update the agent's goal to the player's position
-        agent.SetDestination(obj.transform.position);
+        agent.SetDestination(obj);
 
         // Check if the player is within the field of view of the guard or 
         // if its speed and distance is less than a threshold
         if (
             (Vector3.Distance(guard.transform.position, player.transform.position) < guard.ViewRange
-            && Vector3.Angle(guard.transform.forward, player.transform.position - guard.transform.position) < guard.ViewAngle)
-            ||
-            (Vector3.Distance(guard.transform.position, player.transform.position) < guard.playerDistancethreshold
-            && player.GetComponent<Rigidbody>().velocity.magnitude > guard.playerSpeedthreshold)
-            )
+            && Vector3.Angle(guard.transform.forward, player.transform.position - guard.transform.position) < guard.ViewAngle))
         {
             /*
                 Check if there are no obstacles obstructing the 
@@ -46,10 +42,18 @@ public class GuardCheck : GuardAction
             if (hit.collider.CompareTag("Player"))
                 guard.action = new GuardChase(guard);
         }
+        /// if the player approaches a given speed
+        else if (         
+            (Vector3.Distance(guard.transform.position, player.transform.position) < guard.playerDistancethreshold)
+            && (player.GetComponent<Rigidbody>().velocity.magnitude > guard.playerSpeedthreshold)
+            )
+        {
+            obj = player.transform.position;
+        }
 
 
         // Change to patrol mode if player is too far away
-        if (Vector3.Distance(guard.transform.position, obj.transform.position) <= agent.stoppingDistance)
+        if (Vector3.Distance(guard.transform.position, obj) <= agent.stoppingDistance)
         {
             guard.StartCoroutine(CheckAndPatrol());
             

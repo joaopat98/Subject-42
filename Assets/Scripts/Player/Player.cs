@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// Max speed to cool down the player using the clairvoyance power
     /// </summary>
-    [Header("Reveal")] public float clairVoyanceMaxSpeed;
+    [Header("Reveal")] public float RevealMaxSpeed;
 
     /// <summary>
     /// UI for switching powers
@@ -153,6 +153,9 @@ public class Player : MonoBehaviour
         }
         triggerPrevious = Input.GetAxisRaw("Switch");
 
+        ///Update animation values
+        updateAnim();
+
     }
 
     /// <summary>
@@ -173,7 +176,7 @@ public class Player : MonoBehaviour
         else
             rb.angularVelocity = Vector3.zero;
         rb.velocity = new Vector3(MoveSpeed * dir.x, rb.velocity.y, MoveSpeed * dir.z);
-        updateAnim();
+       
 
     }
 
@@ -182,14 +185,8 @@ public class Player : MonoBehaviour
     /// </summary>
     private void updateAnim()
     {
-        if (rb.velocity.magnitude > 0)
-        {
-            anim.SetBool("Run", true);
-        }
-        else
-        {
-            anim.SetBool("Run", false);
-        }
+        Vector2 vel = new Vector2(rb.velocity.x, rb.velocity.z);
+        anim.SetFloat("Speed", vel.magnitude);
     }
 
     /// <summary>

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 /// <summary>
 /// Base class to manage the player's ability state
 /// </summary>
@@ -42,7 +43,6 @@ public abstract class Ability
     public AbilityType type { get { return Types[GetType()]; } }
     protected Player player;
     protected Transform transform;
-    protected Material playerMaterial;
     protected Coroutine currentFade;
 
     /// <summary>
@@ -53,7 +53,6 @@ public abstract class Ability
     {
         this.player = player;
         transform = player.transform;
-        playerMaterial = transform.Find("Null.1").GetComponent<Renderer>().material;
     }
 
     /// <summary>
@@ -77,7 +76,10 @@ public abstract class Ability
 
     protected void FadeInColor(Color color)
     {
-        playerMaterial.SetColor("GlowColor", color);
+        foreach (var mat in player.GetComponentInChildren<SkinnedMeshRenderer>().materials)
+        {
+            if (mat.HasProperty("GlowColor")) mat.SetColor("GlowColor", color);
+        }
         if (currentFade != null)
             player.StopCoroutine(currentFade);
         currentFade = player.StartCoroutine(FadeInColorRoutine());
@@ -86,19 +88,27 @@ public abstract class Ability
     protected IEnumerator FadeInColorRoutine()
     {
         float t = 0;
-        float prevIntensity = playerMaterial.GetFloat("GlowIntensity");
+        var mats = player.GetComponentInChildren<SkinnedMeshRenderer>().materials;
+        float prevIntensity = mats.First(mat => mat.HasProperty("GlowIntensity")).GetFloat("GlowIntensity");
         while (t < player.FadeInTime)
         {
             var i = EasingFunction.EaseInCubic(prevIntensity, 1, t / player.FadeInTime);
-            playerMaterial.SetFloat("GlowIntensity", i);
+            foreach (var mat in mats)
+            {
+                if (mat.HasProperty("GlowIntensity")) mat.SetFloat("GlowIntensity", i);
+            }
             yield return 0;
             t += Time.deltaTime;
         }
-        playerMaterial.SetFloat("GlowIntensity", 1);
+        foreach (var mat in player.GetComponentInChildren<Renderer>().materials)
+        {
+            if (mat.HasProperty("GlowIntensity")) mat.SetFloat("GlowIntensity", 1);
+        }
         currentFade = null;
     }
 
-    protected void FadeOutColor() {
+    protected void FadeOutColor()
+    {
         if (currentFade != null)
             player.StopCoroutine(currentFade);
         currentFade = player.StartCoroutine(FadeOutColorRoutine());
@@ -107,15 +117,22 @@ public abstract class Ability
     protected IEnumerator FadeOutColorRoutine()
     {
         float t = 0;
-        float prevIntensity = playerMaterial.GetFloat("GlowIntensity");
+        var mats = player.GetComponentInChildren<SkinnedMeshRenderer>().materials;
+        float prevIntensity = mats.First(mat => mat.HasProperty("GlowIntensity")).GetFloat("GlowIntensity");
         while (t < player.FadeOutTime)
         {
             var i = EasingFunction.EaseInCubic(prevIntensity, 0, t / player.FadeOutTime);
-            playerMaterial.SetFloat("GlowIntensity", i);
+            foreach (var mat in mats)
+            {
+                if (mat.HasProperty("GlowIntensity")) mat.SetFloat("GlowIntensity", i);
+            }
             yield return 0;
             t += Time.deltaTime;
         }
-        playerMaterial.SetFloat("GlowIntensity", 0);
+        foreach (var mat in mats)
+        {
+            if (mat.HasProperty("GlowIntensity")) mat.SetFloat("GlowIntensity", 0);
+        }
         currentFade = null;
     }
 
