@@ -36,6 +36,7 @@ public class ElectricityAbility : Ability
         {
             if (currentClosestObject != null)
             {
+                player.anim.SetTrigger("Electricity");
                 currentClosestObject.Activate();
             }
         }
