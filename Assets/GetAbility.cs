@@ -5,12 +5,16 @@ using UnityEngine;
 public class GetAbility : MonoBehaviour
 {
     public AbilityType abilityType;
+    private Dialogue dialogue;
     public float Range = 1f;
     Player player;
     // Start is called before the first frame update
+    private string AbilityText;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        dialogue = GameObject.FindObjectOfType<Dialogue>();
+        AbilityText = "You obtained " + abilityType + "!";
     }
 
     // Update is called once per frame
@@ -21,6 +25,7 @@ public class GetAbility : MonoBehaviour
             if (Vector3.Distance(transform.position, player.transform.position) < Range)
             {
                 player.AddAbility(abilityType);
+                dialogue.AddSentence(AbilityText);
                 Destroy(gameObject);
             }
         }
