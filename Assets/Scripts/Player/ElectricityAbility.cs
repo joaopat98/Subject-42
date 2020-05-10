@@ -11,24 +11,58 @@ public class ElectricityAbility : Ability
     {
 
     }
-    public override void Update()
+
+    List<IElectricObject> GetElectricObjects()
     {
-        var ElectricObjects = GameObject.FindObjectsOfType<MonoBehaviour>().OfType<IElectricObject>();
+        return GameObject.FindObjectsOfType<MonoBehaviour>().Where(obj => obj.enabled).OfType<IElectricObject>().ToList();
+    }
+
+    IElectricObject GetClosestObject()
+    {
+
         IElectricObject currentClosestObject = null;
         float currentLowestAngle = Mathf.Infinity;
 
-        foreach (IElectricObject electricObj in ElectricObjects)
+        foreach (IElectricObject obj in GetElectricObjects())
         {
-
-            if (Vector3.Angle(player.transform.forward, electricObj.GetSelectionPosition() - player.transform.position) < currentLowestAngle
-                && Vector3.Distance(player.transform.position, electricObj.GetSelectionPosition()) <= player.ViewRange
-                && Vector3.Angle(player.transform.forward, electricObj.GetSelectionPosition() - player.transform.position) < player.ViewAngle)
+            RaycastHit hit;
+            bool didHit = Physics.Raycast(
+                transform.position,
+                transform.forward,
+                out hit,
+                player.ViewRange,
+                ~LayerMask.GetMask("Player")
+            );
+            if (Vector3.Angle(player.transform.forward, obj.GetSelectionPosition() - player.transform.position) < currentLowestAngle
+                && Vector3.Distance(player.transform.position, obj.GetSelectionPosition()) <= player.ViewRange
+                && Vector3.Angle(player.transform.forward, obj.GetSelectionPosition() - player.transform.position) < player.ViewAngle
+                && (!didHit || hit.collider.gameObject.layer == LayerMask.NameToLayer("Electricity")))
             {
-                currentClosestObject = electricObj;
-                currentLowestAngle = (Vector3.Angle(player.transform.forward, electricObj.GetSelectionPosition() - player.transform.position));
+                currentClosestObject = obj;
+                currentLowestAngle = (Vector3.Angle(player.transform.forward, obj.GetSelectionPosition() - player.transform.position));
             }
         }
-        foreach (IElectricObject electricObj in ElectricObjects)
+        if (currentClosestObject == null)
+        {
+            RaycastHit hit;
+            if (Physics.SphereCast(
+                transform.position,
+                player.CastSelectRadius,
+                transform.forward,
+                out hit,
+                player.ViewRange,
+                ~LayerMask.GetMask("Player"))
+                && hit.collider.gameObject.layer == LayerMask.NameToLayer("Electricity"))
+            {
+                currentClosestObject = hit.collider.GetComponent<ElectricCollider>().GetElectricObject();
+            }
+        }
+        return currentClosestObject;
+    }
+    public override void Update()
+    {
+        IElectricObject currentClosestObject = GetClosestObject();
+        foreach (IElectricObject electricObj in GetElectricObjects())
         {
             electricObj.Highlight(electricObj == currentClosestObject);
         }

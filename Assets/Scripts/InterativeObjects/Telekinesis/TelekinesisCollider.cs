@@ -8,6 +8,11 @@ public class TelekinesisCollider : MonoBehaviour
 
     public ITelekinesisObject GetTelekinesisObject()
     {
-        return obj.GetComponent<ITelekinesisObject>();
+        if (obj != null)
+            return obj.GetComponent<ITelekinesisObject>();
+        else
+        {
+            return GetComponent<ITelekinesisObject>();
+        }
     }
 }
