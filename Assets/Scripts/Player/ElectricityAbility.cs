@@ -27,7 +27,7 @@ public class ElectricityAbility : Ability
         {
             RaycastHit hit;
             bool didHit = Physics.Raycast(
-                transform.position,
+                player.Center,
                 transform.forward,
                 out hit,
                 player.ViewRange,
@@ -46,7 +46,7 @@ public class ElectricityAbility : Ability
         {
             RaycastHit hit;
             if (Physics.SphereCast(
-                transform.position,
+                player.Center,
                 player.CastSelectRadius,
                 transform.forward,
                 out hit,
@@ -68,8 +68,9 @@ public class ElectricityAbility : Ability
         }
         if (Input.GetButtonDown("Power"))
         {
-            if (currentClosestObject != null)
+            if (currentClosestObject != null && !player.IsAnimTrigger())
             {
+                player.anim.SetTrigger("Electricity");
                 currentClosestObject.Activate();
             }
         }

@@ -30,12 +30,13 @@ public class TelekinesisAbility : Ability
         {
             RaycastHit hit;
             bool didHit = Physics.Raycast(
-                transform.position,
+                player.Center,
                 transform.forward,
                 out hit,
                 player.ViewRange,
                 ~LayerMask.GetMask("Player")
             );
+            Debug.Log(hit.collider);
             if (Vector3.Angle(player.transform.forward, obj.GetSelectionPosition() - player.transform.position) < currentLowestAngle
                 && Vector3.Distance(player.transform.position, obj.GetSelectionPosition()) <= player.ViewRange
                 && Vector3.Angle(player.transform.forward, obj.GetSelectionPosition() - player.transform.position) < player.ViewAngle
@@ -47,9 +48,10 @@ public class TelekinesisAbility : Ability
         }
         if (currentClosestObject == null)
         {
+            Debug.Log("oof");
             RaycastHit hit;
             if (Physics.SphereCast(
-                transform.position,
+                player.Center,
                 player.CastSelectRadius,
                 transform.forward,
                 out hit,

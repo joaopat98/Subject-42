@@ -19,21 +19,17 @@ public class RevealAbility : Ability
         objects = GameObject.FindObjectsOfType<MonoBehaviour>().OfType<IRevealObject>().ToList();
     }
 
+
     public override void Update()
     {
-        if(player.GetComponent<Rigidbody>().velocity.magnitude >= player.RevealMaxSpeed && isActive)
+        if (player.GetComponent<Rigidbody>().velocity.magnitude >= player.RevealMaxSpeed && isActive)
         {
             player.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity.normalized * player.RevealMaxSpeed;
         }
         if (Input.GetButtonDown("Power") && !isActive)
         {
-            FadeInColor(player.RevealColor);
             isActive = true;
-            foreach (IRevealObject obj in objects)
-            {
-                obj.RevealObject();
-            }
-            this.detectiveFilter.enabled = true;
+            player.StartCoroutine(ActivatePowerAndAnimation());
 
         }
         else if (Input.GetButtonDown("Power") && isActive)
@@ -48,6 +44,20 @@ public class RevealAbility : Ability
         }
     }
 
+    IEnumerator ActivatePowerAndAnimation()
+    {
+
+        player.anim.SetTrigger("Reveal");
+        yield return new WaitForSeconds(2.0f);
+        foreach (IRevealObject obj in objects)
+        {
+            obj.RevealObject();
+        }
+        FadeInColor(player.RevealColor);
+        this.detectiveFilter.enabled = true;
+
+
+    }
     public override void SwitchAbility(int delta)
     {
         FadeOutColor();

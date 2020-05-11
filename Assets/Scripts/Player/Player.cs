@@ -16,7 +16,11 @@ public class Player : MonoBehaviour
     /// <summary>
     /// Player's animator controller
     /// </summary>
-    Animator anim;
+    [HideInInspector] public Animator anim;
+    /// <summary>
+    /// List of triggers animations
+    /// </summary>
+    TriggerAnim[] triggerAnim;
 
     /// <summary>
     /// Speed at which the player shall move
@@ -40,6 +44,8 @@ public class Player : MonoBehaviour
     /// </summary>
     /// <returns></returns>
     [HideInInspector] public int CurrentAbility = 0;
+
+    [HideInInspector] public Vector3 Center;
 
     /// <summary>
     /// Field of view where the player can use the power
@@ -121,10 +127,12 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        Center = transform.GetChild(0).position;
         rb = GetComponent<Rigidbody>();
         InitAbilities();
         PowerWheel = GameObject.FindGameObjectWithTag("PowerWheel").GetComponent<PowerWheel>();
         anim = GetComponent<Animator>();
+        this.triggerAnim = (TriggerAnim[])System.Enum.GetValues(typeof(TriggerAnim));
     }
 
     void Update()
@@ -153,8 +161,7 @@ public class Player : MonoBehaviour
         }
         triggerPrevious = Input.GetAxisRaw("Switch");
 
-        ///Update animation values
-        updateAnim();
+        UpdateMovementAnim();
 
     }
 
@@ -163,6 +170,9 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Move()
     {
+        ///Check if there is any animation triggered 
+        bool isAnimTrigger = IsAnimTrigger();
+
         // Get the camera angle relative to the world z axis
         var camTransform = Camera.main.transform;
         var camAngle = Mathf.Rad2Deg * Mathf.Atan2(camTransform.forward.x, camTransform.forward.z);
@@ -171,22 +181,49 @@ public class Player : MonoBehaviour
         var dir = Joystick.GetJoystick1Dir().ToHorizontalDir().CameraCorrect();
 
         // Rotate player towards the direction it is moving in
-        if (dir != Vector3.zero)
+        if (dir != Vector3.zero && !isAnimTrigger)
             rb.MoveRotation(Quaternion.LookRotation(dir, Vector3.up));
         else
             rb.angularVelocity = Vector3.zero;
+
         rb.velocity = new Vector3(MoveSpeed * dir.x, rb.velocity.y, MoveSpeed * dir.z);
-       
+
+
 
     }
 
     /// <summary>
     /// Update the animation state
     /// </summary>
-    private void updateAnim()
+    private void UpdateMovementAnim()
     {
-        Vector2 vel = new Vector2(rb.velocity.x, rb.velocity.z);
-        anim.SetFloat("Speed", vel.magnitude);
+
+        ///Check if there is any animation triggered 
+        bool isAnimTrigger = IsAnimTrigger();
+
+        if (!isAnimTrigger)
+        {
+            Vector2 vel = new Vector2(rb.velocity.x, rb.velocity.z);
+            anim.SetFloat("Speed", vel.magnitude);
+        }
+        else
+        {
+            rb.velocity = Vector3.zero;
+        }
+    }
+
+    public bool IsAnimTrigger()
+    {
+        bool isTrigger = false;
+        foreach (TriggerAnim animation in triggerAnim)
+        {
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName(animation.ToString()))
+            {
+                isTrigger = true;
+                break;
+            }
+        }
+        return isTrigger;
     }
 
     /// <summary>
@@ -201,6 +238,7 @@ public class Player : MonoBehaviour
 
     IEnumerator Reset()
     {
+        anim.SetTrigger("Death");
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

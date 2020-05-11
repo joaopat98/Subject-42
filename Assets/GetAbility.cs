@@ -20,6 +20,7 @@ public class GetAbility : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, player.transform.position) < Range)
             {
+                player.anim.SetTrigger("ObtainPower");
                 player.AddAbility(abilityType);
                 Destroy(gameObject);
             }
