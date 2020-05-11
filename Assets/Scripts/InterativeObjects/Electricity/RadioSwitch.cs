@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class RadioSwitch : MonoBehaviour, IElectricObject
 {
+    private Player player;
+    private Outline outline;
     Renderer ObjectRenderer;
     public bool isRadioActivated = false;
-    public Material ElectricMaterial;
-    public Material NormalMaterial;
-
     public Collider originalBoxColl;
     public Collider radioRangeCollider;
     public void Start()
     {
-        this.ObjectRenderer = GetComponent<Renderer>();
-        this.originalBoxColl.enabled = true;
-        this.radioRangeCollider.enabled = false;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        outline = GetComponentInChildren<Outline>();
+        outline.OutlineColor = player.ElectricityColor;
+        outline.OutlineMode = Outline.Mode.OutlineAndSilhouette;
+        ObjectRenderer = GetComponent<Renderer>();
+        originalBoxColl.enabled = true;
+        radioRangeCollider.enabled = false;
     }
     public void Activate()
     {
@@ -43,14 +46,7 @@ public class RadioSwitch : MonoBehaviour, IElectricObject
 
     public void Highlight(bool isActive)
     {
-        if (isActive)
-        {
-            ObjectRenderer.material = ElectricMaterial;
-        }
-        else
-        {
-            ObjectRenderer.material = NormalMaterial;
-        }
+        outline.enabled = isActive;
     }
     public void OnTriggerEnter(Collider other)
     {
