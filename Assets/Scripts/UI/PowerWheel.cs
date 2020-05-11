@@ -102,7 +102,6 @@ public class PowerWheel : MonoBehaviour
         }
 
         scrollVal = -Input.GetAxis("Mouse ScrollWheel") * ScrollSpeed;
-        Debug.Log(scrollVal);
         if (wheelNum != -1)
         {
             if (player.Abilities[0].type != AbilityType.Empty)

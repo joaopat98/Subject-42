@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Outline))]
 public class FallOverWall : MonoBehaviour, ITelekinesisObject
 {
     public float FallThreshold = 3,
     MaxVibration = 0.5f,
     FallRecover = 1,
     FallTime = 1;
-
-    public Material DefaultMaterial, SelectedMaterial;
+    Outline outline;
     float fallAcum = 0;
     float fallTimeAcum = 0;
     bool fallen;
@@ -31,19 +31,11 @@ public class FallOverWall : MonoBehaviour, ITelekinesisObject
     public void Grab(TelekinesisAbility ability)
     {
         this.ability = ability;
-        transform.GetChild(0).GetComponent<Renderer>().material = DefaultMaterial;
     }
 
     public void Highlight(bool IsActive)
     {
-        if (IsActive)
-        {
-            transform.GetChild(0).GetComponent<Renderer>().material = SelectedMaterial;
-        }
-        else
-        {
-            transform.GetChild(0).GetComponent<Renderer>().material = DefaultMaterial;
-        }
+        outline.enabled = IsActive;
     }
 
     public void Move(Vector3 offset)
@@ -78,6 +70,10 @@ public class FallOverWall : MonoBehaviour, ITelekinesisObject
         initPos = transform.position;
         initRot = transform.rotation;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        outline = GetComponentInChildren<Outline>();
+        outline.OutlineMode = Outline.Mode.OutlineAndSilhouette;
+        outline.OutlineMode = Outline.Mode.OutlineAndSilhouette;
+        outline.OutlineColor = player.TelekinesisColor;
     }
 
     // Update is called once per frame
@@ -110,6 +106,7 @@ public class FallOverWall : MonoBehaviour, ITelekinesisObject
             fallen = true;
             fallAcum = 0;
             transform.position = initPos;
+            outline.enabled = false;
             transform.GetChild(0).GetComponent<Collider>().enabled = false;
         }
         if (fallAcum < 0) fallAcum = 0;

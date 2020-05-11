@@ -17,6 +17,7 @@ public class TelekinesisAbility : Ability
     public TelekinesisAbility(Player player) : base(player)
     {
         line = player.GetComponent<LineRenderer>();
+        line.startColor = line.endColor = player.TelekinesisColor;
     }
 
     ITelekinesisObject GetClosestObject()
@@ -27,13 +28,36 @@ public class TelekinesisAbility : Ability
 
         foreach (ITelekinesisObject obj in GetTelekinesisObjects())
         {
-
+            RaycastHit hit;
+            bool didHit = Physics.Raycast(
+                transform.position,
+                transform.forward,
+                out hit,
+                player.ViewRange,
+                ~LayerMask.GetMask("Player")
+            );
             if (Vector3.Angle(player.transform.forward, obj.GetSelectionPosition() - player.transform.position) < currentLowestAngle
                 && Vector3.Distance(player.transform.position, obj.GetSelectionPosition()) <= player.ViewRange
-                && Vector3.Angle(player.transform.forward, obj.GetSelectionPosition() - player.transform.position) < player.ViewAngle)
+                && Vector3.Angle(player.transform.forward, obj.GetSelectionPosition() - player.transform.position) < player.ViewAngle
+                && (!didHit || hit.collider.gameObject.layer == LayerMask.NameToLayer("Telekinesis")))
             {
                 currentClosestObject = obj;
                 currentLowestAngle = (Vector3.Angle(player.transform.forward, obj.GetSelectionPosition() - player.transform.position));
+            }
+        }
+        if (currentClosestObject == null)
+        {
+            RaycastHit hit;
+            if (Physics.SphereCast(
+                transform.position,
+                player.CastSelectRadius,
+                transform.forward,
+                out hit,
+                player.ViewRange,
+                ~LayerMask.GetMask("Player"))
+                && hit.collider.gameObject.layer == LayerMask.NameToLayer("Telekinesis"))
+            {
+                currentClosestObject = hit.collider.GetComponent<TelekinesisCollider>().GetTelekinesisObject();
             }
         }
         return currentClosestObject;
@@ -56,6 +80,7 @@ public class TelekinesisAbility : Ability
                 line.enabled = true;
                 line.SetPosition(0, player.transform.position);
                 line.SetPosition(1, currentObj.GetPosition());
+                FadeInColor(player.TelekinesisColor);
             }
         }
         else
@@ -89,17 +114,13 @@ public class TelekinesisAbility : Ability
         {
             obj.Highlight(false);
         }
-        line.enabled = false;
-        if (currentObj != null)
-        {
-            currentObj.Release();
-            currentObj = null;
-        }
+        Release();
         base.SwitchAbility(delta);
     }
 
     public void Release()
     {
+        FadeOutColor();
         line.enabled = false;
         if (currentObj != null)
         {
