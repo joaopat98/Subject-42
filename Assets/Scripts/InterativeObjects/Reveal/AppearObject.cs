@@ -12,13 +12,13 @@ public class AppearObject : MonoBehaviour, IRevealObject
     public void RevealObject()
     {
         this.GetComponent<Renderer>().enabled = true;
-        this.GetComponent<PostProcessVolume>().enabled = true;
+        
     }
 
     public void UnRevealObject()
     {
         this.GetComponent<Renderer>().enabled = false;
-        this.GetComponent<PostProcessVolume>().enabled = false;
+       
     }
 
 }

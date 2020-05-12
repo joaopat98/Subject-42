@@ -8,19 +8,11 @@ public class VanishObject : MonoBehaviour, IRevealObject
    
     public void RevealObject()
     {
-        this.gameObject.SetActive(false);
-
-        
+        this.gameObject.SetActive(false);   
     }
 
     public void UnRevealObject()
     {
         this.gameObject.SetActive(true);
-       
-        
     }
-
-
-
-
 }
