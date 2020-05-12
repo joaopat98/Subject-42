@@ -31,6 +31,8 @@ public class GuardChase : GuardAction
 
     public override void Do()
     {
+        guard.anim.SetFloat("Speed", agent.speed);
+
         t += Time.deltaTime;
         // Update the agent's goal to the player's position
         agent.SetDestination(player.transform.position);

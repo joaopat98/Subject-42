@@ -18,7 +18,7 @@ public class GuardCheck : GuardAction
 
     public override void Do()
     {
-        
+        guard.anim.SetFloat("Speed", agent.speed);
         // Update the agent's goal to the player's position
         agent.SetDestination(obj);
 

@@ -16,6 +16,8 @@ public class GuardPatrol : GuardAction
 
     public override void Do()
     {
+        guard.anim.SetFloat("Speed", agent.speed);
+
         // Go to next path node if the current one has been reached
         if (guard.HasReachedGoal())
         {
