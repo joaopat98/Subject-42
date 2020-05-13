@@ -62,6 +62,7 @@ public class Player : MonoBehaviour
     public float TelekinesisMoveSpeed = 7f;
     public float TelekinesisRotateSpeed = 180f;
     public float CastSelectRadius = 0.5f;
+    public float TelekinesisMaxSpeed = 3.0f;
 
     [Header("Ability Highlights")]
     public float FadeInTime = 0.25f;
