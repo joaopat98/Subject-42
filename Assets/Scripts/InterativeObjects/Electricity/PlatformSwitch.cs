@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Outline))]
 public class PlatformSwitch : MonoBehaviour, IElectricObject
 {
 
@@ -21,9 +22,10 @@ public class PlatformSwitch : MonoBehaviour, IElectricObject
 
     public void Activate()
     {
-        if (isActive)
+        if (!isActive)
         {
-
+            platform.GetComponent<Animator>().SetBool("Active", true);
+            isActive = true;
         }
     }
 

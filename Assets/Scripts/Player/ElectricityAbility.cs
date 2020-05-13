@@ -81,4 +81,13 @@ public class ElectricityAbility : Ability
         yield return new WaitForSeconds(1.0f);
         currentClosestObject.Activate();
     }
+
+    public override void SwitchAbility(int delta)
+    {
+        foreach (IElectricObject obj in GetElectricObjects())
+        {
+            obj.Highlight(false);
+        }
+        base.SwitchAbility(delta);
+    }
 }

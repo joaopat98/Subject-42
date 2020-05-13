@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Outline))]
 public class DoorSwitch : MonoBehaviour, IElectricObject
 {
     bool isDoorOpened;
@@ -24,7 +25,7 @@ public class DoorSwitch : MonoBehaviour, IElectricObject
         {
             foreach(GameObject door in doors)
             {
-                door.transform.position = new Vector3(door.transform.position.x, door.transform.position.y + 1, door.transform.position.z);
+                door.GetComponent<Animator>().SetBool("isOpen", true);
             }
             isDoorOpened = true;
         }
