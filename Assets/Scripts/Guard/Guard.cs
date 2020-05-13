@@ -75,6 +75,10 @@ public class Guard : MonoBehaviour
     /// </summary>
     public float AttackRange;
     public GameObject BulletPrefab;
+    /// <summary>
+    /// Weapon attached to guard's right hand
+    /// </summary>
+    public GameObject Weapon;
 
     /// <summary>
     /// Animator of the guard 

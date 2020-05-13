@@ -25,7 +25,7 @@ public class GuardChase : GuardAction
     void RangedAttack()
     {
         var dir = player.transform.position - guard.transform.position;
-        GameObject.Instantiate(guard.BulletPrefab, guard.transform.position, Quaternion.LookRotation(dir, Vector3.up));
+        GameObject.Instantiate(guard.BulletPrefab, guard.Weapon.transform.position, Quaternion.LookRotation(dir, Vector3.up));
         t = 0;
     }
 
