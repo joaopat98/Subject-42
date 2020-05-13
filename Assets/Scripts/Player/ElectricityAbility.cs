@@ -6,7 +6,6 @@ using System.Linq;
 public class ElectricityAbility : Ability
 {
 
-
     public ElectricityAbility(Player player) : base(player)
     {
 
@@ -70,10 +69,16 @@ public class ElectricityAbility : Ability
         {
             if (currentClosestObject != null && !player.IsAnimTrigger())
             {
-                player.anim.SetTrigger("Electricity");
-                currentClosestObject.Activate();
+                player.StartCoroutine(ActivatePowerAndAnimation(currentClosestObject));
             }
         }
 
+    }
+
+    IEnumerator ActivatePowerAndAnimation(IElectricObject currentClosestObject)
+    {
+        player.anim.SetTrigger("Electricity"); 
+        yield return new WaitForSeconds(1.0f);
+        currentClosestObject.Activate();
     }
 }
