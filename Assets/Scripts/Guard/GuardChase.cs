@@ -25,12 +25,14 @@ public class GuardChase : GuardAction
     void RangedAttack()
     {
         var dir = player.transform.position - guard.transform.position;
-        GameObject.Instantiate(guard.BulletPrefab, guard.transform.position, Quaternion.LookRotation(dir, Vector3.up));
+        GameObject.Instantiate(guard.BulletPrefab, guard.Weapon.transform.position, Quaternion.LookRotation(dir, Vector3.up));
         t = 0;
     }
 
     public override void Do()
     {
+        guard.anim.SetFloat("Speed", agent.speed);
+
         t += Time.deltaTime;
         // Update the agent's goal to the player's position
         agent.SetDestination(player.transform.position);

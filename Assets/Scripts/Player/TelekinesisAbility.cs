@@ -70,6 +70,7 @@ public class TelekinesisAbility : Ability
     {
         if (currentObj == null)
         {
+            player.anim.SetBool("Telekinesis", false);
             var currentClosestObject = GetClosestObject();
             foreach (ITelekinesisObject obj in GetTelekinesisObjects())
             {
@@ -77,6 +78,14 @@ public class TelekinesisAbility : Ability
             }
             if (Input.GetButtonDown("Power") && currentClosestObject != null)
             {
+                if (player.GetComponent<Rigidbody>().velocity.magnitude >= player.TelekinesisMaxSpeed)
+                {
+                    player.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity.normalized * player.TelekinesisMaxSpeed;
+                }
+                player.anim.SetBool("Telekinesis", true);
+                Vector2 vel = new Vector2(player.GetComponent<Rigidbody>().velocity.x, player.GetComponent<Rigidbody>().velocity.z);
+                player.anim.SetFloat("Speed", vel.magnitude);
+
                 currentObj = currentClosestObject;
                 currentObj.Grab(this);
                 line.enabled = true;
@@ -102,6 +111,14 @@ public class TelekinesisAbility : Ability
             }
             line.SetPosition(0, player.transform.position);
             line.SetPosition(1, currentObj.GetPosition());
+
+            if (player.GetComponent<Rigidbody>().velocity.magnitude >= player.TelekinesisMaxSpeed)
+            {
+                player.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity.normalized * player.TelekinesisMaxSpeed;
+            }
+            Vector2 vel = new Vector2(player.GetComponent<Rigidbody>().velocity.x, player.GetComponent<Rigidbody>().velocity.z);
+            player.anim.SetFloat("Speed", vel.magnitude);
+
             if (Input.GetButtonDown("Power")
                 || Vector3.Distance(player.transform.position, currentObj.GetSelectionPosition()) > player.TelekinesisRange)
             {
@@ -112,6 +129,7 @@ public class TelekinesisAbility : Ability
 
     public override void SwitchAbility(int delta)
     {
+        player.anim.SetBool("Telekinesis", false);
         foreach (ITelekinesisObject obj in GetTelekinesisObjects())
         {
             obj.Highlight(false);

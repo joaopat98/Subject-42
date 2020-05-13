@@ -44,7 +44,7 @@ public class Guard : MonoBehaviour
     /// <summary>
     /// Speed at which the guard will chase the player
     /// </summary>
-    [Header("Chase")] public float ChaseSpeed = 3;
+    [Header("Chase")] public float ChaseSpeed = 5;
     /// <summary>
     /// Maximum distance the guard can be from the player before giving up the chase
     /// </summary>
@@ -75,6 +75,15 @@ public class Guard : MonoBehaviour
     /// </summary>
     public float AttackRange;
     public GameObject BulletPrefab;
+    /// <summary>
+    /// Weapon attached to guard's right hand
+    /// </summary>
+    public GameObject Weapon;
+
+    /// <summary>
+    /// Animator of the guard 
+    /// </summary>
+    [HideInInspector] public Animator anim;
 
     /// <summary>
     /// Calculate if the NavMeshAgent has reached its current goal
@@ -92,6 +101,7 @@ public class Guard : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         action = new GuardPatrol(this);
+        anim = GetComponent<Animator>();
     }
 
     void Update()
