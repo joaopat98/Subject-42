@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -6331,7 +6331,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5991431146554210050}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -53.099777, y: 0, z: 27.002382}
+  m_LocalPosition: {x: -53.801, y: 0, z: 27.00238}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5006512736478329863}
@@ -7681,9 +7681,11 @@ GameObject:
   - component: {fileID: 2483501646458500829}
   - component: {fileID: 185091322950398521}
   - component: {fileID: 4767257623974976597}
-  - component: {fileID: 5991431146554210051}
   - component: {fileID: 5991431146554210052}
   - component: {fileID: 5991431146554210053}
+  - component: {fileID: 5991431146554210055}
+  - component: {fileID: 5991431146554210054}
+  - component: {fileID: 5991431146554210051}
   m_Layer: 0
   m_Name: plataforma_flotante2
   m_TagString: Untagged
@@ -7691,8 +7693,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!64 &5991431146554210051
-MeshCollider:
+--- !u!65 &5991431146554210051
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -7701,10 +7703,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2438360321115526925, guid: fc33885022849b64abeab36d6b5a71f9, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 1.5999999, y: 0.19999999, z: 1.5999999}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5991431146554210052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7736,6 +7737,31 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &5991431146554210054
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5991431146554210050}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5999999, y: 0.19999999, z: 1.5999999}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5991431146554210055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5991431146554210050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7f5f005f2e410249b93c38fab67eb8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &6033040809884293804
 MeshFilter:
   m_ObjectHideFlags: 0
