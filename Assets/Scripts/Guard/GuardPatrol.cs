@@ -8,6 +8,9 @@ public class GuardPatrol : GuardAction
     List<Vector3> path;
     public GuardPatrol(Guard guard) : base(guard)
     {
+        guard.anim.SetBool("Checking", false);
+        guard.anim.SetBool("Chasing", false);
+        agent.angularSpeed = guard.PatrolAngularSpeed;
         agent.speed = guard.PatrolSpeed;
         agent.stoppingDistance = guard.PatrolReachDistance;
         path = guard.DefaultPath.GetAllNodes();
@@ -16,7 +19,7 @@ public class GuardPatrol : GuardAction
 
     public override void Do()
     {
-        guard.anim.SetFloat("Speed", agent.speed);
+        guard.anim.SetFloat("Speed", agent.velocity.magnitude / agent.speed);
 
         // Go to next path node if the current one has been reached
         if (guard.HasReachedGoal())
@@ -51,7 +54,7 @@ public class GuardPatrol : GuardAction
             && player.GetComponent<Rigidbody>().velocity.magnitude > guard.playerSpeedthreshold)
             )
         {
-            guard.action = new GuardCheck(guard,player.transform.position);
+            guard.action = new GuardCheck(guard, player.transform.position);
         }
     }
 

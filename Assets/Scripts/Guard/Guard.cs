@@ -29,6 +29,7 @@ public class Guard : MonoBehaviour
     /// Distance to each Path node the guard will get to before moving to next node
     /// </summary>
     public float PatrolReachDistance = 0.5f;
+    public float PatrolAngularSpeed = 4;
     /// <summary>
     /// Speed of the guard when checking
     /// </summary>
@@ -37,6 +38,7 @@ public class Guard : MonoBehaviour
     /// Distance from the player at which the guard will stop moving
     /// </summary>
     public float CheckReachDistance = 1;
+    public float CheckAngularSpeed = 3;
     /// <summary>
     /// Time to wait when reach his target
     /// </summary>
@@ -53,6 +55,7 @@ public class Guard : MonoBehaviour
     /// Distance from the player at which the guard will stop moving
     /// </summary>
     public float ChaseReachDistance = 1;
+    public float ChaseAngularSpeed = 5;
     /// <summary>
     /// Maximum speed that the player can not be detected
     /// </summary>
@@ -84,6 +87,7 @@ public class Guard : MonoBehaviour
     /// Animator of the guard 
     /// </summary>
     [HideInInspector] public Animator anim;
+    private Rigidbody rb;
 
     /// <summary>
     /// Calculate if the NavMeshAgent has reached its current goal
@@ -97,15 +101,24 @@ public class Guard : MonoBehaviour
 
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         if (DefaultPath == null) gameObject.UnassignedReference("DefaultPath");
         agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        action = new GuardPatrol(this);
         anim = GetComponent<Animator>();
+        action = new GuardPatrol(this);
     }
 
     void Update()
     {
+        var velocity = agent.velocity;
+        velocity.y = 0;
+        velocity = velocity.normalized;
+        if (velocity != Vector3.zero)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(velocity, Vector3.up), agent.angularSpeed * Time.deltaTime);
+        }
         action.Do();
     }
 }

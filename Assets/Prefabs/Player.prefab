@@ -138,8 +138,9 @@ GameObject:
   - component: {fileID: 8737327482470235696}
   - component: {fileID: 8737327482470235700}
   - component: {fileID: 8737327482470235699}
+  - component: {fileID: 460448419222430864}
   m_Layer: 8
-  m_Name: modelofaserig-obj
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -188,9 +189,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.3224109
-  m_Height: 1.7136137
+  m_Height: 1.5142834
   m_Direction: 1
-  m_Center: {x: 0.006815523, y: 0.70818865, z: -0.044599354}
+  m_Center: {x: 0.006815523, y: 0.74998367, z: 0}
 --- !u!120 &8737327482470235696
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -334,6 +335,7 @@ MonoBehaviour:
   TelekinesisMoveSpeed: 7
   TelekinesisRotateSpeed: 180
   CastSelectRadius: 0.5
+  TelekinesisMaxSpeed: 3
   FadeInTime: 0.25
   FadeOutTime: 1
   TelekinesisColor: {r: 0, g: 1, b: 0, a: 1}
@@ -341,6 +343,20 @@ MonoBehaviour:
   ElectricityColor: {r: 1, g: 1, b: 0, a: 1}
   RevealMaxSpeed: 3
   SwitchStatus: 0
+--- !u!114 &460448419222430864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747830754752987031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d250f601f3fabd48a83fd1fd56cab3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemiesBehindMaterial: {fileID: 2100000, guid: 2442e6c9b77b99a47a7a7be46a223bdd,
+    type: 2}
 --- !u!1 &815207935028953806
 GameObject:
   m_ObjectHideFlags: 0
