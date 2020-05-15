@@ -48,7 +48,7 @@ public class TelekinesisAbility : Ability
         }
         if (currentClosestObject == null)
         {
-            Debug.Log("oof");
+            
             RaycastHit hit;
             if (Physics.SphereCast(
                 player.Center,

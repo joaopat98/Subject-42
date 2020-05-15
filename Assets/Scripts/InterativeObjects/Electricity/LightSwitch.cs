@@ -2,17 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Outline))]
 public class LightSwitch : MonoBehaviour, IElectricObject
 {
-    Renderer ObjectRenderer;
-    public Material ElectricMaterial;
-    public Material NormalMaterial;
-    public Light RoomLight;
+    Player player;
+    Outline outline;
     bool TurnedOn;
+    public Light RoomLight;
+    public int TimeToTurnBackOn;
 
     public void Start()
     {
-        ObjectRenderer = GetComponent<Renderer>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        TurnedOn = true;
+        outline = GetComponentInChildren<Outline>();
+        outline.OutlineMode = Outline.Mode.OutlineAndSilhouette;
+        outline.OutlineMode = Outline.Mode.OutlineAndSilhouette;
+        outline.OutlineColor = player.ElectricityColor;
     }
     public void Activate()
     {
@@ -20,11 +26,7 @@ public class LightSwitch : MonoBehaviour, IElectricObject
         {
             TurnedOn = false;
             RoomLight.intensity = 0.5f;
-        }
-        else
-        {
-            TurnedOn = true;
-            RoomLight.intensity = 1.0f;
+            player.StartCoroutine(TurnOnTheLights());
         }
     }
 
@@ -33,15 +35,14 @@ public class LightSwitch : MonoBehaviour, IElectricObject
         return this.transform.position;
     }
 
-    public void Highlight(bool isActive)
+    public void Highlight(bool IsActive)
     {
-        if (isActive)
-        {
-            ObjectRenderer.material = ElectricMaterial;
-        }
-        else
-        {
-            ObjectRenderer.material = NormalMaterial;
-        }
+        outline.enabled = IsActive;
+    }
+    IEnumerator TurnOnTheLights()
+    {
+        yield return new WaitForSeconds(TimeToTurnBackOn);
+        RoomLight.intensity = 1.0f;
+        TurnedOn = true;
     }
 }

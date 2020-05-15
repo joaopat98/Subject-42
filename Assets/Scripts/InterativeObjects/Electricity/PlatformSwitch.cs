@@ -3,31 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Outline))]
-public class DoorSwitch : MonoBehaviour, IElectricObject
+public class PlatformSwitch : MonoBehaviour, IElectricObject
 {
-    bool isDoorOpened;
+
+    bool isActive;
     Player player;
     Outline outline;
-    public GameObject[] doors;
-
+    public GameObject platform;
     public void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        isDoorOpened = false;
+        isActive = false;
         outline = GetComponentInChildren<Outline>();
         outline.OutlineMode = Outline.Mode.OutlineAndSilhouette;
         outline.OutlineMode = Outline.Mode.OutlineAndSilhouette;
         outline.OutlineColor = player.ElectricityColor;
     }
+
     public void Activate()
     {
-        if (!isDoorOpened)
+        if (!isActive)
         {
-            foreach(GameObject door in doors)
-            {
-                door.GetComponent<Animator>().SetBool("isOpen", true);
-            }
-            isDoorOpened = true;
+            platform.GetComponent<Animator>().SetBool("Active", true);
+            isActive = true;
         }
     }
 
@@ -40,4 +38,5 @@ public class DoorSwitch : MonoBehaviour, IElectricObject
     {
         outline.enabled = IsActive;
     }
+
 }
