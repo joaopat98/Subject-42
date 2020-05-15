@@ -8,6 +8,7 @@ using UnityEngine.Rendering.PostProcessing;
 public class RevealAbility : Ability
 {
     private Volume detectiveFilter;
+    private RenderFeatureManager renderFeatureManager;
     private List<IRevealObject> objects;
 
     private bool isActive = false;
@@ -17,6 +18,7 @@ public class RevealAbility : Ability
         this.detectiveFilter = GameObject.Find("RevealVolume").GetComponent<Volume>();
         this.detectiveFilter.enabled = false;
         objects = GameObject.FindObjectsOfType<MonoBehaviour>().OfType<IRevealObject>().ToList();
+        renderFeatureManager = player.GetComponent<RenderFeatureManager>();
     }
 
 
@@ -40,6 +42,7 @@ public class RevealAbility : Ability
             {
                 obj.UnRevealObject();
             }
+            renderFeatureManager.SeeEnemiesBehind(false);
             this.detectiveFilter.enabled = false;
         }
     }
@@ -54,6 +57,7 @@ public class RevealAbility : Ability
             obj.RevealObject();
         }
         FadeInColor(player.RevealColor);
+        renderFeatureManager.SeeEnemiesBehind(true);
         this.detectiveFilter.enabled = true;
 
 
@@ -65,6 +69,7 @@ public class RevealAbility : Ability
         {
             obj.UnRevealObject();
         }
+        renderFeatureManager.SeeEnemiesBehind(false);
         this.detectiveFilter.enabled = false;
         base.SwitchAbility(delta);
     }

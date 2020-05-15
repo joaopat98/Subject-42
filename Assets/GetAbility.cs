@@ -20,10 +20,16 @@ public class GetAbility : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, player.transform.position) < Range)
             {
-                player.anim.SetTrigger("ObtainPower");
-                player.AddAbility(abilityType);
-                Destroy(gameObject);
+                player.StartCoroutine(PlayAnimAndDestroyNPC());
             }
         }
+    }
+
+    IEnumerator PlayAnimAndDestroyNPC()
+    {
+        player.anim.SetTrigger("ObtainPower");
+        yield return new WaitForSeconds(8.5f);
+        player.AddAbility(abilityType);
+        Destroy(gameObject);
     }
 }

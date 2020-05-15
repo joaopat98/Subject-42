@@ -11,14 +11,17 @@ public class GuardCheck : GuardAction
     public GuardCheck(Guard guard, Vector3 obj) : base(guard)
     {
         Debug.Log("Check sound");
+        guard.anim.SetBool("Checking", true);
+        guard.anim.SetBool("Chasing", false);
+        agent.angularSpeed = guard.CheckAngularSpeed;
         agent.stoppingDistance = guard.CheckReachDistance;
         agent.speed = guard.CheckSpeed;
-        this.obj = obj;
+        agent.SetDestination(obj);
     }
 
     public override void Do()
     {
-        
+        guard.anim.SetFloat("Speed", agent.velocity.magnitude / agent.speed);
         // Update the agent's goal to the player's position
         agent.SetDestination(obj);
 
@@ -43,7 +46,8 @@ public class GuardCheck : GuardAction
                 guard.action = new GuardChase(guard);
         }
         /// if the player approaches a given speed
-        else if (         
+
+        else if (
             (Vector3.Distance(guard.transform.position, player.transform.position) < guard.playerDistancethreshold)
             && (player.GetComponent<Rigidbody>().velocity.magnitude > guard.playerSpeedthreshold)
             )
@@ -56,7 +60,7 @@ public class GuardCheck : GuardAction
         if (Vector3.Distance(guard.transform.position, obj) <= agent.stoppingDistance)
         {
             guard.StartCoroutine(CheckAndPatrol());
-            
+
 
         }
 
@@ -65,6 +69,7 @@ public class GuardCheck : GuardAction
 
     IEnumerator CheckAndPatrol()
     {
+        guard.anim.SetBool("Checking", false);
         yield return new WaitForSeconds(guard.TimeToCheck);
         guard.action = new GuardPatrol(guard);
     }

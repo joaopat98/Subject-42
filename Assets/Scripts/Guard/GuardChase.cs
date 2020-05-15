@@ -9,6 +9,9 @@ public class GuardChase : GuardAction
     public GuardChase(Guard guard) : base(guard)
     {
         Debug.Log("Chasing");
+        guard.anim.SetBool("Checking", false);
+        guard.anim.SetBool("Chasing", true);
+        agent.angularSpeed = guard.ChaseAngularSpeed;
         agent.stoppingDistance = guard.ChaseReachDistance;
         agent.speed = guard.ChaseSpeed;
     }
@@ -25,15 +28,27 @@ public class GuardChase : GuardAction
     void RangedAttack()
     {
         var dir = player.transform.position - guard.transform.position;
-        GameObject.Instantiate(guard.BulletPrefab, guard.transform.position, Quaternion.LookRotation(dir, Vector3.up));
+        GameObject.Instantiate(guard.BulletPrefab, guard.Weapon.transform.position, Quaternion.LookRotation(dir, Vector3.up));
         t = 0;
     }
 
     public override void Do()
     {
+        guard.anim.SetFloat("Speed", agent.velocity.magnitude / agent.speed);
+
         t += Time.deltaTime;
         // Update the agent's goal to the player's position
         agent.SetDestination(player.transform.position);
+        if (guard.HasReachedGoal())
+        {
+            var lookDir = player.transform.position - guard.transform.position;
+            lookDir.y = 0;
+            lookDir = lookDir.normalized;
+            guard.transform.rotation = Quaternion.Lerp(
+                guard.transform.rotation,
+                Quaternion.LookRotation(lookDir, Vector3.up),
+                agent.angularSpeed * Time.deltaTime);
+        }
         // Change to patrol mode if player is too far away
         if (Vector3.Distance(guard.transform.position, player.transform.position) > guard.ChaseRange)
         {
