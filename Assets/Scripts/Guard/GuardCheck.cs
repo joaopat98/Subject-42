@@ -10,6 +10,7 @@ public class GuardCheck : GuardAction
     private Vector3 obj;
     public GuardCheck(Guard guard, Vector3 obj) : base(guard)
     {
+        this.obj = obj;
         Debug.Log("Check sound");
         guard.anim.SetBool("Checking", true);
         guard.anim.SetBool("Chasing", false);

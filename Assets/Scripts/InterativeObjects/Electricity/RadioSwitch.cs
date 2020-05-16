@@ -50,6 +50,7 @@ public class RadioSwitch : MonoBehaviour, IElectricObject
     }
     public void OnTriggerEnter(Collider other)
     {
+        Debug.Log(this.gameObject.transform.position);
         if (other.CompareTag("Guard"))
         {
             Debug.Log("Detect sound");
