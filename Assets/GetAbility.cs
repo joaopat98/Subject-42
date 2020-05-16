@@ -9,25 +9,45 @@ public class GetAbility : MonoBehaviour
     public float Range = 1f;
     Player player;
     // Start is called before the first frame update
-    private string AbilityText;
+    public string[] DialogueText;
+    private bool ToSend;
+
+    private bool PowerSent;
+    private bool DialogueSent;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         dialogue = GameObject.FindObjectOfType<Dialogue>();
-        AbilityText = "You obtained " + abilityType + "!";
+        PowerSent = false;
+        DialogueSent = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Interact") || Input.GetKeyDown(KeyCode.Z))
-        {
-            if (Vector3.Distance(transform.position, player.transform.position) < Range)
+        if ((Input.GetButtonDown("Interact") || Input.GetKeyDown(KeyCode.Z)) &&
+            Vector3.Distance(transform.position, player.transform.position) < Range)
             {
-                player.AddAbility(abilityType);
-                dialogue.AddSentence(AbilityText);
-                Destroy(gameObject);
-            }
+                switch(DialogueSent)
+                {
+                    case true:
+                        DialogueSent = false;
+                        break;
+                    
+                    default:
+                        for(int i = 0; i < DialogueText.Length; i++)
+                        {
+                            dialogue.AddSentence(DialogueText[i]);
+                        }
+                        if(!PowerSent)
+                        {
+                            dialogue.ReceiveAbility(abilityType);
+                            PowerSent = true;
+                        }
+                        DialogueSent = true;
+                        break;
+                }
         }
     }
 }

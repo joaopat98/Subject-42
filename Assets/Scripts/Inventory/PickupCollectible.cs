@@ -13,11 +13,13 @@ public class PickupCollectible : MonoBehaviour
     public string DescriptionContent;
     private string CollectibleText;
 
+    public string CollectibleType;
+
     public void Start()
     {
         inventory = GameObject.FindObjectOfType<Inventory>();
         dialogue = GameObject.FindObjectOfType<Dialogue>();
-        CollectibleText = "You found " + NameContent + "!";
+        CollectibleText = "You found " + CollectibleType + "!";
     }
 
     void OnTriggerStay(Collider collider)

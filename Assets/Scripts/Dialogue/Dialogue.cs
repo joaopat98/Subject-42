@@ -10,37 +10,67 @@ public class Dialogue : MonoBehaviour
     public float typingSpeed;
     public List<string> sentences;
     private GameObject DialoguePanel;
-
+    public AbilityType AbilityToSend;
+    private bool ToSend;
+    private bool JustChanged;
+    Player player;
 
     IEnumerator Type(){
         foreach(char letter in sentences[index].ToCharArray()){
             textDisplay.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
+        
     }
 
     private void Advance(){
 
         textDisplay.text = "";
 
-        switch(index < sentences.Count)
+        DialoguePanel.gameObject.SetActive(false);
+
+        switch(index <= sentences.Count-1)
         {
             case true:
-                DialoguePanel.gameObject.SetActive(true);
-                StartCoroutine(Type());
-                index++;
+                if(!JustChanged)
+                {
+                    DialoguePanel.gameObject.SetActive(true);
+                    StartCoroutine(Type());
+                    index++;
+                }
+                else
+                    JustChanged = false;   
                 break;
             
             default:
                 DialoguePanel.gameObject.SetActive(false);
                 index = 0;
                 sentences.Clear();
+                if(ToSend)
+                {
+                    AddAbility();
+                    ToSend = false;
+                }
+                JustChanged = true;
                 break;
         }
     }
 
     public void AddSentence(string sentence){
-        sentences.Add(sentence);
+        
+        if(!sentences.Contains(sentence))
+        {
+            sentences.Add(sentence);
+        }
+    }
+
+    public void AddAbility(){
+        player.AddAbility(AbilityToSend);
+    }
+
+    public void ReceiveAbility(AbilityType abilityType){
+       AbilityToSend = abilityType;
+       ToSend = true;
     }
     
     void Start()
@@ -48,6 +78,9 @@ public class Dialogue : MonoBehaviour
         index = 0;
         DialoguePanel = GameObject.Find("DialogueCanvas");
         DialoguePanel.gameObject.SetActive(false);
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        ToSend = false;
+
     }
 
     void Update(){

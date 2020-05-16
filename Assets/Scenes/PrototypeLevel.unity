@@ -2894,6 +2894,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 7
   Range: 1
+  DialogueText: []
 --- !u!65 &572660736
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4990,22 +4991,27 @@ PrefabInstance:
     - target: {fileID: 3647380161122266620, guid: cba4564f2b7a30c45a02bc932d16f71f,
         type: 3}
       propertyPath: StartingAbilities.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3647380161122266620, guid: cba4564f2b7a30c45a02bc932d16f71f,
         type: 3}
       propertyPath: StartingAbilities.Array.data[1]
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3647380161122266620, guid: cba4564f2b7a30c45a02bc932d16f71f,
-        type: 3}
-      propertyPath: StartingAbilities.Array.data[0]
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3647380161122266620, guid: cba4564f2b7a30c45a02bc932d16f71f,
         type: 3}
+      propertyPath: StartingAbilities.Array.data[0]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647380161122266620, guid: cba4564f2b7a30c45a02bc932d16f71f,
+        type: 3}
       propertyPath: StartingAbilities.Array.data[2]
-      value: 7
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647380161122266620, guid: cba4564f2b7a30c45a02bc932d16f71f,
+        type: 3}
+      propertyPath: StartingAbilities.Array.data[3]
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4737775780759374899, guid: cba4564f2b7a30c45a02bc932d16f71f,
         type: 3}
@@ -5233,6 +5239,11 @@ PrefabInstance:
         type: 3}
       propertyPath: DescriptionContent
       value: Subject #42 is gone.
+      objectReference: {fileID: 0}
+    - target: {fileID: 283979794214686108, guid: 97e63e1cd4e16bf4699be5cc27c8525e,
+        type: 3}
+      propertyPath: CollectibleType
+      value: Diary Entry?
       objectReference: {fileID: 0}
     - target: {fileID: 283979794214686110, guid: 97e63e1cd4e16bf4699be5cc27c8525e,
         type: 3}
@@ -7648,7 +7659,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityType: 7
-  Range: 1
+  Range: 3
+  DialogueText:
+  - Hello
+  - My name is...
+  - Pickles, James Pickles!!!
 --- !u!65 &1705807201
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9867,6 +9882,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 283979794214686108, guid: 97e63e1cd4e16bf4699be5cc27c8525e,
+        type: 3}
+      propertyPath: CollectibleType
+      value: Diary Entry
+      objectReference: {fileID: 0}
     - target: {fileID: 283979794214686110, guid: 97e63e1cd4e16bf4699be5cc27c8525e,
         type: 3}
       propertyPath: m_LocalPosition.x
