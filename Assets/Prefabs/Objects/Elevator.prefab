@@ -125,6 +125,8 @@ GameObject:
   - component: {fileID: 9198174550727387821}
   - component: {fileID: 9198174550727387820}
   - component: {fileID: 9198174550727387819}
+  - component: {fileID: 2449401465700851716}
+  - component: {fileID: 2474960957851176898}
   m_Layer: 0
   m_Name: elevator (1)
   m_TagString: Untagged
@@ -207,6 +209,33 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8802274624920757669, guid: d92bf49baf6362d4b9051aa43768521c, type: 3}
+--- !u!65 &2449401465700851716
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9198174550727387817}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.2000005, y: 2.868825, z: 1.9817796}
+  m_Center: {x: 1.5505497e-15, y: 0, z: -0.6091101}
+--- !u!114 &2474960957851176898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9198174550727387817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02ff55174d4b06f4e88c2bb564196611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LevelLoader: {fileID: 3852495377750608655, guid: daedfbbd94f71b6419fc6c48c02a589d,
+    type: 3}
 --- !u!1 &9198174550734221791
 GameObject:
   m_ObjectHideFlags: 0
