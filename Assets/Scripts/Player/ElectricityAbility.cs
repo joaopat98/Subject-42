@@ -26,7 +26,7 @@ public class ElectricityAbility : Ability
             RaycastHit hit;
             bool didHit = Physics.Raycast(
                 player.Center,
-                transform.forward,
+                (obj.GetSelectionPosition() - transform.position).normalized,
                 out hit,
                 player.ViewRange,
                 ~LayerMask.GetMask("Player")
