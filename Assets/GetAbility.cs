@@ -20,11 +20,18 @@ public class GetAbility : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, player.transform.position) < Range)
             {
+               
                 player.StartCoroutine(PlayAnimAndDestroyNPC());
+                player.StartCoroutine(PlaySound());
             }
         }
     }
 
+    IEnumerator PlaySound()
+    {
+        yield return new WaitForSeconds(3.5f);
+        player.Sounds.PlayOnce("ObtainAbility");
+    }
     IEnumerator PlayAnimAndDestroyNPC()
     {
         player.anim.SetTrigger("ObtainPower");

@@ -18,8 +18,9 @@ public class PickupCollectible : MonoBehaviour
 
     void OnTriggerStay(Collider collider)
     {
-        if (collider.tag == "Player" && Input.GetButtonDown("Interact"))
+        if (collider.tag == "Player")
         {
+            collider.gameObject.GetComponent<Player>().Sounds.PlayOnce("ObtainCollectible");
             inventory.AddCollectible(this);
             Destroy(gameObject);
         }
