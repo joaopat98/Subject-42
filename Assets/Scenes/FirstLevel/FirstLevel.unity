@@ -1595,6 +1595,16 @@ PrefabInstance:
       propertyPath: RoomLight
       value: 
       objectReference: {fileID: 707342104}
+    - target: {fileID: 5423768335775468250, guid: b26321ca11152d94a8860ab17f6a6a8d,
+        type: 3}
+      propertyPath: TimeToTurnBackOn
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423768335775468251, guid: b26321ca11152d94a8860ab17f6a6a8d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5423768335775468254, guid: b26321ca11152d94a8860ab17f6a6a8d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2056,13 +2066,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9208059841804739981, guid: b757892ab9eb36b4dbd35f6151348949,
         type: 3}
+      propertyPath: doors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9208059841804739981, guid: b757892ab9eb36b4dbd35f6151348949,
+        type: 3}
       propertyPath: doors.Array.data[0]
       value: 
-      objectReference: {fileID: 351300526}
+      objectReference: {fileID: 513603833}
     - target: {fileID: 9208059841804739981, guid: b757892ab9eb36b4dbd35f6151348949,
         type: 3}
       propertyPath: doors.Array.data[1]
       value: 
-      objectReference: {fileID: 513603833}
+      objectReference: {fileID: 351300526}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b757892ab9eb36b4dbd35f6151348949, type: 3}

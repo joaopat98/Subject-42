@@ -128,7 +128,6 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        Center = transform.GetChild(0).position;
         rb = GetComponent<Rigidbody>();
         InitAbilities();
         PowerWheel = GameObject.FindGameObjectWithTag("PowerWheel").GetComponent<PowerWheel>();
@@ -138,6 +137,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        Center = transform.GetChild(0).position;
+
         // Movement
         if (isAlive)
             Move();

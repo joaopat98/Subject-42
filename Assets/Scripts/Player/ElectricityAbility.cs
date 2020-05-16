@@ -21,7 +21,6 @@ public class ElectricityAbility : Ability
 
         IElectricObject currentClosestObject = null;
         float currentLowestAngle = Mathf.Infinity;
-
         foreach (IElectricObject obj in GetElectricObjects())
         {
             RaycastHit hit;
@@ -44,14 +43,15 @@ public class ElectricityAbility : Ability
         if (currentClosestObject == null)
         {
             RaycastHit hit;
-            if (Physics.SphereCast(
+            bool didHit = Physics.SphereCast(
                 player.Center,
                 player.CastSelectRadius,
                 transform.forward,
                 out hit,
                 player.ViewRange,
-                ~LayerMask.GetMask("Player"))
-                && hit.collider.gameObject.layer == LayerMask.NameToLayer("Electricity"))
+                ~LayerMask.GetMask("Player")
+            );
+            if (didHit && hit.collider.gameObject.layer == LayerMask.NameToLayer("Electricity"))
             {
                 currentClosestObject = hit.collider.GetComponent<ElectricCollider>().GetElectricObject();
             }
@@ -72,13 +72,14 @@ public class ElectricityAbility : Ability
                 player.StartCoroutine(ActivatePowerAndAnimation(currentClosestObject));
             }
         }
-
     }
 
     IEnumerator ActivatePowerAndAnimation(IElectricObject currentClosestObject)
     {
-        player.anim.SetTrigger("Electricity"); 
+        player.anim.SetTrigger("Electricity");
+        FadeInColor(player.ElectricityColor);
         yield return new WaitForSeconds(1.0f);
+        FadeOutColor();
         currentClosestObject.Activate();
     }
 

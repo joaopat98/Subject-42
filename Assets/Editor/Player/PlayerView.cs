@@ -26,6 +26,11 @@ public class PlayerView : Editor
             Gizmos.DrawLine(Rotate(front, origin, angle), Rotate(front, origin, angle + 0.5f));
             Gizmos.DrawLine(Rotate(front, origin, -angle), Rotate(front, origin, -angle - 0.5f));
         }
+        int numSpheres = 20;
+        for (int i = 0; i < numSpheres; i++)
+        {
+            Gizmos.DrawSphere(player.Center + player.transform.forward * (player.ViewRange / (float)(numSpheres - 1) * i), player.CastSelectRadius);
+        }
     }
 }
 
