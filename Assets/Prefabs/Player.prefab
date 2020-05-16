@@ -334,7 +334,7 @@ MonoBehaviour:
   TelekinesisMoveClose: 1
   TelekinesisMoveSpeed: 7
   TelekinesisRotateSpeed: 180
-  CastSelectRadius: 0.5
+  CastSelectRadius: 0.35
   TelekinesisMaxSpeed: 3
   FadeInTime: 0.25
   FadeOutTime: 1
