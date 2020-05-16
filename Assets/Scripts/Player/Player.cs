@@ -39,6 +39,12 @@ public class Player : MonoBehaviour
     /// </summary>
     /// <returns></returns>
     public List<Ability> Abilities;
+
+    /// <summary>
+    /// List of abilities the player currently has
+    /// </summary>
+    public AudioPlayer sounds;
+
     /// <summary>
     /// Index of the players current ability in <see cref="Abilities"/>
     /// </summary>
