@@ -1996,7 +1996,7 @@ MonoBehaviour:
   ViewAngle: 32.27
   ViewRange: 5
   PatrolReachDistance: 0.1
-  PatrolAngularSpeed: 1
+  PatrolAngularSpeed: 3
   CheckSpeed: 1
   CheckReachDistance: 2
   CheckAngularSpeed: 1
