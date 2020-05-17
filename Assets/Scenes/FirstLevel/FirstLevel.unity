@@ -489,7 +489,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.13
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -595,10 +595,50 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1485864539490461883, guid: 717092ea82aac9e4a8db8c8b02248e35,
+        type: 3}
+      propertyPath: colorTint.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485864539490461883, guid: 717092ea82aac9e4a8db8c8b02248e35,
+        type: 3}
+      propertyPath: colorTint.g
+      value: 0.9113123
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485864539490461883, guid: 717092ea82aac9e4a8db8c8b02248e35,
+        type: 3}
+      propertyPath: colorTint.b
+      value: 0.7877358
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485864539490461883, guid: 717092ea82aac9e4a8db8c8b02248e35,
+        type: 3}
+      propertyPath: colorTint.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2793701177442760284, guid: 717092ea82aac9e4a8db8c8b02248e35,
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3814886267813697491, guid: 717092ea82aac9e4a8db8c8b02248e35,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3814886267813697491, guid: 717092ea82aac9e4a8db8c8b02248e35,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.9113123
+      objectReference: {fileID: 0}
+    - target: {fileID: 3814886267813697491, guid: 717092ea82aac9e4a8db8c8b02248e35,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.7877358
+      objectReference: {fileID: 0}
+    - target: {fileID: 3814886267813697491, guid: 717092ea82aac9e4a8db8c8b02248e35,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5174882053798875504, guid: 717092ea82aac9e4a8db8c8b02248e35,
         type: 3}

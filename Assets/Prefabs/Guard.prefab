@@ -1319,7 +1319,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 1, g: 0.88, b: 0.695, a: 1}
+  m_Color: {r: 1, g: 0.9113123, b: 0.7877358, a: 1}
   m_Intensity: 1
   m_Range: 5
   m_SpotAngle: 69.54
@@ -1382,6 +1382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Falloff: 5
+  ColorFadeTime: 0.25
 --- !u!20 &7625679774718450452
 Camera:
   m_ObjectHideFlags: 0
@@ -1494,7 +1495,7 @@ MonoBehaviour:
   quadraticAttenuation: 229.76
   aspect: 1
   slices: 30
-  colorTint: {r: 1, g: 0.88, b: 0.695, a: 1}
+  colorTint: {r: 1, g: 0.9113123, b: 0.7877358, a: 1}
   noiseSpeed: {x: 0, y: 0, z: 0}
   useDithering: 1
   ditherAmount: 5
@@ -2006,6 +2007,9 @@ MonoBehaviour:
   ChaseAngularSpeed: 5
   playerSpeedthreshold: 5
   playerDistancethreshold: 5
+  PatrolColor: {r: 1, g: 0.9113123, b: 0.7877358, a: 1}
+  CheckColor: {r: 1, g: 0.6523205, b: 0.2971698, a: 1}
+  ChaseColor: {r: 1, g: 0.24121647, b: 0.08962262, a: 1}
   type: 1
   AttacksPerSec: 2
   AttackRange: 5

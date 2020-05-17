@@ -187,6 +187,10 @@ public class Player : MonoBehaviour
 
         // Apply camera angle to the movement direction, making movement relative to the camera
         var dir = Joystick.GetJoystick1Dir().ToHorizontalDir().CameraCorrect();
+        if (Input.GetButton("Slow") && dir.magnitude > 0.5f)
+        {
+            dir = dir.normalized * 0.5f;
+        }
 
         // Rotate player towards the direction it is moving in
         if (dir != Vector3.zero && !isAnimTrigger)

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -6,6 +7,14 @@ using UnityEngine.AI;
 /// </summary>
 public abstract class GuardAction
 {
+    public static Dictionary<System.Type, GuardActionType> Types = new Dictionary<System.Type, GuardActionType>()
+    {
+        {typeof(GuardChase),GuardActionType.Chase},
+        {typeof(GuardCheck),GuardActionType.Check},
+        {typeof(GuardPatrol),GuardActionType.Patrol},
+    };
+
+    public GuardActionType type { get { return Types[GetType()]; } }
     protected NavMeshAgent agent;
     protected Guard guard;
     protected Player player;

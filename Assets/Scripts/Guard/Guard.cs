@@ -65,6 +65,11 @@ public class Guard : MonoBehaviour
     /// </summary>
     public float playerDistancethreshold;
 
+    [Header("Light")]
+    public Color PatrolColor;
+    public Color CheckColor;
+    public Color ChaseColor;
+
     /// <summary>
     /// Type of the guard (Melee or Ranged)
     /// </summary>
