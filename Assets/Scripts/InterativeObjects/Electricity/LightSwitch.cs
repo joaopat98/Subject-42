@@ -22,10 +22,10 @@ public class LightSwitch : MonoBehaviour, IElectricObject
     }
     public void Activate()
     {
-        if(TurnedOn)
+        if (TurnedOn)
         {
             TurnedOn = false;
-            RoomLight.intensity = 0.5f;
+            RoomLight.enabled = false;
             player.StartCoroutine(TurnOnTheLights());
         }
     }
@@ -42,7 +42,7 @@ public class LightSwitch : MonoBehaviour, IElectricObject
     IEnumerator TurnOnTheLights()
     {
         yield return new WaitForSeconds(TimeToTurnBackOn);
-        RoomLight.intensity = 1.0f;
+        RoomLight.enabled = true;
         TurnedOn = true;
     }
 }

@@ -325,6 +325,7 @@ MonoBehaviour:
   MoveSpeed: 7
   isAlive: 1
   StartingAbilities: 050000000600000007000000
+  sounds: {fileID: 0}
   CurrentAbility: 0
   Center: {x: 0, y: 0, z: 0}
   ViewAngle: 20
@@ -355,7 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d250f601f3fabd48a83fd1fd56cab3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemiesBehindMaterial: {fileID: 2100000, guid: 2442e6c9b77b99a47a7a7be46a223bdd,
+  EnemiesBehindMaterial: {fileID: 2100000, guid: 09e15b86010206747b2e7e92846c1a3f,
     type: 2}
 --- !u!1 &815207935028953806
 GameObject:

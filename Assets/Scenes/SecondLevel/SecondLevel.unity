@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2614,7 +2614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
+  outlineWidth: 10
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -13147,7 +13147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
+  outlineWidth: 10
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -16119,6 +16119,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 41.77
       objectReference: {fileID: 0}
+    - target: {fileID: 7054448477704691508, guid: b757892ab9eb36b4dbd35f6151348949,
+        type: 3}
+      propertyPath: outlineWidth
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7054448477704691511, guid: b757892ab9eb36b4dbd35f6151348949,
         type: 3}
       propertyPath: doors.Array.data[0]
@@ -18990,6 +18995,11 @@ PrefabInstance:
       propertyPath: doors.Array.data[0]
       value: 
       objectReference: {fileID: 885064019}
+    - target: {fileID: 2835159557477250058, guid: 7364603c15b0a2e40b98cab224a25b05,
+        type: 3}
+      propertyPath: outlineWidth
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2835159557477250059, guid: 7364603c15b0a2e40b98cab224a25b05,
         type: 3}
       propertyPath: obj

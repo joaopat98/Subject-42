@@ -1,6 +1,3 @@
 [submodule "Assets/GitMerge-for-Unity"]
 	path = Assets/GitMerge-for-Unity
 	url = https://github.com/FlaShG/GitMerge-for-Unity.git
-[submodule "Assets/LightShafts"]
-	path = Assets/LightShafts
-	url = https://github.com/robertcupisz/LightShafts.git
