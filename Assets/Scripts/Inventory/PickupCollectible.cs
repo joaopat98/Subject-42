@@ -26,6 +26,7 @@ public class PickupCollectible : MonoBehaviour
     {
         if (collider.tag == "Player")
         {
+            collider.gameObject.GetComponent<Player>().Sounds.PlayOnce("ObtainCollectible");
             inventory.AddCollectible(this);
             dialogue.AddSentence(CollectibleText);
             Destroy(gameObject);

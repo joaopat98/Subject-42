@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 8737327482470235700}
   - component: {fileID: 8737327482470235699}
   - component: {fileID: 460448419222430864}
+  - component: {fileID: 115040477}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -329,6 +330,7 @@ MonoBehaviour:
   CurrentAbility: 0
   Center: {x: 0, y: 0, z: 0}
   ViewAngle: 20
+  Sounds: {fileID: 0}
   ViewRange: 7
   TelekinesisRange: 7
   TelekinesisMoveLimit: 0.5
@@ -358,6 +360,62 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemiesBehindMaterial: {fileID: 2100000, guid: 09e15b86010206747b2e7e92846c1a3f,
     type: 2}
+--- !u!114 &115040477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747830754752987031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e80ea102f1eb0440b2c7ed3a73f8591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FadeTime: 0.25
+  AudioClips:
+  - name: Walk1
+    clip: {fileID: 8300000, guid: 9d12aac0b338064429a19c5ad3ed84ed, type: 3}
+    volume: 0.3
+  - name: Walk2
+    clip: {fileID: 8300000, guid: e755571e69f8aa146afabd591b584866, type: 3}
+    volume: 0.3
+  - name: Walk3
+    clip: {fileID: 8300000, guid: a78da8711ed488742b1d05f9cb509aa7, type: 3}
+    volume: 0.3
+  - name: Walk4
+    clip: {fileID: 8300000, guid: a021e00e39cc8fe44b6bd7efaeb755ac, type: 3}
+    volume: 0.5
+  - name: Run1
+    clip: {fileID: 8300000, guid: 74192e20b4fb76247baff94467d5d0ce, type: 3}
+    volume: 0.4
+  - name: Run3
+    clip: {fileID: 8300000, guid: 70452a29213152a40b4666ff51033e4a, type: 3}
+    volume: 0.4
+  - name: Run10
+    clip: {fileID: 8300000, guid: 2b8e402491201a84599bd6bb1b043919, type: 3}
+    volume: 0.4
+  - name: Run12
+    clip: {fileID: 8300000, guid: e60a5de1813dbe845877b47700cdcc91, type: 3}
+    volume: 0.4
+  - name: Radio
+    clip: {fileID: 8300000, guid: 66aeea99af83c3a4ead1caef769c65fe, type: 3}
+    volume: 0.8
+  - name: DetectedEffect
+    clip: {fileID: 8300000, guid: 8d30cf888dfe3ca41ae0efe83f5677e5, type: 3}
+    volume: 0.5
+  - name: Shoot
+    clip: {fileID: 8300000, guid: 09e469a4df14055478eb2b4854a45042, type: 3}
+    volume: 0.5
+  - name: ObtainAbility
+    clip: {fileID: 8300000, guid: f4603024025a1bb4e9ce8c76c082bfef, type: 3}
+    volume: 0.5
+  - name: ObtainCollectible
+    clip: {fileID: 8300000, guid: 6897f4cc7f19d6c4cbf61e6dcfb020f3, type: 3}
+    volume: 0.5
+  - name: AmbientSound
+    clip: {fileID: 8300000, guid: 8bf59452c3817cb4ea623961d0193026, type: 3}
+    volume: 0.8
 --- !u!1 &815207935028953806
 GameObject:
   m_ObjectHideFlags: 0
