@@ -14,6 +14,7 @@ public class GuardChase : GuardAction
         agent.angularSpeed = guard.ChaseAngularSpeed;
         agent.stoppingDistance = guard.ChaseReachDistance;
         agent.speed = guard.ChaseSpeed;
+        player.Sounds.PlayLoop("DetectedEffect");
     }
 
     void MeleeAttack()
@@ -29,6 +30,7 @@ public class GuardChase : GuardAction
     {
         var dir = player.transform.position - guard.transform.position;
         GameObject.Instantiate(guard.BulletPrefab, guard.Weapon.transform.position, Quaternion.LookRotation(dir, Vector3.up));
+        player.Sounds.PlayOnce("Shoot");
         t = 0;
     }
 
@@ -53,6 +55,8 @@ public class GuardChase : GuardAction
         if (Vector3.Distance(guard.transform.position, player.transform.position) > guard.ChaseRange)
         {
             guard.action = new GuardPatrol(guard);
+            Debug.Log("stop breathing");
+            player.Sounds.StopLoop("DetectedEffect");
         }
         // Perform attack if next attack cycle is reached
         if (t > 1 / guard.AttacksPerSec)

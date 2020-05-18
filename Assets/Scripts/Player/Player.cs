@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using JoystickUtils;
+using System.Media;
 
 public class Player : MonoBehaviour
 {
@@ -39,12 +40,6 @@ public class Player : MonoBehaviour
     /// </summary>
     /// <returns></returns>
     public List<Ability> Abilities;
-
-    /// <summary>
-    /// List of abilities the player currently has
-    /// </summary>
-    public AudioPlayer sounds;
-
     /// <summary>
     /// Index of the players current ability in <see cref="Abilities"/>
     /// </summary>
@@ -57,6 +52,8 @@ public class Player : MonoBehaviour
     /// Field of view where the player can use the power
     /// </summary>
     [Header("Object Interaction")] [Range(0, 180)] public float ViewAngle = 20.0f;
+
+    [HideInInspector] public AudioPlayer Sounds;
 
     /// <summary>
     /// Distance in front of the player. It limits how far can he use the power.
@@ -138,7 +135,9 @@ public class Player : MonoBehaviour
         InitAbilities();
         PowerWheel = GameObject.FindGameObjectWithTag("PowerWheel").GetComponent<PowerWheel>();
         anim = GetComponent<Animator>();
-        this.triggerAnim = (TriggerAnim[])System.Enum.GetValues(typeof(TriggerAnim));
+        triggerAnim = (TriggerAnim[])System.Enum.GetValues(typeof(TriggerAnim));
+        Sounds = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioPlayer>();
+        Sounds.PlayLoop("AmbientSound");
     }
 
     void Update()

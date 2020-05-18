@@ -28,6 +28,7 @@ public class RadioSwitch : MonoBehaviour, IElectricObject
             this.originalBoxColl.enabled = false;
             this.radioRangeCollider.enabled = true;
             StartCoroutine(RadioActivated());
+            player.Sounds.PlayOnce("Radio");
         }
     }
 

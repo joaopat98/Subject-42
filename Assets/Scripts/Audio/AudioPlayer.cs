@@ -28,7 +28,7 @@ public class AudioPlayer : MonoBehaviour
     private Dictionary<string, AudioSource> loopSources = new Dictionary<string, AudioSource>();
     private List<AudioSource> oneShotSources = new List<AudioSource>();
 
-    void Start()
+    void Awake()
     {
         foreach (var clip in AudioClips)
         {
@@ -38,7 +38,8 @@ public class AudioPlayer : MonoBehaviour
 
     void Update()
     {
-        foreach (var source in oneShotSources)
+        List<AudioSource> oneShotCopy = new List<AudioSource>(oneShotSources);
+        foreach (var source in oneShotCopy)
         {
             if (!source.isPlaying)
             {
