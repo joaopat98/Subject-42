@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Dialogue : MonoBehaviour
+public class Dialogue2 : MonoBehaviour
 {
     public TextMeshProUGUI textDisplay;
     private int index;

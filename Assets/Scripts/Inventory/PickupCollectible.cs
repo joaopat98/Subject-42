@@ -14,7 +14,7 @@ public class PickupCollectible : MonoBehaviour
     private string CollectibleText;
 
     public string CollectibleType;
-
+    /*
     public void Start()
     {
         inventory = GameObject.FindObjectOfType<Inventory>();
@@ -31,5 +31,6 @@ public class PickupCollectible : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    */
 
 }

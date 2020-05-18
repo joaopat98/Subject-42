@@ -14,7 +14,7 @@ public class GetAbility : MonoBehaviour
 
     private bool PowerSent;
     private bool DialogueSent;
-
+    /*
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -38,16 +38,16 @@ public class GetAbility : MonoBehaviour
                     default:
                         for(int i = 0; i < DialogueText.Length; i++)
                         {
-                            dialogue.AddSentence(DialogueText[i]);
+                            //dialogue.AddSentence(DialogueText[i]);
                         }
                         if(!PowerSent)
                         {
-                            dialogue.ReceiveAbility(abilityType);
+                            //dialogue.ReceiveAbility(abilityType);
                             PowerSent = true;
                         }
                         DialogueSent = true;
                         break;
                 }
         }
-    }
+    }*/
 }
