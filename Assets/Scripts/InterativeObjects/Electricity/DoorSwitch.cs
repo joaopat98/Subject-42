@@ -23,9 +23,9 @@ public class DoorSwitch : MonoBehaviour, IElectricObject
     {
         if (!isDoorOpened)
         {
-            foreach(GameObject door in doors)
+            foreach (GameObject door in doors)
             {
-                door.GetComponent<Animator>().SetBool("isOpen", true);
+                door.GetComponentInChildren<Animator>().SetBool("isOpen", true);
             }
             isDoorOpened = true;
         }

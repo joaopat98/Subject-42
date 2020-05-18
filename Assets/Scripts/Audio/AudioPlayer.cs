@@ -51,11 +51,16 @@ public class AudioPlayer : MonoBehaviour
 
     public void PlayOnce(string name)
     {
+        PlayOnce(name, 1);
+    }
+
+    public void PlayOnce(string name, float volumeScale)
+    {
         if (clips.ContainsKey(name))
         {
             AudioClipVolume clip = clips[name];
             var source = gameObject.AddComponent<AudioSource>();
-            source.volume = clip.volume;
+            source.volume = clip.volume * volumeScale;
             source.clip = clip.clip;
             source.loop = false;
             oneShotSources.Add(source);

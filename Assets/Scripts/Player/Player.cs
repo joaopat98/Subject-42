@@ -87,6 +87,8 @@ public class Player : MonoBehaviour
     float triggerPrevious = 0;
     public int SwitchStatus;
 
+    Vector3 previousDir = Vector3.zero;
+
     /// <summary>
     /// Initialize the <see cref="Abilities"/> array according to the ability types
     /// set in <see cref="StartingAbilities"/>. If <see cref="StartingAbilities"/> is empty,
@@ -191,6 +193,9 @@ public class Player : MonoBehaviour
             dir = dir.normalized * 0.5f;
         }
 
+        dir = Vector3.Lerp(previousDir, dir, 20f * Time.deltaTime);
+        previousDir = dir;
+        Debug.Log(dir.x);
         // Rotate player towards the direction it is moving in
         if (dir != Vector3.zero && !isAnimTrigger)
             rb.MoveRotation(Quaternion.LookRotation(dir, Vector3.up));
@@ -215,7 +220,7 @@ public class Player : MonoBehaviour
         if (!isAnimTrigger)
         {
             Vector2 vel = new Vector2(rb.velocity.x, rb.velocity.z);
-            anim.SetFloat("Speed", vel.magnitude);
+            anim.SetFloat("Speed", vel.magnitude / MoveSpeed);
         }
         else
         {
@@ -276,6 +281,20 @@ public class Player : MonoBehaviour
     public void SwitchAbility(int delta)
     {
         Abilities[CurrentAbility].SwitchAbility(delta);
+    }
+
+    public void WalkStep()
+    {
+        string[] steps = { "Walk1", "Walk2", "Walk3" };
+        float scale = new Vector2(rb.velocity.x, rb.velocity.z).magnitude / MoveSpeed;
+        Sounds.PlayOnce(steps[Random.Range(0, 3)], scale);
+    }
+
+    public void RunStep()
+    {
+        string[] steps = { "Run1", "Run3", "Run10" };
+        float scale = new Vector2(rb.velocity.x, rb.velocity.z).magnitude / MoveSpeed;
+        Sounds.PlayOnce(steps[Random.Range(0, 3)], scale);
     }
 
 }
