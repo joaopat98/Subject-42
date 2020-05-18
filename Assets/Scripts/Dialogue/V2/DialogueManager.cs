@@ -9,29 +9,36 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI DialogueText;
     public GameObject DialogueCanvas;
     public float typingSpeed;
+    private bool IsStarting;
+    Player player;
+    public System.Action callBack;
+    private bool FirstTime;
 
     void Start()
     {
+        FirstTime = true;
         sentences = new Queue<string>();
         DialogueCanvas.gameObject.SetActive(false);
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     public void StartDialogue(Dialogue dialogue)
     {
+        IsStarting = true;
         DialogueCanvas.gameObject.SetActive(false);
         sentences.Clear();
+
+        callBack = dialogue.callBack;
 
         foreach(string sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
         }
-        
         DisplayNextSentence();
-        dialogue.callBack();
     }
 
     public void DisplayNextSentence()
-    {
+    {   
         if(sentences.Count == 0)
         {
             EndDialogue();
@@ -45,6 +52,8 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
+        IsStarting = true;
+        callBack();
         DialogueCanvas.gameObject.SetActive(false);
         FindObjectOfType<DialogueTrigger>().StopDialogue();
     }
@@ -56,6 +65,25 @@ public class DialogueManager : MonoBehaviour
         {
             DialogueText.text += letter;
             yield return new WaitForSeconds(typingSpeed);
+        }
+        IsStarting = false;
+    }
+
+    public void AddTelekinesisPower(){
+        
+        if(FirstTime)
+        {
+            player.AddAbility(AbilityType.Telekinesis);
+            FirstTime = false;
+        }
+        
+    }
+
+    public void Update()
+    {
+        if (Input.GetButtonDown("Interact") && !IsStarting)
+        {
+            DisplayNextSentence();
         }
     }
 }

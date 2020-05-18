@@ -11,13 +11,9 @@ public class DialogueTrigger : MonoBehaviour
     public bool Playing;
 
     public void TriggerDialogue()
-    {
+    {   
+        dialogue.callBack = DialogueManager.AddTelekinesisPower;
         DialogueManager.StartDialogue(dialogue);
-    }
-
-    public void TriggerNextSentence()
-    {
-        DialogueManager.DisplayNextSentence();
     }
 
     public void StopDialogue()
@@ -41,11 +37,6 @@ public class DialogueTrigger : MonoBehaviour
             {
                 TriggerDialogue();
                 Playing = true;
-            }
-
-            else
-            {
-                TriggerNextSentence();
             }
             
         }
