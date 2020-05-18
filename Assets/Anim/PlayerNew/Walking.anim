@@ -49120,22 +49120,22 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: PlayOnce
-    data: Walk1
+    functionName: WalkStep
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.33333334
-    functionName: PlayOnce
-    data: Walk2
+    functionName: WalkStep
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.8
-    functionName: PlayOnce
-    data: Walk3
+    functionName: WalkStep
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
