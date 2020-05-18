@@ -34,4 +34,19 @@ public class PickupCollectible : MonoBehaviour
     }
     */
 
+    public void Start()
+    {
+        inventory = GameObject.FindObjectOfType<Inventory>();
+    }
+
+    void OnTriggerStay(Collider collider)
+    {
+        if (collider.tag == "Player")
+        {
+            collider.gameObject.GetComponent<Player>().Sounds.PlayOnce("ObtainCollectible");
+            inventory.AddCollectible(this);
+            Destroy(gameObject);
+        }
+    }
+
 }

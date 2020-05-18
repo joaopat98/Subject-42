@@ -138,7 +138,6 @@ public class Player : MonoBehaviour
         triggerAnim = (TriggerAnim[])System.Enum.GetValues(typeof(TriggerAnim));
         Sounds = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioPlayer>();
         Sounds.PlayLoop("AmbientSound");
-
     }
 
     void Update()

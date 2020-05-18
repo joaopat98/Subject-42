@@ -326,7 +326,6 @@ MonoBehaviour:
   MoveSpeed: 7
   isAlive: 1
   StartingAbilities: 050000000600000007000000
-  sounds: {fileID: 0}
   CurrentAbility: 0
   Center: {x: 0, y: 0, z: 0}
   ViewAngle: 20
@@ -372,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e80ea102f1eb0440b2c7ed3a73f8591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FadeTime: 0.25
+  FadeTime: 1
   AudioClips:
   - name: Walk1
     clip: {fileID: 8300000, guid: 9d12aac0b338064429a19c5ad3ed84ed, type: 3}
