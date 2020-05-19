@@ -55,7 +55,6 @@ public class GuardChase : GuardAction
         if (Vector3.Distance(guard.transform.position, player.transform.position) > guard.ChaseRange)
         {
             guard.action = new GuardPatrol(guard);
-            Debug.Log("stop breathing");
             player.Sounds.StopLoop("DetectedEffect");
         }
         // Perform attack if next attack cycle is reached

@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 8039183788151750164}
   - component: {fileID: 8039183788151750165}
   m_Layer: 5
-  m_Name: DialogueManager (1)
+  m_Name: DialogueManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -206,7 +206,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogueText: {fileID: 8039183787086032006}
   DialogueCanvas: {fileID: 8039183788343457314}
-  typingSpeed: 0.05
+  TypingSpeed: 20
+  WaitTime: 1
 --- !u!1 &8039183788343457314
 GameObject:
   m_ObjectHideFlags: 0

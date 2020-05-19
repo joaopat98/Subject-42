@@ -87,6 +87,8 @@ public class Player : MonoBehaviour
     float triggerPrevious = 0;
     public int SwitchStatus;
 
+    public bool Playing = true;
+
     Vector3 previousDir = Vector3.zero;
 
     /// <summary>
@@ -145,30 +147,32 @@ public class Player : MonoBehaviour
     void Update()
     {
         Center = transform.GetChild(0).position;
-
         // Movement
         if (isAlive)
             Move();
 
-        // Update the current ability's state
-        Abilities[CurrentAbility].Update();
+        if (Playing)
+        {
+            // Update the current ability's state
+            Abilities[CurrentAbility].Update();
 
-        // Switch abilities depending on user input
-        if (Input.GetAxisRaw("Switch") >= 0.9 && triggerPrevious < 0.9)
-        {
-            SwitchStatus = 1;
-            Abilities[CurrentAbility].SwitchAbility(1);
+            // Switch abilities depending on user input
+            if (Input.GetAxisRaw("Switch") >= 0.9 && triggerPrevious < 0.9)
+            {
+                SwitchStatus = 1;
+                Abilities[CurrentAbility].SwitchAbility(1);
+            }
+            else if (Input.GetAxisRaw("Switch") <= -0.9 && triggerPrevious > -0.9)
+            {
+                SwitchStatus = -1;
+                Abilities[CurrentAbility].SwitchAbility(-1);
+            }
+            else
+            {
+                SwitchStatus = 0;
+            }
+            triggerPrevious = Input.GetAxisRaw("Switch");
         }
-        else if (Input.GetAxisRaw("Switch") <= -0.9 && triggerPrevious > -0.9)
-        {
-            SwitchStatus = -1;
-            Abilities[CurrentAbility].SwitchAbility(-1);
-        }
-        else
-        {
-            SwitchStatus = 0;
-        }
-        triggerPrevious = Input.GetAxisRaw("Switch");
 
         UpdateMovementAnim();
 
@@ -187,7 +191,9 @@ public class Player : MonoBehaviour
         var camAngle = Mathf.Rad2Deg * Mathf.Atan2(camTransform.forward.x, camTransform.forward.z);
 
         // Apply camera angle to the movement direction, making movement relative to the camera
-        var dir = Joystick.GetJoystick1Dir().ToHorizontalDir().CameraCorrect();
+        var dir = Vector3.zero;
+        if (Playing)
+            dir = Joystick.GetJoystick1Dir().ToHorizontalDir().CameraCorrect();
         if (Input.GetButton("Slow") && dir.magnitude > 0.5f)
         {
             dir = dir.normalized * 0.5f;
@@ -203,9 +209,6 @@ public class Player : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
 
         rb.velocity = new Vector3(MoveSpeed * dir.x, rb.velocity.y, MoveSpeed * dir.z);
-
-
-
     }
 
     /// <summary>

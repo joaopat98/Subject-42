@@ -48,6 +48,7 @@ public class GuardLightUpdate : MonoBehaviour
         switch (currentState)
         {
             case GuardActionType.Patrol:
+            case GuardActionType.Lost:
                 toColor = guard.PatrolColor;
                 break;
             case GuardActionType.Check:
