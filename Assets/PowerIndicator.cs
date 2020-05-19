@@ -114,6 +114,8 @@ public class PowerIndicator : MonoBehaviour
                 }
             }
         }
+        else
+            indicator.gameObject.SetActive(false);
     }
 
     IEnumerator TweenTo(Image image, Vector3 pos, Vector3 scale, float alpha)

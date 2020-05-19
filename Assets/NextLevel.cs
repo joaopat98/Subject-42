@@ -5,11 +5,17 @@ using UnityEngine;
 public class NextLevel : MonoBehaviour
 {
     public LevelLoader LevelLoader;
+    public bool Enabled = true;
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if (Enabled)
         {
-            LevelLoader.LoadNextLevel();
+            if (other.tag == "Player")
+            {
+                other.GetComponentInChildren<Player>().Playing = false;
+
+                LevelLoader.LoadNextLevel();
+            }
         }
     }
 }
