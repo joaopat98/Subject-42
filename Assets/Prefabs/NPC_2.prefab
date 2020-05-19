@@ -477,7 +477,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3426595064517590913}
   - component: {fileID: 4685913841315992315}
-  - component: {fileID: 1861939200618368404}
   - component: {fileID: 1861939200618368403}
   m_Layer: 0
   m_Name: NPC_2
@@ -523,20 +522,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1861939200618368404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1861939200618368402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a565d2ef83bfb53478e415c0020c719e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  abilityType: 5
-  Range: 1
 --- !u!64 &1861939200618368403
 MeshCollider:
   m_ObjectHideFlags: 0
