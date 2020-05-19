@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Outline))]
-public class LightSwitch : MonoBehaviour, IElectricObject
+public class DistractSwitch : MonoBehaviour, IElectricObject
 {
     Player player;
     Outline outline;
     bool TurnedOn;
-    public Light RoomLight;
+    public Light[] Lights;
+    public Guard[] Guards;
     public int TimeToTurnBackOn;
 
     public void Start()
@@ -25,7 +26,14 @@ public class LightSwitch : MonoBehaviour, IElectricObject
         if (TurnedOn)
         {
             TurnedOn = false;
-            RoomLight.enabled = false;
+            foreach (var light in Lights)
+            {
+                light.enabled = false;
+            }
+            foreach (var guard in Guards)
+            {
+                guard.action = new GuardLost(guard, TimeToTurnBackOn);
+            }
             StartCoroutine(TurnOnTheLights());
         }
     }
@@ -42,7 +50,10 @@ public class LightSwitch : MonoBehaviour, IElectricObject
     IEnumerator TurnOnTheLights()
     {
         yield return new WaitForSeconds(TimeToTurnBackOn);
-        RoomLight.enabled = true;
+        foreach (var light in Lights)
+        {
+            light.enabled = false;
+        }
         TurnedOn = true;
     }
 }

@@ -12,6 +12,7 @@ public abstract class GuardAction
         {typeof(GuardChase),GuardActionType.Chase},
         {typeof(GuardCheck),GuardActionType.Check},
         {typeof(GuardPatrol),GuardActionType.Patrol},
+        {typeof(GuardLost),GuardActionType.Lost},
     };
 
     public GuardActionType type { get { return Types[GetType()]; } }

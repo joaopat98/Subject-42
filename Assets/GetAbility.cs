@@ -16,14 +16,10 @@ public class GetAbility : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Interact") || Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetButtonDown("Interact") && Vector3.Distance(transform.position, player.transform.position) < Range)
         {
-            if (Vector3.Distance(transform.position, player.transform.position) < Range)
-            {
-               
-                player.StartCoroutine(PlayAnimAndDestroyNPC());
-                player.StartCoroutine(PlaySound());
-            }
+            player.StartCoroutine(PlayAnimAndDestroyNPC());
+            player.StartCoroutine(PlaySound());
         }
     }
 

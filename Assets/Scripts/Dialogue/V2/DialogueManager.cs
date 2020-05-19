@@ -6,84 +6,101 @@ using TMPro;
 public class DialogueManager : MonoBehaviour
 {
     private Queue<string> sentences;
+    private Queue<Dialogue> dialogues;
     public TextMeshProUGUI DialogueText;
     public GameObject DialogueCanvas;
-    public float typingSpeed;
+    public float TypingSpeed;
+    public float WaitTime;
+    private bool IsTyping;
     private bool IsStarting;
-    Player player;
-    public System.Action callBack;
+    private Dialogue dialogue;
+    System.Action callBack;
     private bool FirstTime;
+    Coroutine toNextSentence = null;
 
     void Start()
     {
         FirstTime = true;
         sentences = new Queue<string>();
+        dialogues = new Queue<Dialogue>();
         DialogueCanvas.gameObject.SetActive(false);
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    void StartDialogue(Dialogue d)
     {
+        dialogue = d;
         IsStarting = true;
-        DialogueCanvas.gameObject.SetActive(false);
-        sentences.Clear();
-
-        callBack = dialogue.callBack;
-
-        foreach(string sentence in dialogue.sentences)
+        foreach (string sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
         }
         DisplayNextSentence();
     }
+    public void QueueDialogue(Dialogue d)
+    {
+        IsStarting = true;
+        dialogues.Enqueue(d);
+    }
 
-    public void DisplayNextSentence()
-    {   
-        if(sentences.Count == 0)
+    void DisplayNextSentence()
+    {
+        if (sentences.Count == 0)
         {
             EndDialogue();
             return;
         }
-        DialogueCanvas.gameObject.SetActive(true);
+        DialogueCanvas.SetActive(true);
         string sentence = sentences.Dequeue();
         StopAllCoroutines();
-        StartCoroutine(Type(sentence));
+        toNextSentence = StartCoroutine(Type(sentence));
     }
 
     void EndDialogue()
     {
-        IsStarting = true;
-        callBack();
-        DialogueCanvas.gameObject.SetActive(false);
-        FindObjectOfType<DialogueTrigger>().StopDialogue();
+        if (dialogue.callBack != null)
+            dialogue.callBack();
+        dialogue = null;
+        DialogueCanvas.SetActive(false);
     }
 
     IEnumerator Type(string sentence)
     {
+        IsTyping = true;
         DialogueText.text = "";
-        foreach(char letter in sentence.ToCharArray())
+        foreach (char letter in sentence.ToCharArray())
         {
             DialogueText.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
+            if (IsTyping)
+                yield return new WaitForSeconds(1 / TypingSpeed);
         }
-        IsStarting = false;
-    }
-
-    public void AddTelekinesisPower(){
-        
-        if(FirstTime)
+        IsTyping = false;
+        if (!dialogue.RequiresConfirmation)
         {
-            player.AddAbility(AbilityType.Telekinesis);
-            FirstTime = false;
+            yield return new WaitForSeconds(WaitTime);
+            toNextSentence = null;
+            DisplayNextSentence();
         }
-        
     }
 
     public void Update()
     {
-        if (Input.GetButtonDown("Interact") && !IsStarting)
+        if (!IsStarting && Input.GetButtonDown("Interact") && dialogue != null)
         {
-            DisplayNextSentence();
+            if (IsTyping)
+                IsTyping = false;
+            else
+            {
+                if (toNextSentence != null)
+                {
+                    StopCoroutine(toNextSentence);
+                }
+                DisplayNextSentence();
+            }
+        }
+        IsStarting = false;
+        if (dialogue == null && dialogues.Count != 0)
+        {
+            StartDialogue(dialogues.Dequeue());
         }
     }
 }
