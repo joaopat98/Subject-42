@@ -21,7 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_2B60B248:
-        m_Texture: {fileID: 2800000, guid: 613fa706e000d1b48afa3a94c444e514, type: 3}
+        m_Texture: {fileID: 2800000, guid: ffddc77932a9afd41ba14ec6a1ae182a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_58B5376F:
@@ -34,7 +34,7 @@ Material:
     - Vector1_A3758F83: -1
     m_Colors:
     - Color_D0843ABE: {r: 1, g: 1, b: 1, a: 0}
-    - Color_D771A04: {r: 1, g: 1, b: 1, a: 0}
+    - Color_D771A04: {r: 1, g: 0, b: 0, a: 0}
     - Color_F46467FC: {r: 1, g: 1, b: 1, a: 0}
     - _L1_color: {r: 0, g: 0, b: 0, a: 0}
     - _L1_dir: {r: 0, g: 0, b: 0, a: 0}
@@ -42,3 +42,9 @@ Material:
     - _L2_dir: {r: 0, g: 0, b: 0, a: 0}
     - _L3_color: {r: 0, g: 0, b: 0, a: 0}
     - _L3_dir: {r: 0, g: 0, b: 0, a: 0}
+    - _L4_color: {r: 0, g: 0, b: 0, a: 0}
+    - _L4_dir: {r: 0, g: 0, b: 0, a: 0}
+    - _L5_color: {r: 0, g: 0, b: 0, a: 0}
+    - _L5_dir: {r: 0, g: 0, b: 0, a: 0}
+    - _L6_color: {r: 0, g: 0, b: 0, a: 0}
+    - _L6_dir: {r: 0, g: 0, b: 0, a: 0}
