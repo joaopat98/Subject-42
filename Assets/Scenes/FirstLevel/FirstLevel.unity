@@ -5588,6 +5588,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 115040477, guid: 9298e279b22ae284cb2e0653e81a1404, type: 3}
+      propertyPath: AudioClips.Array.size
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 115040477, guid: 9298e279b22ae284cb2e0653e81a1404, type: 3}
+      propertyPath: AudioClips.Array.data[14].name
+      value: LightSwitch
+      objectReference: {fileID: 0}
+    - target: {fileID: 115040477, guid: 9298e279b22ae284cb2e0653e81a1404, type: 3}
+      propertyPath: AudioClips.Array.data[14].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 85a2ca6af109d0a40a705551ced8663a, type: 3}
+    - target: {fileID: 115040477, guid: 9298e279b22ae284cb2e0653e81a1404, type: 3}
+      propertyPath: AudioClips.Array.data[14].volume
+      value: 0.546
+      objectReference: {fileID: 0}
+    - target: {fileID: 115040477, guid: 9298e279b22ae284cb2e0653e81a1404, type: 3}
+      propertyPath: AudioClips.Array.data[15].name
+      value: Switch
+      objectReference: {fileID: 0}
+    - target: {fileID: 115040477, guid: 9298e279b22ae284cb2e0653e81a1404, type: 3}
+      propertyPath: AudioClips.Array.data[15].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: d3756dea19fe88e43847ccc10164d0a8, type: 3}
+    - target: {fileID: 115040477, guid: 9298e279b22ae284cb2e0653e81a1404, type: 3}
+      propertyPath: AudioClips.Array.data[15].volume
+      value: 0.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 115040477, guid: 9298e279b22ae284cb2e0653e81a1404, type: 3}
+      propertyPath: AudioClips.Array.data[13].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4cba79836fe7f5b4889b3d64acad80ec, type: 3}
+    - target: {fileID: 115040477, guid: 9298e279b22ae284cb2e0653e81a1404, type: 3}
+      propertyPath: AudioClips.Array.data[13].volume
+      value: 0.524
+      objectReference: {fileID: 0}
     - target: {fileID: 58185628712831450, guid: 9298e279b22ae284cb2e0653e81a1404,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -7256,7 +7292,7 @@ PrefabInstance:
     - target: {fileID: 8737327482470235699, guid: 9298e279b22ae284cb2e0653e81a1404,
         type: 3}
       propertyPath: StartingAbilities.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8737327482470235699, guid: 9298e279b22ae284cb2e0653e81a1404,
         type: 3}
@@ -7913,7 +7949,7 @@ PrefabInstance:
     - target: {fileID: 5423768335775468250, guid: b26321ca11152d94a8860ab17f6a6a8d,
         type: 3}
       propertyPath: TimeToTurnBackOn
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5423768335775468251, guid: b26321ca11152d94a8860ab17f6a6a8d,
         type: 3}
@@ -8129,6 +8165,11 @@ PrefabInstance:
       propertyPath: Guards.Array.data[0]
       value: 
       objectReference: {fileID: 310015790}
+    - target: {fileID: 7948273423791010299, guid: 94e83ecb995f6744da616501d4c5a332,
+        type: 3}
+      propertyPath: TimeToTurnBackOn
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94e83ecb995f6744da616501d4c5a332, type: 3}
 --- !u!23 &6467356164540225335

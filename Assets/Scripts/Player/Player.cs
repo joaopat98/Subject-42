@@ -200,7 +200,7 @@ public class Player : MonoBehaviour
 
         dir = Vector3.Lerp(previousDir, dir, 20f * Time.deltaTime);
         previousDir = dir;
-        Debug.Log(dir.x);
+        //Debug.Log(dir.x);
         // Rotate player towards the direction it is moving in
         if (dir != Vector3.zero && !isAnimTrigger)
             rb.MoveRotation(Quaternion.LookRotation(dir, Vector3.up));

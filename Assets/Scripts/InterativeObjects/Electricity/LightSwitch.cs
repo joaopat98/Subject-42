@@ -24,6 +24,7 @@ public class LightSwitch : MonoBehaviour, IElectricObject
     {
         if (TurnedOn)
         {
+            player.Sounds.PlayOnce("Switch");
             TurnedOn = false;
             RoomLight.enabled = false;
             StartCoroutine(TurnOnTheLights());
@@ -41,6 +42,9 @@ public class LightSwitch : MonoBehaviour, IElectricObject
     }
     IEnumerator TurnOnTheLights()
     {
+        player.Sounds.PlayOnce("Switch");
+        yield return new WaitForSeconds(0.1f);
+        player.Sounds.PlayOnce("LightSwitch");
         yield return new WaitForSeconds(TimeToTurnBackOn);
         RoomLight.enabled = true;
         TurnedOn = true;
