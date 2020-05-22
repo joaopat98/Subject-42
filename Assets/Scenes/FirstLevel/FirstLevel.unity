@@ -2102,6 +2102,12 @@ PrefabInstance:
       propertyPath: LostView
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5174882053798875505, guid: 717092ea82aac9e4a8db8c8b02248e35,
+        type: 3}
+      propertyPath: BulletPrefab
+      value: 
+      objectReference: {fileID: 5163458519525269598, guid: ee0757aaca00c1c47a2d1b041600dc0e,
+        type: 3}
     - target: {fileID: 5201969962839423436, guid: 717092ea82aac9e4a8db8c8b02248e35,
         type: 3}
       propertyPath: m_LocalRotation.x
