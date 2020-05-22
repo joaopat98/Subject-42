@@ -140,7 +140,15 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         triggerAnim = (TriggerAnim[])System.Enum.GetValues(typeof(TriggerAnim));
         Sounds = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioPlayer>();
-        Sounds.PlayLoop("AmbientSound");
+        StartCoroutine(PlayStartSounds());
+        
+    }
+
+    IEnumerator PlayStartSounds()
+    {
+        Sounds.PlayOnce("StartLevel");
+        yield return new WaitForSeconds(1.0f);
+        Sounds.PlayLoop(SceneManager.GetActiveScene().name);
     }
 
     void Update()

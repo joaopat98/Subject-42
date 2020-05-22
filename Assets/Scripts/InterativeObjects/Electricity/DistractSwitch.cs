@@ -33,6 +33,7 @@ public class DistractSwitch : MonoBehaviour, IElectricObject
             }
             foreach (var guard in Guards)
             {
+                Debug.Log("Apague la luz");
                 guard.action = new GuardLost(guard, TimeToTurnBackOn);
             }
             StartCoroutine(TurnOnTheLights());
@@ -56,7 +57,7 @@ public class DistractSwitch : MonoBehaviour, IElectricObject
         yield return new WaitForSeconds(TimeToTurnBackOn);
         foreach (var light in Lights)
         {
-            light.enabled = false;
+            light.enabled = true;
         }
         TurnedOn = true;
     }

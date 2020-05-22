@@ -6,22 +6,23 @@ public class GuardLost : GuardAction
 {
     float t = 0;
     float recoveryTime;
-    float prevRange;
     public GuardLost(Guard guard, float recoveryTime) : base(guard)
     {
         guard.anim.SetBool("Lost", true);
+        guard.anim.SetBool("Checking", false);
+        guard.anim.SetBool("Chasing", false);
         agent.SetDestination(guard.transform.position);
         this.recoveryTime = recoveryTime;
-        prevRange = guard.ViewRange;
-        guard.ViewRange = 0.5f;
+        guard.ViewRange = guard.LostView;
     }
 
     public override void Do()
     {
+        Debug.Log("Lost");
         t += Time.deltaTime;
         if (t >= recoveryTime)
         {
-            guard.ViewRange = prevRange;
+            Debug.Log("ENTREEE");
             guard.action = new GuardPatrol(guard);
         }
     }
