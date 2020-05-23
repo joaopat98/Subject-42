@@ -25,6 +25,7 @@ public class PowerIndicator : MonoBehaviour
     Transform indicator;
 
     int currentAbility;
+    bool firstUpdate = true;
 
     // Start is called before the first frame update
     void Start()
@@ -62,9 +63,35 @@ public class PowerIndicator : MonoBehaviour
         return i % 5;
     }
 
+    float alphaVal(int index)
+    {
+        if (player.Abilities.Count == 1)
+        {
+            return index == 2 ? 1 : 0;
+        }
+        else if (player.Abilities.Count == 2)
+        {
+            return index == 2 || index == 3 ? 1 : 0;
+        }
+        else
+        {
+            return index == 0 || index == 4 ? 0 : 1;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (firstUpdate)
+        {
+            firstUpdate = false;
+            for (int i = 0; i < 5; i++)
+            {
+                Color c = icons[i].color;
+                c.a = alphaVal(i);
+                icons[i].color = c;
+            }
+        }
         if (player.Abilities[0].type != AbilityType.Empty)
         {
             if (Input.GetButton("Power Wheel"))
@@ -84,7 +111,7 @@ public class PowerIndicator : MonoBehaviour
                             icons[i],
                             iconPositions[newindex],
                             newindex == 2 ? bigScale : smallScale,
-                            newindex == 0 || newindex == 4 ? 0 : 1
+                            alphaVal(newindex)
                             ));
                     }
                     var first = icons[0];
@@ -101,7 +128,7 @@ public class PowerIndicator : MonoBehaviour
                             icons[i],
                             iconPositions[newindex],
                             newindex == 2 ? bigScale : smallScale,
-                            newindex == 0 || newindex == 4 ? 0 : 1
+                            alphaVal(newindex)
                             ));
                     }
                     var last = icons[4];

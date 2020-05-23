@@ -156,19 +156,22 @@ public class Player : MonoBehaviour
             Abilities[CurrentAbility].Update();
 
             // Switch abilities depending on user input
-            if (Input.GetAxisRaw("Switch") >= 0.9 && triggerPrevious < 0.9)
+            if (Abilities.Count > 1)
             {
-                SwitchStatus = 1;
-                Abilities[CurrentAbility].SwitchAbility(1);
-            }
-            else if (Input.GetAxisRaw("Switch") <= -0.9 && triggerPrevious > -0.9)
-            {
-                SwitchStatus = -1;
-                Abilities[CurrentAbility].SwitchAbility(-1);
-            }
-            else
-            {
-                SwitchStatus = 0;
+                if (Input.GetAxisRaw("Switch") >= 0.9 && triggerPrevious < 0.9)
+                {
+                    SwitchStatus = 1;
+                    Abilities[CurrentAbility].SwitchAbility(1);
+                }
+                else if (Input.GetAxisRaw("Switch") <= -0.9 && triggerPrevious > -0.9)
+                {
+                    SwitchStatus = -1;
+                    Abilities[CurrentAbility].SwitchAbility(-1);
+                }
+                else
+                {
+                    SwitchStatus = 0;
+                }
             }
             triggerPrevious = Input.GetAxisRaw("Switch");
         }

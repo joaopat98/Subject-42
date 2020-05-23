@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -749338713933554755, guid: e692873e256c22743a9f843ca13b6887, type: 3}
+  - {fileID: 2100000, guid: dd500b6efb453194c90b0ff29ba73185, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -137,7 +137,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2310514774154243031, guid: e692873e256c22743a9f843ca13b6887, type: 3}
+  - {fileID: 2100000, guid: 99a6745503a49ab419c470408ab56178, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -216,7 +216,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2310514774154243031, guid: e692873e256c22743a9f843ca13b6887, type: 3}
+  - {fileID: 2100000, guid: 99a6745503a49ab419c470408ab56178, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -295,7 +295,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2310514774154243031, guid: e692873e256c22743a9f843ca13b6887, type: 3}
+  - {fileID: 2100000, guid: 99a6745503a49ab419c470408ab56178, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -384,6 +384,7 @@ MonoBehaviour:
   NameContent: 'Diary: April 10'
   DescriptionContent: "Subject #42 is far too powerful. We have failed to curb her
     vicious tendencies\u2026"
+  CollectibleType: 
 --- !u!65 &5029583084087584569
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -455,7 +456,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2310514774154243031, guid: e692873e256c22743a9f843ca13b6887, type: 3}
+  - {fileID: 2100000, guid: 99a6745503a49ab419c470408ab56178, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
