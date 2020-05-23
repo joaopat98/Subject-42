@@ -9,6 +9,7 @@ TagManager:
   - Door
   - PowerWheel
   - TelekinesisObject
+  - Slot
   layers:
   - Default
   - TransparentFX
