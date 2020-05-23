@@ -143,5 +143,6 @@ public class PowerIndicator : MonoBehaviour
         imgTransform.localScale = scale;
         color.a = alpha;
         image.color = color;
+        player.Sounds.PlayOnce("PowerIndicator");
     }
 }

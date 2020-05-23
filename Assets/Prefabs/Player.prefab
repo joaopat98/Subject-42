@@ -431,6 +431,9 @@ MonoBehaviour:
   - name: StartLevel
     clip: {fileID: 8300000, guid: c039b5e302801ec4695a6da3623fbc56, type: 3}
     volume: 0.54
+  - name: PowerIndicator
+    clip: {fileID: 8300000, guid: 55de240110e738f4996bd54c0cf095fa, type: 3}
+    volume: 0.05
 --- !u!1 &815207935028953806
 GameObject:
   m_ObjectHideFlags: 0

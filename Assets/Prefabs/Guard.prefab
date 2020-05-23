@@ -1992,9 +1992,10 @@ MonoBehaviour:
   DefaultPath: {fileID: 0}
   agent: {fileID: 0}
   player: {fileID: 0}
+  ViewRange: 5
   PatrolSpeed: 1
   ViewAngle: 32.27
-  ViewRange: 5
+  PatrolView: 5
   PatrolReachDistance: 0.1
   PatrolAngularSpeed: 3
   CheckSpeed: 1
@@ -2007,13 +2008,14 @@ MonoBehaviour:
   ChaseAngularSpeed: 5
   playerSpeedthreshold: 5
   playerDistancethreshold: 5
+  LostView: 0.5
   PatrolColor: {r: 1, g: 0.9113123, b: 0.7877358, a: 1}
   CheckColor: {r: 1, g: 0.6523205, b: 0.2971698, a: 1}
   ChaseColor: {r: 1, g: 0.24121647, b: 0.08962262, a: 1}
   type: 1
   AttacksPerSec: 2
   AttackRange: 5
-  BulletPrefab: {fileID: 4969766445735903920, guid: 842393470ca81994ea733416f7b32ae2,
+  BulletPrefab: {fileID: 5163458519525269598, guid: ee0757aaca00c1c47a2d1b041600dc0e,
     type: 3}
   Weapon: {fileID: 6875140449944279668}
   anim: {fileID: 0}
