@@ -79,6 +79,7 @@ public class FallOverWall : MonoBehaviour, ITelekinesisObject
     // Update is called once per frame
     void Update()
     {
+        if (fallAcum < 0) fallAcum = 0;
         if (!fallen)
         {
             transform.position = initPos + (fallAcum / FallThreshold) * (
