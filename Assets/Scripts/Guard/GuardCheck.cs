@@ -25,7 +25,7 @@ public class GuardCheck : GuardAction
         guard.anim.SetFloat("Speed", agent.velocity.magnitude / agent.speed);
         // Update the agent's goal to the player's position
         agent.SetDestination(obj);
-
+        Debug.Log("Check");
         // Check if the player is within the field of view of the guard or 
         // if its speed and distance is less than a threshold
         if (
