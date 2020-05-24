@@ -5,9 +5,10 @@ using UnityEngine;
 public class Spin : MonoBehaviour
 {   
     public int Speed;
-
+    public Vector3 Axis = Vector3.up;
+    
     void Update()
     {
-        transform.Rotate(Vector3.up * Speed * Time.deltaTime);
+        transform.Rotate(Axis * Speed * Time.deltaTime);
     }
 }
