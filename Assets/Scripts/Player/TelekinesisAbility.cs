@@ -83,6 +83,7 @@ public class TelekinesisAbility : Ability
                     player.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity.normalized * player.TelekinesisMaxSpeed;
                 }
                 player.anim.SetBool("Telekinesis", true);
+                player.Sounds.PlayLoop("Telekinesis");
                 Vector2 vel = new Vector2(player.GetComponent<Rigidbody>().velocity.x, player.GetComponent<Rigidbody>().velocity.z);
                 player.anim.SetFloat("Speed", vel.magnitude);
 
@@ -123,6 +124,7 @@ public class TelekinesisAbility : Ability
                 || Vector3.Distance(player.transform.position, currentObj.GetSelectionPosition()) > player.TelekinesisRange)
             {
                 Release();
+                player.Sounds.StopLoop("Telekinesis");
             }
         }
     }
