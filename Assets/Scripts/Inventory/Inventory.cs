@@ -14,18 +14,20 @@ public class Inventory : MonoBehaviour
     [HideInInspector] public int current = 0;
     public List<string> Names = new List<string>();
     public List<string> Descriptions = new List<string>();
-
+    AudioPlayer Sounds;
     private bool AxisInUse = false;
 
     void Start()
     {
         slots = transform.Find("Panel").Find("Slots").GetChildren();
+        Sounds = FindObjectOfType<AudioPlayer>();
     }
     void Update()
     {
         //XBox: 'Back' PS3: 'Select'
         if (Input.GetButtonDown("Inventory"))
         {
+            Sounds.PlayOnce("OpenMenu");
             show = !show;
         }
 
@@ -35,6 +37,7 @@ public class Inventory : MonoBehaviour
             {
                 if (current > 0)
                 {
+                    Sounds.PlayOnce("ChangedCollectible");
                     current--;
                     AxisInUse = true;
                 }
@@ -44,6 +47,7 @@ public class Inventory : MonoBehaviour
             {
                 if (current < Names.Count - 1)
                 {
+                    Sounds.PlayOnce("ChangedCollectible");
                     current++;
                     AxisInUse = true;
                 }

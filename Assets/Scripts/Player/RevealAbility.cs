@@ -37,6 +37,7 @@ public class RevealAbility : Ability
         else if (Input.GetButtonDown("Power") && isActive)
         {
             isActive = false;
+            player.Sounds.StopLoop("LoopReveal");
             FadeOutColor();
             foreach (IRevealObject obj in objects)
             {
@@ -49,7 +50,9 @@ public class RevealAbility : Ability
 
     IEnumerator ActivatePowerAndAnimation()
     {
-
+        player.Sounds.PlayOnce("StartReveal");
+        player.Sounds.PlayLoop("LoopReveal");
+        
         player.anim.SetTrigger("Reveal");
         yield return new WaitForSeconds(2.0f);
         foreach (IRevealObject obj in objects)

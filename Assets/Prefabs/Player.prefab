@@ -434,6 +434,21 @@ MonoBehaviour:
   - name: PowerIndicator
     clip: {fileID: 8300000, guid: 55de240110e738f4996bd54c0cf095fa, type: 3}
     volume: 0.05
+  - name: ChangedCollectible
+    clip: {fileID: 8300000, guid: 9c1175026c916174cb0607fc18b85a29, type: 3}
+    volume: 0.05
+  - name: ThirdLevel
+    clip: {fileID: 8300000, guid: b1699f5f47796e34abed776669985125, type: 3}
+    volume: 0.524
+  - name: OpenMenu
+    clip: {fileID: 8300000, guid: 4df563a8f3091544bbbb11b2d02df47c, type: 3}
+    volume: 0.2
+  - name: StartReveal
+    clip: {fileID: 8300000, guid: 48ea37ed4d63c1d43a5109a0e6c9cfc1, type: 3}
+    volume: 0.4
+  - name: LoopReveal
+    clip: {fileID: 8300000, guid: 59e2a96a568267340bc79a32c9d35baf, type: 3}
+    volume: 0.1
 --- !u!1 &815207935028953806
 GameObject:
   m_ObjectHideFlags: 0
