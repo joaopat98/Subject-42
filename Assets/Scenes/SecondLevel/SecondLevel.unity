@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -219,7 +219,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.17
+  m_Intensity: 0.29
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -9723,12 +9723,17 @@ PrefabInstance:
     - target: {fileID: 8737327482470235699, guid: 9298e279b22ae284cb2e0653e81a1404,
         type: 3}
       propertyPath: StartingAbilities.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8737327482470235699, guid: 9298e279b22ae284cb2e0653e81a1404,
         type: 3}
       propertyPath: StartingAbilities.Array.data[0]
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8737327482470235699, guid: 9298e279b22ae284cb2e0653e81a1404,
+        type: 3}
+      propertyPath: StartingAbilities.Array.data[1]
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8895793756302740059, guid: 9298e279b22ae284cb2e0653e81a1404,
         type: 3}
@@ -9903,8 +9908,8 @@ Light:
   m_Color: {r: 1, g: 0.9113123, b: 0.7877358, a: 1}
   m_Intensity: 15.3
   m_Range: 9.36
-  m_SpotAngle: 143.1707
-  m_InnerSpotAngle: 127.83447
+  m_SpotAngle: 120.739624
+  m_InnerSpotAngle: 96.43097
   m_CookieSize: 10
   m_Shadows:
     m_Type: 1
@@ -9995,8 +10000,8 @@ Light:
   m_Color: {r: 1, g: 0.9113123, b: 0.7877358, a: 1}
   m_Intensity: 15.3
   m_Range: 9.36
-  m_SpotAngle: 143.1707
-  m_InnerSpotAngle: 127.83447
+  m_SpotAngle: 120.739624
+  m_InnerSpotAngle: 96.43097
   m_CookieSize: 10
   m_Shadows:
     m_Type: 1
@@ -16378,8 +16383,8 @@ Light:
   m_Color: {r: 1, g: 0.9113123, b: 0.7877358, a: 1}
   m_Intensity: 15.3
   m_Range: 9.36
-  m_SpotAngle: 143.1707
-  m_InnerSpotAngle: 127.83447
+  m_SpotAngle: 120.739624
+  m_InnerSpotAngle: 96.43097
   m_CookieSize: 10
   m_Shadows:
     m_Type: 1

@@ -59,6 +59,7 @@ public class PowerWheel : MonoBehaviour
             AbilityType newAbility = UpdateSelected();
             if (newAbility != AbilityType.Empty && newAbility != abilityType)
             {
+                player.Sounds.PlayOnce("PowerIndicator");
                 foreach (var icon in ActivatedIcons)
                 {
                     icon.Value.enabled = icon.Key == newAbility;

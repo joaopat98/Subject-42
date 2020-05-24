@@ -140,8 +140,15 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         triggerAnim = (TriggerAnim[])System.Enum.GetValues(typeof(TriggerAnim));
         Sounds = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioPlayer>();
-        Sounds.PlayLoop("AmbientSound");
-        QualitySettings.pixelLightCount = 8;
+        StartCoroutine(PlayStartSounds());
+        
+    }
+
+    IEnumerator PlayStartSounds()
+    {
+        Sounds.PlayOnce("StartLevel");
+        yield return new WaitForSeconds(1.0f);
+        Sounds.PlayLoop(SceneManager.GetActiveScene().name);
     }
 
     void Update()
@@ -157,19 +164,22 @@ public class Player : MonoBehaviour
             Abilities[CurrentAbility].Update();
 
             // Switch abilities depending on user input
-            if (Input.GetAxisRaw("Switch") >= 0.9 && triggerPrevious < 0.9)
+            if (Abilities.Count > 1)
             {
-                SwitchStatus = 1;
-                Abilities[CurrentAbility].SwitchAbility(1);
-            }
-            else if (Input.GetAxisRaw("Switch") <= -0.9 && triggerPrevious > -0.9)
-            {
-                SwitchStatus = -1;
-                Abilities[CurrentAbility].SwitchAbility(-1);
-            }
-            else
-            {
-                SwitchStatus = 0;
+                if (Input.GetAxisRaw("Switch") >= 0.9 && triggerPrevious < 0.9)
+                {
+                    SwitchStatus = 1;
+                    Abilities[CurrentAbility].SwitchAbility(1);
+                }
+                else if (Input.GetAxisRaw("Switch") <= -0.9 && triggerPrevious > -0.9)
+                {
+                    SwitchStatus = -1;
+                    Abilities[CurrentAbility].SwitchAbility(-1);
+                }
+                else
+                {
+                    SwitchStatus = 0;
+                }
             }
             triggerPrevious = Input.GetAxisRaw("Switch");
         }
@@ -201,7 +211,7 @@ public class Player : MonoBehaviour
 
         dir = Vector3.Lerp(previousDir, dir, 20f * Time.deltaTime);
         previousDir = dir;
-        Debug.Log(dir.x);
+        //Debug.Log(dir.x);
         // Rotate player towards the direction it is moving in
         if (dir != Vector3.zero && !isAnimTrigger)
             rb.MoveRotation(Quaternion.LookRotation(dir, Vector3.up));

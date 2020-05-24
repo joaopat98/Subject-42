@@ -7,7 +7,8 @@ public class PickupCollectible : MonoBehaviour
 {
     private Inventory inventory;
     private Dialogue dialogue;
-    public GameObject itemButton;
+    public Sprite hiddenIcon;
+    public Sprite normalIcon;
     public string NameContent;
     [TextArea(3, 10)]
     public string DescriptionContent;
