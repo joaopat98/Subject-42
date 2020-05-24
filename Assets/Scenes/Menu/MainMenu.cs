@@ -3,41 +3,45 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using JoystickUtils;
+using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
     private int current = 0;
     private bool AxisInUse = false;
-    private List<Transform> slots;
-    public GameObject Select;
+    public Color unselected = new Color(1f, 1f, 1f, 1f);
+    public Color selected = new Color(0f, 1f, 1f, 1f);
 
-    void Start()
+    public TextMeshProUGUI Play;
+    public TextMeshProUGUI Credits;
+    public TextMeshProUGUI Quit;
+
+    private List<TextMeshProUGUI> Titles = new List<TextMeshProUGUI>();
+    
+    void updateHovering()
     {
-        slots = transform.Find("Panel").Find("MenuItems").GetChildren();
+        for( int i = 0; i < Titles.Count; i++)
+        {
+            if( i == current)
+            {
+                Titles[i].color = selected;
+            }
+            else
+            {
+                Titles[i].color = unselected;
+            }
+        }
     }
 
-    void PlayGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
-    void LoadScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-    }
-
-    void execute()
+    void Execute()
     {
         switch (current)
         {
             case 0:
-                PlayGame();
+                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 break;
             case 1:
-                LoadScene("HowToPlay");
-                break;
-            case 2:
-                LoadScene("Credits");
+                //LoadScene("Credits");
                 break;
             default:
                 Application.Quit();
@@ -45,17 +49,18 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    void updateHovering()
+    void Start()
     {
-        Select.transform.position = slots[current].transform.position;
+        Titles.Add(Play);
+        Titles.Add(Credits);
+        Titles.Add(Quit);
     }
-
 
     void Update()
     {
         if(Input.GetButtonDown("Interact"))
         {
-            execute();
+            Execute();
         }
 
         else if(Input.GetAxisRaw("DPad Y") == 0)
@@ -75,7 +80,7 @@ public class MainMenu : MonoBehaviour
             AxisInUse = true;
         }
 
-        current = Mathf.Clamp(current, 0, slots.Count-1);
+        current = Mathf.Clamp(current, 0, Titles.Count-1);
 
         updateHovering();
     }
