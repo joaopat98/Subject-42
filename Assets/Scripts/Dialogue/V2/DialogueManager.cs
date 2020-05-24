@@ -8,6 +8,7 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> sentences;
     private Queue<Dialogue> dialogues;
     public TextMeshProUGUI DialogueText;
+    public TextMeshProUGUI Speaker;
     public GameObject DialogueCanvas;
     public float TypingSpeed;
     public float WaitTime;
@@ -28,7 +29,9 @@ public class DialogueManager : MonoBehaviour
 
     void StartDialogue(Dialogue d)
     {
+
         dialogue = d;
+        Speaker.text = d.speaker;
         IsStarting = true;
         foreach (string sentence in dialogue.sentences)
         {
@@ -60,6 +63,7 @@ public class DialogueManager : MonoBehaviour
         if (dialogue.callBack != null)
             dialogue.callBack();
         dialogue = null;
+        Speaker.text = "";
         DialogueCanvas.SetActive(false);
     }
 

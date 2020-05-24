@@ -3,19 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using TMPro;
 
 public class Inventory : MonoBehaviour
 {
     private List<Transform> slots;
     private bool show = false;
     public GameObject Select;
-    public Text Name;
-    public Text Description;
+    public TextMeshProUGUI Name;
+    public TextMeshProUGUI Description;
     [HideInInspector] public int current = 0;
     public List<string> Names = new List<string>();
     public List<string> Descriptions = new List<string>();
     AudioPlayer Sounds;
+    public List<Sprite> Images = new List<Sprite>();
     private bool AxisInUse = false;
+    public Image currentItem;
+
 
     void Start()
     {
@@ -61,6 +65,8 @@ public class Inventory : MonoBehaviour
             Name.text = Names[current];
             Description.text = Descriptions[current];
             Select.transform.position = slots[current].transform.position;
+            currentItem.sprite = Images[current];
+            currentItem.color = new Color(currentItem.color.r, currentItem.color.g,currentItem.color.b, 1f);
         }
 
         else
@@ -77,6 +83,10 @@ public class Inventory : MonoBehaviour
         Names.Add(collectible.NameContent);
         Descriptions.Add(collectible.DescriptionContent);
         current = Names.Count - 1;
-        Instantiate(collectible.itemButton, slots[Names.Count - 1], false);
+        string slotName = "Slot" + Names.Count;
+        Image newEntry = GameObject.Find(slotName).GetComponent<Image>();
+        newEntry.sprite = collectible.hiddenIcon;
+        newEntry.color = new Color(newEntry.color.r, newEntry.color.g, newEntry.color.b, 1f);
+        Images.Add(collectible.normalIcon);
     }
 }
