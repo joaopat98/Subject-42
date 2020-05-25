@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -725,6 +725,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7754318969949236687, guid: 9ed716864fbb1fd43a8cf59b91f59fe2, type: 3}
+--- !u!95 &92080333 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4082258707062739313, guid: e9fb9bae2195e4444968867f425744ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 302288041}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &94074660
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6018,6 +6024,31 @@ Transform:
   m_Father: {fileID: 1533022744}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &858993763 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6263424904649011109, guid: 991d4063b7c180743b622bf0e32efc1b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1947901899}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &858993764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858993763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0c135bf711c3df4489ab095cfc49263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tip:
+    sentences:
+    - (That man before was talking about changing orientations or something...)
+    RequiresConfirmation: 0
+    speaker: 
+  FinalDoor: {fileID: 92080333}
+  IdleTime: 15
 --- !u!1 &859269709
 GameObject:
   m_ObjectHideFlags: 0
