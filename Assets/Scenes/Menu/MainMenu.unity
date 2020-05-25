@@ -459,9 +459,9 @@ MonoBehaviour:
   selected: {r: 0, g: 1, b: 1, a: 1}
   credit: {fileID: 5245743558681164823}
   Sounds: {fileID: 2038786693}
-  Play: {fileID: 0}
-  Credits: {fileID: 0}
-  Quit: {fileID: 0}
+  Play: {fileID: 235511023}
+  Credits: {fileID: 682220871}
+  Quit: {fileID: 1727149630}
 --- !u!328 &508745600
 VideoPlayer:
   m_ObjectHideFlags: 0
