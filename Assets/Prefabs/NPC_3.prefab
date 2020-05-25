@@ -2111,8 +2111,8 @@ MonoBehaviour:
   Range: 1.5
   BeforeDialogue:
     sentences:
-    - Zzzzzzzzz my hair is full of static zzzzzzzzzz...
-    - Zzzzzzzz do you want me to zzzzzzap you?
+    - BzZzZzZzZzt my hair is full of static bZzZzZzZzt...
+    - BzZzZzZzZzt do you want me to zZzZzZap you?
     RequiresConfirmation: 1
     speaker: ???
   ExplainDialogue:
