@@ -249,7 +249,7 @@ InputManager:
     m_Name: DPad Y
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: left shift
+    negativeButton: caps lock
     positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
