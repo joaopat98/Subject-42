@@ -414,7 +414,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 6897f4cc7f19d6c4cbf61e6dcfb020f3, type: 3}
     volume: 0.5
   - name: FirstLevel
-    clip: {fileID: 8300000, guid: 508043ed70ec606448075998a240b534, type: 3}
+    clip: {fileID: 8300000, guid: 56d32ef320ad8f84a8a1ee434969d1ff, type: 3}
     volume: 0.524
   - name: LightSwitch
     clip: {fileID: 8300000, guid: 85a2ca6af109d0a40a705551ced8663a, type: 3}
@@ -438,11 +438,11 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 9c1175026c916174cb0607fc18b85a29, type: 3}
     volume: 0.05
   - name: ThirdLevel
-    clip: {fileID: 8300000, guid: b1699f5f47796e34abed776669985125, type: 3}
+    clip: {fileID: 8300000, guid: c74cfa69d95ed2e48a406d09764b46d4, type: 3}
     volume: 0.524
   - name: OpenMenu
     clip: {fileID: 8300000, guid: 4df563a8f3091544bbbb11b2d02df47c, type: 3}
-    volume: 0.2
+    volume: 0.15
   - name: StartReveal
     clip: {fileID: 8300000, guid: 48ea37ed4d63c1d43a5109a0e6c9cfc1, type: 3}
     volume: 0.4
@@ -454,6 +454,21 @@ MonoBehaviour:
     volume: 0.1
   - name: Key1
     clip: {fileID: 8300000, guid: 831500ec6147a824ca6253c14450bd9f, type: 3}
+    volume: 0.1
+  - name: Key2
+    clip: {fileID: 8300000, guid: 93db9730e4b245445afa04f6e538cd92, type: 3}
+    volume: 0.1
+  - name: Key3
+    clip: {fileID: 8300000, guid: c6d6668593fb13c42b63413d7d118651, type: 3}
+    volume: 0.1
+  - name: Key4
+    clip: {fileID: 8300000, guid: 82ecae2af0d86a24ab94aad87d444836, type: 3}
+    volume: 0.1
+  - name: BreatheBegin
+    clip: {fileID: 8300000, guid: 8ee243a8c00ffe745ab56d0efe7cce6c, type: 3}
+    volume: 0.1
+  - name: BreatheEnd
+    clip: {fileID: 8300000, guid: 3725941a604cb8b4490e654f87ed13cb, type: 3}
     volume: 0.1
 --- !u!1 &815207935028953806
 GameObject:

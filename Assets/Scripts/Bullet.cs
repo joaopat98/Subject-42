@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
         // Ignore collision if it was with guard, otherwise destroy the bullet
-        else if (!col.CompareTag("Guard"))
+        else if (col.gameObject.layer != LayerMask.NameToLayer("Enemies"))
         {
             Destroy(gameObject);
         }

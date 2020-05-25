@@ -20,16 +20,6 @@ public class Inventory : MonoBehaviour
     private bool AxisInUse = false;
     public Image currentItem;
 
-    void Awake()
-    {
-        int numbersOfInvetory = FindObjectsOfType(GetType()).Length;
-        if (numbersOfInvetory > 1)
-        {
-            Destroy(gameObject);
-        }
-        DontDestroyOnLoad(this.gameObject);
-
-    }
     void Start()
     {
         slots = transform.Find("Panel").Find("Slots").GetChildren();

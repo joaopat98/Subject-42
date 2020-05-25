@@ -14,7 +14,7 @@ public class GuardChase : GuardAction
         agent.angularSpeed = guard.ChaseAngularSpeed;
         agent.stoppingDistance = guard.ChaseReachDistance;
         agent.speed = guard.ChaseSpeed;
-        player.Sounds.PlayLoop("DetectedEffect");
+        player.Sounds.PlayLoop("BreatheBegin");
 
         DataCollector.AddGuardDiscovery();
     }
@@ -39,6 +39,7 @@ public class GuardChase : GuardAction
     public override void Do()
     {
         guard.anim.SetFloat("Speed", agent.velocity.magnitude / agent.speed);
+        //Debug.Log("Chase");
         t += Time.deltaTime;
         // Update the agent's goal to the player's position
         agent.SetDestination(player.transform.position);
@@ -55,8 +56,10 @@ public class GuardChase : GuardAction
         // Change to patrol mode if player is too far away
         if (Vector3.Distance(guard.transform.position, player.transform.position) > guard.ChaseRange)
         {
+            //Debug.Log("Sounds");
             guard.action = new GuardPatrol(guard);
-            player.Sounds.StopLoop("DetectedEffect");
+            player.Sounds.StopLoop("BreatheBegin");
+            player.Sounds.PlayOnce("BreatheEnd");
         }
         // Perform attack if next attack cycle is reached
         if (t > 1 / guard.AttacksPerSec)

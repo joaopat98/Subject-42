@@ -6,6 +6,11 @@ public class TelekinesisCollider : MonoBehaviour
 {
     public GameObject obj;
 
+    void Reset()
+    {
+        gameObject.layer = LayerMask.NameToLayer("Telekinesis");
+    }
+
     public ITelekinesisObject GetTelekinesisObject()
     {
         if (obj != null)
