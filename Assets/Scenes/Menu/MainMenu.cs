@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using JoystickUtils;
 using TMPro;
+using UnityEditor;
 
 public class MainMenu : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class MainMenu : MonoBehaviour
 
     void Execute()
     {
+        Sounds.PlayOnce("Click");
         switch (current)
         {
             case 0:
@@ -57,7 +59,7 @@ public class MainMenu : MonoBehaviour
         Titles.Add(Play);
         Titles.Add(Credits);
         Titles.Add(Quit);
-
+        credit.SetActive(false);
         Sounds.PlayLoop("MainMenu");
     }
 
