@@ -11,6 +11,8 @@ public class MainMenu : MonoBehaviour
     private bool AxisInUse = false;
     public Color unselected = new Color(1f, 1f, 1f, 1f);
     public Color selected = new Color(0f, 1f, 1f, 1f);
+    public GameObject credit;
+    public AudioPlayer Sounds;
 
     public TextMeshProUGUI Play;
     public TextMeshProUGUI Credits;
@@ -41,7 +43,8 @@ public class MainMenu : MonoBehaviour
                  SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 break;
             case 1:
-                //LoadScene("Credits");
+                credit.SetActive(true);
+                gameObject.SetActive(false);
                 break;
             default:
                 Application.Quit();
@@ -54,6 +57,8 @@ public class MainMenu : MonoBehaviour
         Titles.Add(Play);
         Titles.Add(Credits);
         Titles.Add(Quit);
+        Sounds.PlayLoop("MainMenu");
+        credit.SetActive(false);
     }
 
     void Update()

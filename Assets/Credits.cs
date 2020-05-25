@@ -4,12 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Credits : MonoBehaviour
+
 {
+    public GameObject menu;
+    
     void Update()
     {
         if(Input.GetButtonDown("Interact"))
         {
-            //SceneManager.LoadScene("MainMenu");
+            menu.SetActive(true);
+            this.gameObject.SetActive(false);
         }
     }
 }
