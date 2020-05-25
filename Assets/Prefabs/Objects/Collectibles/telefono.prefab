@@ -317,7 +317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hiddenIcon: {fileID: 21300000, guid: 8b777e01f1b3709438c39897c7b4b237, type: 3}
   normalIcon: {fileID: 21300000, guid: 8b777e01f1b3709438c39897c7b4b237, type: 3}
-  NameContent: 'Diary: April 10'
-  DescriptionContent: "Diary: May 26\nSubject #42 is far too powerful. We have failed
-    to curb her vicious tendencies\u2026"
+  NameContent: 'Last Message: October 7'
+  DescriptionContent: This phone shows a conversation of the "MDJ" project. Seems
+    like things took a turn for the worse..
   CollectibleType: 

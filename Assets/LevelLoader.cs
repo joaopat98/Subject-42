@@ -10,10 +10,16 @@ public class LevelLoader : MonoBehaviour
     public float TransitionTime = 1.5f;
 
     Player player;
+
+    public int index = -1;
     
     public void LoadNextLevel()
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        if(index == -1)
+        {
+            StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        }
+        StartCoroutine(LoadLevel(index));
     }
 
     IEnumerator LoadLevel(int LevelIndex)

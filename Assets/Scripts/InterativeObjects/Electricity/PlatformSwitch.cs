@@ -24,6 +24,7 @@ public class PlatformSwitch : MonoBehaviour, IElectricObject
     {
         if (!isActive)
         {
+            player.Sounds.PlayOnce("DoorSwitch");
             platform.GetComponent<Animator>().SetBool("Active", true);
             isActive = true;
         }

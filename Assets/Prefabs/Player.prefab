@@ -423,7 +423,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: d3756dea19fe88e43847ccc10164d0a8, type: 3}
     volume: 0.54
   - name: SecondLevel
-    clip: {fileID: 8300000, guid: 4cba79836fe7f5b4889b3d64acad80ec, type: 3}
+    clip: {fileID: 8300000, guid: 855109a3fc267aa4f94a883002aab116, type: 3}
     volume: 0.54
   - name: ElevatorOpen
     clip: {fileID: 8300000, guid: 2a2915cc4a6d8a9438df4cf52857daa3, type: 3}
