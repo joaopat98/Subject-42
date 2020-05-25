@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: c8a62985fbad44249ac1911e2d7c1bfa, type: 3}
+  - {fileID: 2100000, guid: 47adcdb5c71a3e44da78cd338a7fa086, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -137,7 +137,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 824015559753126921, guid: c8a62985fbad44249ac1911e2d7c1bfa, type: 3}
+  - {fileID: 2100000, guid: 8d0601234dbb0be49926662bb786249c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 8081547575707824221}
   - component: {fileID: 5078993214165025359}
   m_Layer: 0
-  m_Name: tanque
+  m_Name: WaterTank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,9 +182,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5078993214165025358}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -27.150969, y: 0.25842497, z: 2.4119751}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3394669, y: 1.1580017, z: 1.3394669}
   m_Children:
   - {fileID: 8063675681859253212}
   - {fileID: 3297509924344421120}
@@ -264,7 +264,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: c8a62985fbad44249ac1911e2d7c1bfa, type: 3}
+  - {fileID: 2100000, guid: 47adcdb5c71a3e44da78cd338a7fa086, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -177,7 +177,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: insert message pls
+  m_text: 'Samantha Castro
+
+    Nuno Gomes'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d70fda6e480361c429e273d2734c14ee, type: 2}
   m_sharedMaterial: {fileID: 3834667260349978793, guid: d70fda6e480361c429e273d2734c14ee,
@@ -247,12 +249,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 3464574}
-    characterCount: 18
+    characterCount: 26
     spriteCount: 0
-    spaceCount: 2
-    wordCount: 3
+    spaceCount: 3
+    wordCount: 4
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -542,7 +544,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030518, y: -100.259995}
+  m_AnchoredPosition: {x: 0.000030518, y: -79.259995}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &632376835
@@ -934,7 +936,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030518, y: 20.051985}
+  m_AnchoredPosition: {x: 0.000030518, y: 41.051987}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &987022240
@@ -1094,7 +1096,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030518, y: -220.57199}
+  m_AnchoredPosition: {x: 0.000030518, y: -223}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1033735542
@@ -1344,7 +1346,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Carlos Berrizbeitia
+  m_text: 'Malbanyat
+
+    Jupiter86'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d70fda6e480361c429e273d2734c14ee, type: 2}
   m_sharedMaterial: {fileID: 3834667260349978793, guid: d70fda6e480361c429e273d2734c14ee,
@@ -1419,7 +1423,7 @@ MonoBehaviour:
     spaceCount: 1
     wordCount: 2
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
