@@ -51,6 +51,7 @@ public class Checkpoint : MonoBehaviour
     void ResetToCheckpoint()
     {
         player.transform.position = checkpoint.position;
+        DataCollector.AddDeath();
         for (int i = 0; i < objects.Length; i++)
         {
             objects[i].transform.position = objResetPos[i];
