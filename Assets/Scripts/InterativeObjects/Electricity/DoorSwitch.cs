@@ -12,7 +12,7 @@ public class DoorSwitch : MonoBehaviour, IElectricObject
     public bool HasDialog;
     public Dialogue AfterDialogue;
     public GameObject[] doors;
-
+    public string soundName = "ElevatorOpen";
     DialogueManager dialogueManager;
 
     public void Start()
@@ -30,10 +30,10 @@ public class DoorSwitch : MonoBehaviour, IElectricObject
         Debug.Log("Switch Activate");
         if (!isDoorOpened)
         {
-            player.Sounds.PlayOnce("ElevatorOpen");
+            player.Sounds.PlayOnce(soundName);
             foreach (GameObject door in doors)
             {
-                Debug.Log("ENTRE");
+                //Debug.Log("ENTRE");
                 door.GetComponentInChildren<Animator>().SetBool("isOpen", true);
             }
             isDoorOpened = true;

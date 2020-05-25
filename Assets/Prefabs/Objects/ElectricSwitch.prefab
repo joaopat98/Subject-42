@@ -363,8 +363,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 414d7eb4195502244ae5f453a3b46c7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HasDialog: 0
+  AfterDialogue:
+    sentences: []
+    RequiresConfirmation: 1
+    speaker: 
   doors:
   - {fileID: 0}
+  soundName: DoorSwitch
 --- !u!65 &2835159557477250056
 BoxCollider:
   m_ObjectHideFlags: 0
