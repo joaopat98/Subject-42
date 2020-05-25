@@ -141,7 +141,7 @@ public class Player : MonoBehaviour
         triggerAnim = (TriggerAnim[])System.Enum.GetValues(typeof(TriggerAnim));
         Sounds = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioPlayer>();
         StartCoroutine(PlayStartSounds());
-        
+
     }
 
     IEnumerator PlayStartSounds()
@@ -282,6 +282,7 @@ public class Player : MonoBehaviour
         else
         {
             Abilities.Add(Ability.FromType(type, this));
+            SwitchAbility(Abilities.Count - 1 - CurrentAbility);
         }
     }
 

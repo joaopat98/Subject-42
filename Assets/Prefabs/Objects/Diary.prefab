@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -749338713933554755, guid: e692873e256c22743a9f843ca13b6887, type: 3}
+  - {fileID: 2100000, guid: dd500b6efb453194c90b0ff29ba73185, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -137,7 +137,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2310514774154243031, guid: e692873e256c22743a9f843ca13b6887, type: 3}
+  - {fileID: 2100000, guid: 99a6745503a49ab419c470408ab56178, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -216,7 +216,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2310514774154243031, guid: e692873e256c22743a9f843ca13b6887, type: 3}
+  - {fileID: 2100000, guid: 99a6745503a49ab419c470408ab56178, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -295,7 +295,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2310514774154243031, guid: e692873e256c22743a9f843ca13b6887, type: 3}
+  - {fileID: 2100000, guid: 99a6745503a49ab419c470408ab56178, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 5029583084087584570}
   - component: {fileID: 5029583084087584569}
   m_Layer: 0
-  m_Name: Collectible
+  m_Name: Diary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -343,7 +343,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5029583084087584568}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25.205233, y: 0.537, z: 8.331}
+  m_LocalPosition: {x: -1.9, y: 0.496, z: 0.356}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_Children:
   - {fileID: 6872687526806498629}
@@ -367,6 +367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 65
+  Axis: {x: 0, y: 1, z: 0}
 --- !u!114 &5029583084087584570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,12 +380,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a02b6b2dcc9a454fba605d89430bc11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hiddenIcon: {fileID: 21300000, guid: 62ab733a76172b44eb498e7922c4c269, type: 3}
+  hiddenIcon: {fileID: 21300000, guid: 438c3d41ee6262748aea6e6456a77f7d, type: 3}
   normalIcon: {fileID: 21300000, guid: 438c3d41ee6262748aea6e6456a77f7d, type: 3}
   NameContent: 'Diary: April 10'
   DescriptionContent: "Subject #42 is far too powerful. We have failed to curb her
     vicious tendencies\u2026"
-  CollectibleType: Diary Entry
+  CollectibleType: 
 --- !u!65 &5029583084087584569
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -456,7 +457,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2310514774154243031, guid: e692873e256c22743a9f843ca13b6887, type: 3}
+  - {fileID: 2100000, guid: 99a6745503a49ab419c470408ab56178, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

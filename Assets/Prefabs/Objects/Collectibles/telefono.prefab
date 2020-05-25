@@ -315,8 +315,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a02b6b2dcc9a454fba605d89430bc11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemButton: {fileID: 3841834753359268384, guid: 8e1fb75bbbb3a1a4092164a0226819a4,
-    type: 3}
+  hiddenIcon: {fileID: 21300000, guid: 8b777e01f1b3709438c39897c7b4b237, type: 3}
+  normalIcon: {fileID: 21300000, guid: 8b777e01f1b3709438c39897c7b4b237, type: 3}
   NameContent: 'Diary: April 10'
   DescriptionContent: "Diary: May 26\nSubject #42 is far too powerful. We have failed
     to curb her vicious tendencies\u2026"
