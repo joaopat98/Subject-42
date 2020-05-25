@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a02b6b2dcc9a454fba605d89430bc11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hiddenIcon: {fileID: 21300000, guid: 62ab733a76172b44eb498e7922c4c269, type: 3}
+  hiddenIcon: {fileID: 21300000, guid: 438c3d41ee6262748aea6e6456a77f7d, type: 3}
   normalIcon: {fileID: 21300000, guid: 438c3d41ee6262748aea6e6456a77f7d, type: 3}
   NameContent: 'Diary: April 10'
   DescriptionContent: "Subject #42 is far too powerful. We have failed to curb her
