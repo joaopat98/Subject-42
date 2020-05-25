@@ -998,6 +998,9 @@ MonoBehaviour:
   - name: MainMenu
     clip: {fileID: 8300000, guid: 965104453d362a444ab10171909a7dd1, type: 3}
     volume: 1
+  - name: Click
+    clip: {fileID: 8300000, guid: 1a909aa444cb2cd40abc2579076bb930, type: 3}
+    volume: 0.15
 --- !u!1 &2111750673
 GameObject:
   m_ObjectHideFlags: 0
@@ -3443,6 +3446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 508745594}
+  Sounds: {fileID: 2038786693}
 --- !u!1 &5245743558681164823
 GameObject:
   m_ObjectHideFlags: 0
