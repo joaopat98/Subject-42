@@ -57,8 +57,8 @@ public class MainMenu : MonoBehaviour
         Titles.Add(Play);
         Titles.Add(Credits);
         Titles.Add(Quit);
+
         Sounds.PlayLoop("MainMenu");
-        credit.SetActive(false);
     }
 
     void Update()
