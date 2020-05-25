@@ -52,6 +52,7 @@ public class Checkpoint : MonoBehaviour
     {
         player.transform.position = checkpoint.position;
         DataCollector.AddDeath();
+        player.GetComponent<AudioPlayer>().PlayOnce("Death");
         for (int i = 0; i < objects.Length; i++)
         {
             objects[i].transform.position = objResetPos[i];

@@ -473,6 +473,9 @@ MonoBehaviour:
   - name: DoorSwitch
     clip: {fileID: 8300000, guid: d3756dea19fe88e43847ccc10164d0a8, type: 3}
     volume: 0.54
+  - name: Death
+    clip: {fileID: 8300000, guid: 6d9bb6d57f2abbb419f533d2740e2b9b, type: 3}
+    volume: 0.3
 --- !u!1 &815207935028953806
 GameObject:
   m_ObjectHideFlags: 0
