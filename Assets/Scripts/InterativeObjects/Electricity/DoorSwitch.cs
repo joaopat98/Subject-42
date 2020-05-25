@@ -30,6 +30,7 @@ public class DoorSwitch : MonoBehaviour, IElectricObject
         Debug.Log("Switch Activate");
         if (!isDoorOpened)
         {
+            player.Sounds.PlayOnce("ElevatorOpen");
             foreach (GameObject door in doors)
             {
                 door.GetComponentInChildren<Animator>().SetBool("isOpen", true);

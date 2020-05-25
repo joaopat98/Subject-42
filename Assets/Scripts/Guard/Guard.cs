@@ -16,15 +16,20 @@ public class Guard : MonoBehaviour
     /// <summary>
     /// Speed of the guard when patrolling
     /// </summary>
+    /// <summary>
+    /// Distance in front of the guard within which he can see the player
+    /// </summary>
+    public float ViewRange = 3f;
+
     [Header("Patrol")] public float PatrolSpeed = 1;
     /// <summary>
     /// Field of view of the guard when patrolling
     /// </summary>
     [Range(0, 180)] public float ViewAngle = 45;
     /// <summary>
-    /// Distance in front of the guard within which he can see the player
+    /// Field of view of the guard when patrolling
     /// </summary>
-    public float ViewRange = 3f;
+    public float PatrolView = 5;
     /// <summary>
     /// Distance to each Path node the guard will get to before moving to next node
     /// </summary>
@@ -64,6 +69,10 @@ public class Guard : MonoBehaviour
     /// Maximum distance that the player can not be detected
     /// </summary>
     public float playerDistancethreshold;
+    /// <summary>
+    /// View range of the lost guard
+    /// </summary>
+    [Header("Lost")] public float LostView = 0.5f;
 
     [Header("Light")]
     public Color PatrolColor;

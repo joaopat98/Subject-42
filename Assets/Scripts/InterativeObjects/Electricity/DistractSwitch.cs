@@ -25,6 +25,7 @@ public class DistractSwitch : MonoBehaviour, IElectricObject
     {
         if (TurnedOn)
         {
+           
             TurnedOn = false;
             foreach (var light in Lights)
             {
@@ -32,6 +33,7 @@ public class DistractSwitch : MonoBehaviour, IElectricObject
             }
             foreach (var guard in Guards)
             {
+                Debug.Log("Apague la luz");
                 guard.action = new GuardLost(guard, TimeToTurnBackOn);
             }
             StartCoroutine(TurnOnTheLights());
@@ -49,10 +51,13 @@ public class DistractSwitch : MonoBehaviour, IElectricObject
     }
     IEnumerator TurnOnTheLights()
     {
+        player.Sounds.PlayOnce("Switch");
+        yield return new WaitForSeconds(0.1f);
+        player.Sounds.PlayOnce("LightSwitch");
         yield return new WaitForSeconds(TimeToTurnBackOn);
         foreach (var light in Lights)
         {
-            light.enabled = false;
+            light.enabled = true;
         }
         TurnedOn = true;
     }

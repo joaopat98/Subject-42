@@ -9,6 +9,7 @@ public class GuardChase : GuardAction
     public GuardChase(Guard guard) : base(guard)
     {
         Debug.Log("Chasing");
+        guard.anim.SetBool("Lost", false);
         guard.anim.SetBool("Checking", false);
         guard.anim.SetBool("Chasing", true);
         agent.angularSpeed = guard.ChaseAngularSpeed;
@@ -37,7 +38,7 @@ public class GuardChase : GuardAction
     public override void Do()
     {
         guard.anim.SetFloat("Speed", agent.velocity.magnitude / agent.speed);
-
+        Debug.Log("Chase");
         t += Time.deltaTime;
         // Update the agent's goal to the player's position
         agent.SetDestination(player.transform.position);

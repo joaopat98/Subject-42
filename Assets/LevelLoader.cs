@@ -8,6 +8,8 @@ public class LevelLoader : MonoBehaviour
     public Animator Transition;
 
     public float TransitionTime = 1.5f;
+
+    Player player;
     
     public void LoadNextLevel()
     {

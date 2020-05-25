@@ -1630,7 +1630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityType: 7
-  Range: 1
+  Range: 1.5
 --- !u!1 &6039206836816700135
 GameObject:
   m_ObjectHideFlags: 0

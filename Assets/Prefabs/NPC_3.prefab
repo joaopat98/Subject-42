@@ -2036,8 +2036,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5012040682501282686}
   - component: {fileID: 3099703270283621892}
-  - component: {fileID: 8346579317544544623}
   - component: {fileID: 8346579317544544622}
+  - component: {fileID: 6669188245066711606}
   m_Layer: 0
   m_Name: NPC_3
   m_TagString: Untagged
@@ -2082,20 +2082,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8346579317544544623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8346579317544544621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a565d2ef83bfb53478e415c0020c719e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  abilityType: 6
-  Range: 1
 --- !u!64 &8346579317544544622
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2110,6 +2096,36 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4370537360113272507, guid: dbdc5202b49143b478c7079a113e1696, type: 3}
+--- !u!114 &6669188245066711606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8346579317544544621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 313487c1b1fcc574a91c3d8d468f60f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Range: 1.5
+  BeforeDialogue:
+    sentences:
+    - Zzzzzzzzz my hair is full of static zzzzzzzzzz...
+    - Zzzzzzzz do you want me to zzzzzzap you?
+    RequiresConfirmation: 1
+    speaker: ???
+  ExplainDialogue:
+    sentences:
+    - (I wonder if I can activate switches without touching them?)
+    RequiresConfirmation: 1
+    speaker: 
+  AfterDialogue:
+    sentences:
+    - (I should look around for stuff to use this new power  on)
+    RequiresConfirmation: 1
+    speaker: 
+  AbilityToGive: 6
 --- !u!1 &8353253087749889288
 GameObject:
   m_ObjectHideFlags: 0
