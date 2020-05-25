@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using TMPro;
 
 public class DialogueManager : MonoBehaviour
@@ -18,13 +19,14 @@ public class DialogueManager : MonoBehaviour
     System.Action callBack;
     private bool FirstTime;
     Coroutine toNextSentence = null;
-
+    AudioPlayer Sounds;
     void Start()
     {
         FirstTime = true;
         sentences = new Queue<string>();
         dialogues = new Queue<Dialogue>();
         DialogueCanvas.gameObject.SetActive(false);
+        Sounds = FindObjectOfType<AudioPlayer>();
     }
 
     void StartDialogue(Dialogue d)
@@ -71,8 +73,13 @@ public class DialogueManager : MonoBehaviour
     {
         IsTyping = true;
         DialogueText.text = "";
+       
+        System.Random rand = new System.Random();
+   
         foreach (char letter in sentence.ToCharArray())
         {
+            int count = rand.Next(1, 3);
+            Sounds.PlayOnce("Key" + count);//I know it's a little hard coded :(
             DialogueText.text += letter;
             if (IsTyping)
                 yield return new WaitForSeconds(1 / TypingSpeed);

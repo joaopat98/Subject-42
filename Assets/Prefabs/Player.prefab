@@ -452,6 +452,9 @@ MonoBehaviour:
   - name: Telekinesis
     clip: {fileID: 8300000, guid: 36654d6168bca1f4fb54a371b47fdbc6, type: 3}
     volume: 0.1
+  - name: Key1
+    clip: {fileID: 8300000, guid: 831500ec6147a824ca6253c14450bd9f, type: 3}
+    volume: 0.1
 --- !u!1 &815207935028953806
 GameObject:
   m_ObjectHideFlags: 0
