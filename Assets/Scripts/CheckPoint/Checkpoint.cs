@@ -67,5 +67,12 @@ public class Checkpoint : MonoBehaviour
             ResetToCheckpoint();
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            ResetToCheckpoint();
+        }
+    }
 
 }

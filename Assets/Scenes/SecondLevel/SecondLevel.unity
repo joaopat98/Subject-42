@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2360,7 +2360,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 51229721}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 10, y: 1, z: 28}
@@ -2659,7 +2659,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &109712999
 Transform:
   m_ObjectHideFlags: 0
@@ -3368,6 +3368,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: daedfbbd94f71b6419fc6c48c02a589d, type: 3}
+--- !u!114 &194783636 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3852495377750608655, guid: daedfbbd94f71b6419fc6c48c02a589d,
+    type: 3}
+  m_PrefabInstance: {fileID: 194783635}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee839057568cb4438a07f961b12242c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &195691358
 GameObject:
   m_ObjectHideFlags: 0
@@ -6087,42 +6099,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7af483813e4c3cf47b04ac7eed106010, type: 3}
---- !u!1 &351807057 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1861939200618368402, guid: 7af483813e4c3cf47b04ac7eed106010,
-    type: 3}
-  m_PrefabInstance: {fileID: 351807056}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &351807058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 351807057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 313487c1b1fcc574a91c3d8d468f60f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Range: 1
-  BeforeDialogue:
-    sentences:
-    - I spy with my All-Seeing Eye something hidden behind a wall...
-    - I spy with my All-Seeing Eye someone to share my power with...
-    RequiresConfirmation: 1
-    speaker: 
-  ExplainDialogue:
-    sentences:
-    - Now you can see what the New World Order hides from you...
-    RequiresConfirmation: 1
-    speaker: 
-  AfterDialogue:
-    sentences:
-    - There is more beyond what the eye can see...
-    RequiresConfirmation: 1
-    speaker: 
-  AbilityToGive: 5
 --- !u!1 &365297827
 GameObject:
   m_ObjectHideFlags: 0
@@ -13815,7 +13791,7 @@ PrefabInstance:
         type: 3}
       propertyPath: LevelLoader
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 194783636}
     - target: {fileID: 9198174551472913346, guid: d5e3841a4489577428cd858cea55337b,
         type: 3}
       propertyPath: m_Name
@@ -13878,6 +13854,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5e3841a4489577428cd858cea55337b, type: 3}
+--- !u!1 &869285609 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9198174550734221791, guid: d5e3841a4489577428cd858cea55337b,
+    type: 3}
+  m_PrefabInstance: {fileID: 869285608}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &869285610 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9198174550701463442, guid: d5e3841a4489577428cd858cea55337b,
+    type: 3}
+  m_PrefabInstance: {fileID: 869285608}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &872675309
 GameObject:
   m_ObjectHideFlags: 0
@@ -14523,7 +14511,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 999621023}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 8, y: 1, z: 20}
@@ -22619,12 +22607,12 @@ PrefabInstance:
         type: 3}
       propertyPath: doors.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 869285610}
     - target: {fileID: 7054448477704691511, guid: b757892ab9eb36b4dbd35f6151348949,
         type: 3}
       propertyPath: doors.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 869285609}
     - target: {fileID: 9208059841804739979, guid: b757892ab9eb36b4dbd35f6151348949,
         type: 3}
       propertyPath: m_LocalPosition.x
