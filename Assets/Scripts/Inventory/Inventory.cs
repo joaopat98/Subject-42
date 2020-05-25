@@ -12,18 +12,26 @@ public class Inventory : MonoBehaviour
     public GameObject Select;
     public TextMeshProUGUI Name;
     public TextMeshProUGUI Description;
-    [HideInInspector] public int current = 0;
-    public List<string> Names = new List<string>();
-    public List<string> Descriptions = new List<string>();
+    [HideInInspector] public static int current = 0;
+    public static List<string> Names = new List<string>();
+    public static List<string> Descriptions = new List<string>();
     AudioPlayer Sounds;
-    public List<Sprite> Images = new List<Sprite>();
+    public static List<Sprite> Images = new List<Sprite>();
     private bool AxisInUse = false;
     public Image currentItem;
+    private Canvas canvas;
 
     void Start()
     {
         slots = transform.Find("Panel").Find("Slots").GetChildren();
         Sounds = FindObjectOfType<AudioPlayer>();
+        canvas = GetComponent<Canvas>();
+        for (int i = 0; i < Images.Count; i++)
+        {
+            var slot = slots[i].GetComponent<Image>();
+            slot.sprite = Images[i];
+            slot.color = new Color(slot.color.r, slot.color.g, slot.color.b, 1f);
+        }
     }
     void Update()
     {
@@ -65,16 +73,15 @@ public class Inventory : MonoBehaviour
             Description.text = Descriptions[current];
             Select.transform.position = slots[current].transform.position;
             currentItem.sprite = Images[current];
-            currentItem.color = new Color(currentItem.color.r, currentItem.color.g,currentItem.color.b, 1f);
+            currentItem.color = new Color(currentItem.color.r, currentItem.color.g, currentItem.color.b, 1f);
         }
-
         else
         {
             Name.text = "Empty";
             Description.text = "When you collect an item you'll see its description here.";
         }
 
-        GetComponent<Canvas>().enabled = show;
+        canvas.enabled = show;
     }
 
     public void AddCollectible(PickupCollectible collectible)
@@ -82,10 +89,9 @@ public class Inventory : MonoBehaviour
         Names.Add(collectible.NameContent);
         Descriptions.Add(collectible.DescriptionContent);
         current = Names.Count - 1;
-        string slotName = "Slot" + Names.Count;
-        Image newEntry = GameObject.Find(slotName).GetComponent<Image>();
-        newEntry.sprite = collectible.hiddenIcon;
-        newEntry.color = new Color(newEntry.color.r, newEntry.color.g, newEntry.color.b, 1f);
+        Image newEntrySlot = slots[current].GetComponent<Image>();
+        newEntrySlot.sprite = collectible.hiddenIcon;
+        newEntrySlot.color = new Color(newEntrySlot.color.r, newEntrySlot.color.g, newEntrySlot.color.b, 1f);
         Images.Add(collectible.normalIcon);
     }
 }
