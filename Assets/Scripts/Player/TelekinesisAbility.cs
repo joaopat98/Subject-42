@@ -36,7 +36,6 @@ public class TelekinesisAbility : Ability
                 player.ViewRange,
                 ~LayerMask.GetMask("Player")
             );
-            Debug.Log(hit.collider);
             if (Vector3.Angle(player.transform.forward, obj.GetSelectionPosition() - player.transform.position) < currentLowestAngle
                 && Vector3.Distance(player.transform.position, obj.GetSelectionPosition()) <= player.ViewRange
                 && Vector3.Angle(player.transform.forward, obj.GetSelectionPosition() - player.transform.position) < player.ViewAngle

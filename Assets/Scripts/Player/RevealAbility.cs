@@ -52,7 +52,7 @@ public class RevealAbility : Ability
     {
         player.Sounds.PlayOnce("StartReveal");
         player.Sounds.PlayLoop("LoopReveal");
-        
+
         player.anim.SetTrigger("Reveal");
         yield return new WaitForSeconds(2.0f);
         foreach (IRevealObject obj in objects)
@@ -67,7 +67,9 @@ public class RevealAbility : Ability
     }
     public override void SwitchAbility(int delta)
     {
-        player.Sounds.StopLoop("LoopReveal");
+        if (isActive)
+            player.Sounds.StopLoop("LoopReveal");
+        isActive = false;
         FadeOutColor();
         foreach (IRevealObject obj in objects)
         {

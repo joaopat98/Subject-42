@@ -22,7 +22,7 @@ public class GuardLost : GuardAction
         t += Time.deltaTime;
         if (t >= recoveryTime)
         {
-           
+
             guard.action = new GuardPatrol(guard);
         }
     }

@@ -8,7 +8,6 @@ public class GuardChase : GuardAction
     private float t;
     public GuardChase(Guard guard) : base(guard)
     {
-        Debug.Log("Chasing");
         guard.anim.SetBool("Lost", false);
         guard.anim.SetBool("Checking", false);
         guard.anim.SetBool("Chasing", true);
@@ -16,6 +15,8 @@ public class GuardChase : GuardAction
         agent.stoppingDistance = guard.ChaseReachDistance;
         agent.speed = guard.ChaseSpeed;
         player.Sounds.PlayLoop("BreatheBegin");
+
+        DataCollector.AddGuardDiscovery();
     }
 
     void MeleeAttack()

@@ -11,7 +11,6 @@ public class GuardCheck : GuardAction
     public GuardCheck(Guard guard, Vector3 obj) : base(guard)
     {
         this.obj = obj;
-        Debug.Log("Check sound");
         guard.anim.SetBool("Checking", true);
         guard.anim.SetBool("Chasing", false);
         agent.angularSpeed = guard.CheckAngularSpeed;

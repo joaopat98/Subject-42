@@ -873,66 +873,63 @@ public partial class VLight : MonoBehaviour
                 cam.depthTextureMode = DepthTextureMode.None;
                 break;
             case ShadowMode.Realtime:
-                if (SystemInfo.supportsImageEffects)
+                cam.backgroundColor = Color.white;
+                cam.clearFlags = CameraClearFlags.SolidColor;
+                cam.renderingPath = RenderingPath.VertexLit;
+                //prevent any recursive rendering
+                cam.cullingMask &= ~(WaterLayer | VLightLayer);
+                cam.depthTextureMode = renderFullShadows ? DepthTextureMode.Depth : DepthTextureMode.None;
+
+                CreateDepthTexture(lightType);
+
+                if (RenderDepthShader != null)
                 {
-                    cam.backgroundColor = Color.white;
-                    cam.clearFlags = CameraClearFlags.SolidColor;
-                    cam.renderingPath = RenderingPath.VertexLit;
-                    //prevent any recursive rendering
-                    cam.cullingMask &= ~(WaterLayer | VLightLayer);
-                    cam.depthTextureMode = renderFullShadows ? DepthTextureMode.Depth : DepthTextureMode.None;
-
-                    CreateDepthTexture(lightType);
-
-                    if (RenderDepthShader != null)
+                    switch (lightType)
                     {
-                        switch (lightType)
-                        {
-                            case LightTypes.Spot:
-                            case LightTypes.Orthographic:
-                                cam.targetTexture = _depthTexture;
-                                cam.projectionMatrix = CalculateProjectionMatrix();
-                                if (renderFullShadows)
-                                {
-                                    cam.Render();
-                                    Graphics.Blit(null, _depthTexture, PostMaterial, 6);
-                                }
-                                else
-                                {
-                                    cam.RenderWithShader(RenderDepthShader, "RenderType");
-                                }
+                        case LightTypes.Spot:
+                        case LightTypes.Orthographic:
+                            cam.targetTexture = _depthTexture;
+                            cam.projectionMatrix = CalculateProjectionMatrix();
+                            if (renderFullShadows)
+                            {
+                                cam.Render();
+                                Graphics.Blit(null, _depthTexture, PostMaterial, 6);
+                            }
+                            else
+                            {
+                                cam.RenderWithShader(RenderDepthShader, "RenderType");
+                            }
 
-                                if (shadowBlurPasses > 0)
+                            if (shadowBlurPasses > 0)
+                            {
+                                //Blur the result
+                                var pingPong = RenderTexture.GetTemporary(shadowMapRes, shadowMapRes, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Linear);
+                                pingPong.DiscardContents();
+                                PostMaterial.SetFloat("_BlurSize", shadowBlurSize);
+                                for (int i = 0; i < shadowBlurPasses; i++)
                                 {
-                                    //Blur the result
-                                    var pingPong = RenderTexture.GetTemporary(shadowMapRes, shadowMapRes, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Linear);
+                                    Graphics.Blit(_depthTexture, pingPong, PostMaterial, 1);
+                                    _depthTexture.DiscardContents();
+                                    Graphics.Blit(pingPong, _depthTexture, PostMaterial, 2);
                                     pingPong.DiscardContents();
-                                    PostMaterial.SetFloat("_BlurSize", shadowBlurSize);
-                                    for (int i = 0; i < shadowBlurPasses; i++)
-                                    {
-                                        Graphics.Blit(_depthTexture, pingPong, PostMaterial, 1);
-                                        _depthTexture.DiscardContents();
-                                        Graphics.Blit(pingPong, _depthTexture, PostMaterial, 2);
-                                        pingPong.DiscardContents();
-                                    }
-
-                                    RenderTexture.ReleaseTemporary(pingPong);
                                 }
-                                break;
-                            case LightTypes.Point:
-                                cam.projectionMatrix = Matrix4x4.Perspective(90, 1.0f, 0.1f, pointLightRadius);
-                                cam.SetReplacementShader(RenderDepthShader, "RenderType");
-                                cam.RenderToCubemap(_depthTexture, 63);
-                                cam.ResetReplacementShader();
-                                break;
-                            default:
-                                break;
-                        }
+
+                                RenderTexture.ReleaseTemporary(pingPong);
+                            }
+                            break;
+                        case LightTypes.Point:
+                            cam.projectionMatrix = Matrix4x4.Perspective(90, 1.0f, 0.1f, pointLightRadius);
+                            cam.SetReplacementShader(RenderDepthShader, "RenderType");
+                            cam.RenderToCubemap(_depthTexture, 63);
+                            cam.ResetReplacementShader();
+                            break;
+                        default:
+                            break;
                     }
-                    else
-                    {
-                        Debug.LogWarning("Could not find depth shader. Cannot render shadows");
-                    }
+                }
+                else
+                {
+                    Debug.LogWarning("Could not find depth shader. Cannot render shadows");
                 }
                 break;
         }

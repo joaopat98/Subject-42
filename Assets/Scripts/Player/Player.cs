@@ -141,7 +141,7 @@ public class Player : MonoBehaviour
         triggerAnim = (TriggerAnim[])System.Enum.GetValues(typeof(TriggerAnim));
         Sounds = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioPlayer>();
         StartCoroutine(PlayStartSounds());
-        
+
     }
 
     IEnumerator PlayStartSounds()
@@ -260,6 +260,7 @@ public class Player : MonoBehaviour
     /// </summary>
     public void Kill()
     {
+        DataCollector.AddDeath();
         isAlive = false;
         GetComponent<Renderer>().material = DeadMaterial;
         StartCoroutine(Reset());
@@ -281,6 +282,7 @@ public class Player : MonoBehaviour
         else
         {
             Abilities.Add(Ability.FromType(type, this));
+            SwitchAbility(Abilities.Count - 1 - CurrentAbility);
         }
     }
 
