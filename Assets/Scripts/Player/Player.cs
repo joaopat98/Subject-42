@@ -269,6 +269,7 @@ public class Player : MonoBehaviour
     IEnumerator Reset()
     {
         anim.SetTrigger("Death");
+        Sounds.PlayOnce("Death");
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
