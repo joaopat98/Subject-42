@@ -464,6 +464,12 @@ MonoBehaviour:
   - name: Key4
     clip: {fileID: 8300000, guid: 82ecae2af0d86a24ab94aad87d444836, type: 3}
     volume: 0.1
+  - name: BreatheBegin
+    clip: {fileID: 8300000, guid: 8ee243a8c00ffe745ab56d0efe7cce6c, type: 3}
+    volume: 0.1
+  - name: BreatheEnd
+    clip: {fileID: 8300000, guid: 3725941a604cb8b4490e654f87ed13cb, type: 3}
+    volume: 0.1
 --- !u!1 &815207935028953806
 GameObject:
   m_ObjectHideFlags: 0
