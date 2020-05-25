@@ -18,11 +18,10 @@ public class GuardLost : GuardAction
 
     public override void Do()
     {
-        Debug.Log("Lost");
         t += Time.deltaTime;
         if (t >= recoveryTime)
         {
-           
+
             guard.action = new GuardPatrol(guard);
         }
     }

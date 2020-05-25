@@ -1998,9 +1998,9 @@ MonoBehaviour:
   PatrolView: 5
   PatrolReachDistance: 0.1
   PatrolAngularSpeed: 3
-  CheckSpeed: 1
-  CheckReachDistance: 2
-  CheckAngularSpeed: 1
+  CheckSpeed: 2
+  CheckReachDistance: 0.5
+  CheckAngularSpeed: 3
   TimeToCheck: 2
   ChaseSpeed: 5
   ChaseRange: 6

@@ -260,6 +260,7 @@ public class Player : MonoBehaviour
     /// </summary>
     public void Kill()
     {
+        DataCollector.AddDeath();
         isAlive = false;
         GetComponent<Renderer>().material = DeadMaterial;
         StartCoroutine(Reset());

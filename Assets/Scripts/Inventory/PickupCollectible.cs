@@ -46,6 +46,7 @@ public class PickupCollectible : MonoBehaviour
         {
             collider.gameObject.GetComponent<Player>().Sounds.PlayOnce("ObtainCollectible");
             inventory.AddCollectible(this);
+            DataCollector.AddCollectible();
             Destroy(gameObject);
         }
     }
