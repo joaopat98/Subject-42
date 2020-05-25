@@ -148,7 +148,7 @@ public class Player : MonoBehaviour
     {
         Sounds.PlayOnce("StartLevel");
         yield return new WaitForSeconds(1.0f);
-        //Sounds.PlayLoop(SceneManager.GetActiveScene().name);
+        Sounds.PlayLoop(SceneManager.GetActiveScene().name);
     }
 
     void Update()
