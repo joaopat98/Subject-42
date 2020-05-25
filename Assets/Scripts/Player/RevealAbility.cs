@@ -67,6 +67,7 @@ public class RevealAbility : Ability
     }
     public override void SwitchAbility(int delta)
     {
+        player.Sounds.StopLoop("LoopReveal");
         FadeOutColor();
         foreach (IRevealObject obj in objects)
         {

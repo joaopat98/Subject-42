@@ -18,7 +18,7 @@ public class GuardLost : GuardAction
 
     public override void Do()
     {
-        Debug.Log("Lost");
+        //Debug.Log("Lost");
         t += Time.deltaTime;
         if (t >= recoveryTime)
         {

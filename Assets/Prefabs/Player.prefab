@@ -442,7 +442,7 @@ MonoBehaviour:
     volume: 0.524
   - name: OpenMenu
     clip: {fileID: 8300000, guid: 4df563a8f3091544bbbb11b2d02df47c, type: 3}
-    volume: 0.2
+    volume: 0.15
   - name: StartReveal
     clip: {fileID: 8300000, guid: 48ea37ed4d63c1d43a5109a0e6c9cfc1, type: 3}
     volume: 0.4
@@ -463,6 +463,12 @@ MonoBehaviour:
     volume: 0.1
   - name: Key4
     clip: {fileID: 8300000, guid: 82ecae2af0d86a24ab94aad87d444836, type: 3}
+    volume: 0.1
+  - name: BreatheBegin
+    clip: {fileID: 8300000, guid: 8ee243a8c00ffe745ab56d0efe7cce6c, type: 3}
+    volume: 0.1
+  - name: BreatheEnd
+    clip: {fileID: 8300000, guid: 3725941a604cb8b4490e654f87ed13cb, type: 3}
     volume: 0.1
 --- !u!1 &815207935028953806
 GameObject:
