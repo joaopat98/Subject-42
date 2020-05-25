@@ -442,7 +442,7 @@ MonoBehaviour:
     volume: 0.524
   - name: OpenMenu
     clip: {fileID: 8300000, guid: 4df563a8f3091544bbbb11b2d02df47c, type: 3}
-    volume: 0.2
+    volume: 0.15
   - name: StartReveal
     clip: {fileID: 8300000, guid: 48ea37ed4d63c1d43a5109a0e6c9cfc1, type: 3}
     volume: 0.4
