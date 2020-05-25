@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6884650065286272923}
   - component: {fileID: 6884650065286272922}
   - component: {fileID: 6884650065286272926}
+  - component: {fileID: 2648286630111060328}
   m_Layer: 5
   m_Name: Collectible Canvas
   m_TagString: Untagged
@@ -120,6 +121,18 @@ MonoBehaviour:
   Descriptions: []
   Images: []
   currentItem: {fileID: 8693290479884728364}
+--- !u!114 &2648286630111060328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6884650065286272912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7111f6850e08e8340ab716e557aa37f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6884650065286272913
 GameObject:
   m_ObjectHideFlags: 0
