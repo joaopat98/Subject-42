@@ -76,9 +76,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hiddenIcon: {fileID: 21300000, guid: 98f896d86eda52245b077aac2ac0df45, type: 3}
   normalIcon: {fileID: 21300000, guid: 98f896d86eda52245b077aac2ac0df45, type: 3}
-  NameContent: 'Diary: April 10'
-  DescriptionContent: "Diary: May 26\nSubject #42 is far too powerful. We have failed
-    to curb her vicious tendencies\u2026"
+  NameContent: 'Video Camera Footage: January 16'
+  DescriptionContent: This footage shows a Subject with pink pants knocking out guards
+    with... Yoga?
   CollectibleType: 
 --- !u!1 &5911909591111384607
 GameObject:

@@ -77,9 +77,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hiddenIcon: {fileID: 21300000, guid: 37395b2cac9ac3c48b1413a73f94c844, type: 3}
   normalIcon: {fileID: 21300000, guid: 37395b2cac9ac3c48b1413a73f94c844, type: 3}
-  NameContent: 'Diary: April 10'
-  DescriptionContent: "Diary: May 26\nSubject #42 is far too powerful. We have failed
-    to curb her vicious tendencies\u2026"
+  NameContent: 'Diary: May 26'
+  DescriptionContent: "Subject #42 is far too powerful, but data is insufficient.
+    We need to run more tests on her...\r"
   CollectibleType: 
 --- !u!1 &5963458326587758755
 GameObject:
