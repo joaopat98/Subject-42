@@ -7026,6 +7026,44 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 968534637, guid: 3dddaa906eb2b6f4895c4e0eee7a96bb, type: 3}
+      propertyPath: ExplainDialogue.sentences.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 968534637, guid: 3dddaa906eb2b6f4895c4e0eee7a96bb, type: 3}
+      propertyPath: BeforeDialogue.sentences.Array.data[0]
+      value: Those pesky guards think they can just lock us here..
+      objectReference: {fileID: 0}
+    - target: {fileID: 968534637, guid: 3dddaa906eb2b6f4895c4e0eee7a96bb, type: 3}
+      propertyPath: BeforeDialogue.sentences.Array.data[1]
+      value: Well I say otherwise! I'm too weak, but maybe you'll make better use
+        of this power.
+      objectReference: {fileID: 0}
+    - target: {fileID: 968534637, guid: 3dddaa906eb2b6f4895c4e0eee7a96bb, type: 3}
+      propertyPath: BeforeDialogue.speaker
+      value: Frail Man
+      objectReference: {fileID: 0}
+    - target: {fileID: 968534637, guid: 3dddaa906eb2b6f4895c4e0eee7a96bb, type: 3}
+      propertyPath: ExplainDialogue.speaker
+      value: Frail Man
+      objectReference: {fileID: 0}
+    - target: {fileID: 968534637, guid: 3dddaa906eb2b6f4895c4e0eee7a96bb, type: 3}
+      propertyPath: ExplainDialogue.sentences.Array.data[0]
+      value: This power let's you move objects using your thoughts!
+      objectReference: {fileID: 0}
+    - target: {fileID: 968534637, guid: 3dddaa906eb2b6f4895c4e0eee7a96bb, type: 3}
+      propertyPath: ExplainDialogue.sentences.Array.data[1]
+      value: You must go now, before any of the guards notices you...
+      objectReference: {fileID: 0}
+    - target: {fileID: 968534637, guid: 3dddaa906eb2b6f4895c4e0eee7a96bb, type: 3}
+      propertyPath: AfterDialogue.sentences.Array.data[0]
+      value: Did I mention that you can also change the orientation of objects with
+        that power?
+      objectReference: {fileID: 0}
+    - target: {fileID: 968534637, guid: 3dddaa906eb2b6f4895c4e0eee7a96bb, type: 3}
+      propertyPath: AfterDialogue.speaker
+      value: Frail Man
+      objectReference: {fileID: 0}
     - target: {fileID: 5980628337289273278, guid: 3dddaa906eb2b6f4895c4e0eee7a96bb,
         type: 3}
       propertyPath: m_Name
