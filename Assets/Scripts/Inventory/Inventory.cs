@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +13,8 @@ public class Inventory : MonoBehaviour
     public TextMeshProUGUI Name;
     public TextMeshProUGUI Description;
     [HideInInspector] public static int current = 0;
+
+    public static List<int> ids = new List<int>();
     public static List<string> Names = new List<string>();
     public static List<string> Descriptions = new List<string>();
     AudioPlayer Sounds;
@@ -23,6 +25,11 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
+        foreach (var collectible in GameObject.FindObjectsOfType<PickupCollectible>())
+        {
+            if (ids.Contains(collectible.CollectibleId))
+                Destroy(collectible.gameObject);
+        }
         slots = transform.Find("Panel").Find("Slots").GetChildren();
         Sounds = FindObjectOfType<AudioPlayer>();
         canvas = GetComponent<Canvas>();
@@ -86,6 +93,7 @@ public class Inventory : MonoBehaviour
 
     public void AddCollectible(PickupCollectible collectible)
     {
+        ids.Add(collectible.CollectibleId);
         Names.Add(collectible.NameContent);
         Descriptions.Add(collectible.DescriptionContent);
         current = Names.Count - 1;

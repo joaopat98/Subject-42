@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,27 +15,16 @@ public class PickupCollectible : MonoBehaviour
     private string CollectibleText;
 
     public string CollectibleType;
-    /*
-    public void Start()
+
+    [HideInInspector]
+    public int CollectibleId;
+
+    void Awake()
     {
-        inventory = GameObject.FindObjectOfType<Inventory>();
-        dialogue = GameObject.FindObjectOfType<Dialogue>();
-        CollectibleText = "You found " + CollectibleType + "!";
+        CollectibleId = transform.position.GetHashCode();
     }
 
-    void OnTriggerStay(Collider collider)
-    {
-        if (collider.tag == "Player")
-        {
-            collider.gameObject.GetComponent<Player>().Sounds.PlayOnce("ObtainCollectible");
-            inventory.AddCollectible(this);
-            dialogue.AddSentence(CollectibleText);
-            Destroy(gameObject);
-        }
-    }
-    */
-
-    public void Start()
+    void Start()
     {
         inventory = GameObject.FindObjectOfType<Inventory>();
     }
