@@ -28,7 +28,7 @@ public class PauseMenu : MonoBehaviour
 
 
     void Start()
-    {   
+    {
         Normal.Add(resumeNormal);
         Normal.Add(restartNormal);
         Normal.Add(quitNormal);
@@ -43,7 +43,7 @@ public class PauseMenu : MonoBehaviour
 
         current = 0;
 
-        for(int i = 0; i < Buttons.Count; i++)
+        for (int i = 0; i < Buttons.Count; i++)
         {
             Buttons[i].sprite = Normal[i];
             Buttons[i].color = new Color(Buttons[i].color.r, Buttons[i].color.g, Buttons[i].color.b, 1f);
@@ -68,9 +68,9 @@ public class PauseMenu : MonoBehaviour
 
     void updateSelected()
     {
-        for( int i = 0; i < Buttons.Count; i++ )
+        for (int i = 0; i < Buttons.Count; i++)
         {
-            if( i == current )
+            if (i == current)
             {
                 Buttons[i].sprite = Selected[i];
             }
@@ -78,35 +78,35 @@ public class PauseMenu : MonoBehaviour
             else
             {
                 Buttons[i].sprite = Normal[i];
-            }      
+            }
         }
     }
 
 
     void Update()
     {
-        if(Input.GetButtonDown("Start"))
+        if (Input.GetButtonDown("Start"))
         {
             current = 0;
             show = !show;
         }
 
-        if(show)
+        if (show)
         {
-            if(Input.GetButtonDown("Interact"))
+            if (Input.GetButtonDown("Interact"))
             {
                 execute();
             }
 
-            else if(Input.GetAxisRaw("DPad Y") == 0)
+            else if (Input.GetAxisRaw("DPad Y") == 0)
             {
                 AxisInUse = false;
             }
 
-            else if (Input.GetAxisRaw("DPad Y") == -1 && !AxisInUse) 
+            else if (Input.GetAxisRaw("DPad Y") == -1 && !AxisInUse)
             {
                 current++;
-                AxisInUse = true;    
+                AxisInUse = true;
             }
 
             else if (Input.GetAxisRaw("DPad Y") == 1 && !AxisInUse)
